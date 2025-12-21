@@ -1,3 +1,3 @@
-import { prisma } from '../api/lib/prisma.js';
+import { prisma } from './lib/prisma.js';
 
-console.log("from script js of api");
+console.log("everything works!!!!!!!!");
