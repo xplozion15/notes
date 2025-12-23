@@ -14,12 +14,15 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  password String
-  email    String  @unique
-  username String  @unique
-  posts    Post[]
-  isAdmin  Boolean @default(false)
+  id        Int       @id @default(autoincrement())
+  firstName String
+  lastName  String
+  password  String
+  email     String    @unique
+  username  String    @unique
+  posts     Post[]
+  isAdmin   Boolean   @default(false)
+  comments  Comment[]
 }
 
 model Post {
@@ -31,6 +34,7 @@ model Post {
   comments   Comment[]
   category   Category  @relation(fields: [categoryId], references: [id])
   categoryId Int
+  title      String
 }
 
 model Comment {
@@ -39,6 +43,8 @@ model Comment {
   commentBody String
   post        Post     @relation(fields: [postId], references: [id])
   postId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  userId      Int
 }
 
 model Category {
