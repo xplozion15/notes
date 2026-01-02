@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-
 const { indexRouter } = require("./routes/index.routes");
 const { postRouter } = require("./routes/post.routes");
 const { categoryRouter } = require("./routes/category.routes");
@@ -11,12 +10,11 @@ const { commentRouter } = require("./routes/comment.routes");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
 app.use("/", indexRouter);
 app.use("/posts", postRouter);
 app.use("/categories", categoryRouter);
 app.use("/posts/:postId/comments", commentRouter);
-
+app.use("/comments",commentRouter);
 
 
 app.listen(port, () => {

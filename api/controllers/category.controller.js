@@ -10,15 +10,13 @@ async function fetchPostsByCategory(req, res) {
     });
 
     res.json({
-        categoryPosts:categoryPosts,
-    })
+      categoryPosts: categoryPosts,
+    });
   } catch (error) {
     res.status(500).json({
-        error : "failed to fetch posts by category",
-    }
-    )
+      error: "failed to fetch posts by category",
+    });
   }
 }
 
-
-module.exports = {fetchPostsByCategory};
+module.exports = { fetchPostsByCategory };
