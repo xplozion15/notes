@@ -47,7 +47,7 @@ async function deleteComment(req, res) {
 
 async function updateComment(req, res) {
   try {
-    const commentId = req.params.commentId;
+    const commentId = Number(req.params.commentId);
     const commentBody = req.body.comment;
 
     if (commentId) {
