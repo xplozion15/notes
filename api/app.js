@@ -5,16 +5,25 @@ const { indexRouter } = require("./routes/index.routes");
 const { postRouter } = require("./routes/post.routes");
 const { categoryRouter } = require("./routes/category.routes");
 const { commentRouter } = require("./routes/comment.routes");
+const { authRouter } = require("./routes/auth.routes");
+const bcrypt = require("bcryptjs");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const {prisma} = require("./lib/prisma");
+
+
 
 //for form data to be accessed in the controllers
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
 app.use("/", indexRouter);
 app.use("/posts", postRouter);
 app.use("/categories", categoryRouter);
 app.use("/posts/:postId/comments", commentRouter);
-app.use("/comments",commentRouter);
+app.use("/comments", commentRouter);
+app.use("/auth", authRouter);
 
 
 app.listen(port, () => {

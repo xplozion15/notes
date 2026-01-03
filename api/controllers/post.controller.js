@@ -82,4 +82,23 @@ async function fetchPostById(req, res) {
   }
 }
 
-module.exports = { fetchPostById, createPost,updatePost };
+async function  deletePost(req,res) {
+  try {
+    const postId = Number(req.params.postId);
+
+    await prisma.post.delete({
+      where :{
+        id : postId
+      }
+    })
+    res.json({
+      message : "post deleted succesfully",
+    })
+  } catch (error) {
+    res.status(500).json({
+      message : "Failed the delete the post",
+    })
+  }
+}
+
+module.exports = { fetchPostById, createPost,updatePost,deletePost };
