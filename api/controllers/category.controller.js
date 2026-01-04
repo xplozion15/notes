@@ -1,8 +1,27 @@
 const { prisma } = require("../lib/prisma");
 
+async function createNewCategory(req, res) {
+  try {
+    const { title } = req.body;
+
+    await prisma.category.create({
+      data: {
+        title: title,
+      },
+    });
+    res.json({
+      message: "Category created successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "failed to create a category",
+    });
+  }
+}
+
 async function fetchPostsByCategory(req, res) {
   try {
-    const categoryId = req.params.categoryId;
+    const categoryId = Number(req.params.categoryId);
     const categoryPosts = await prisma.post.findMany({
       where: {
         categoryId: categoryId,
@@ -19,4 +38,4 @@ async function fetchPostsByCategory(req, res) {
   }
 }
 
-module.exports = { fetchPostsByCategory };
+module.exports = { fetchPostsByCategory, createNewCategory };

@@ -6,16 +6,13 @@ const secret = process.env.JWT_SECRET;
 
 async function registerUser(req, res) {
   try {
-    const { firstName, lastName, email, username, password, adminPassword } =
+    const { firstName, lastName, email, username, password,} =
       req.body;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Check if the user entered the correct admin password
+    // always keep admin false 
     let isAdmin = false;
-    if (adminPassword && adminPassword === process.env.ADMIN_SECRET) {
-      isAdmin = true;
-    }
 
     //create the user
     await prisma.user.create({

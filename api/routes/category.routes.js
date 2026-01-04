@@ -6,5 +6,6 @@ categoryRouter.get(
   "/:categoryId/posts",
   categoryController.fetchPostsByCategory,
 );
+categoryRouter.post("/", categoryController.createNewCategory);
 
 module.exports = { categoryRouter };
