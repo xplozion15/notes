@@ -3,7 +3,7 @@ const { prisma } = require("../lib/prisma");
 async function createPost(req, res) {
   try {
     const title = req.body.title;
-    const authorId = Number(req.user.id); // set by auth middleware
+    const authorId = Number(req.user.userId); // set by auth middleware
     const categoryId = Number(req.body.categoryId);
     const postBody = req.body.postBody;
 
@@ -82,23 +82,23 @@ async function fetchPostById(req, res) {
   }
 }
 
-async function  deletePost(req,res) {
+async function deletePost(req, res) {
   try {
     const postId = Number(req.params.postId);
 
     await prisma.post.delete({
-      where :{
-        id : postId
-      }
-    })
+      where: {
+        id: postId,
+      },
+    });
     res.json({
-      message : "post deleted succesfully",
-    })
+      message: "post deleted succesfully",
+    });
   } catch (error) {
     res.status(500).json({
-      message : "Failed the delete the post",
-    })
+      message: "Failed the delete the post",
+    });
   }
 }
 
-module.exports = { fetchPostById, createPost,updatePost,deletePost };
+module.exports = { fetchPostById, createPost, updatePost, deletePost };

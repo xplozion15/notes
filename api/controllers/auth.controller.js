@@ -6,12 +6,11 @@ const secret = process.env.JWT_SECRET;
 
 async function registerUser(req, res) {
   try {
-    const { firstName, lastName, email, username, password,} =
-      req.body;
+    const { firstName, lastName, email, username, password } = req.body;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // always keep admin false 
+    // always keep admin false
     let isAdmin = false;
 
     //create the user
@@ -80,7 +79,7 @@ async function login(req, res) {
   }
 }
 
- function authenticateToken(req, res, next) {
+function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 
@@ -98,4 +97,4 @@ async function login(req, res) {
   });
 }
 
-module.exports = { registerUser, login ,authenticateToken};
+module.exports = { registerUser, login, authenticateToken };

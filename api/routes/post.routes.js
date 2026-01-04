@@ -1,10 +1,11 @@
 const express = require("express");
 const postRouter = express.Router();
 const postController = require("../controllers/post.controller");
+const { authenticateToken } = require("../controllers/auth.controller");
 
 postRouter.get("/:postId", postController.fetchPostById);
-postRouter.post("/",postController.createPost);
-postRouter.patch("/:postId",postController.updatePost);
-postRouter.delete("/:postId",postController.deletePost);
+postRouter.post("/", authenticateToken, postController.createPost);
+postRouter.patch("/:postId", authenticateToken, postController.updatePost);
+postRouter.delete("/:postId", authenticateToken, postController.deletePost);
 
 module.exports = { postRouter };
