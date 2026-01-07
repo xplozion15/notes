@@ -1,14 +1,15 @@
 import styles from "./Content.module.css";
+import { Outlet } from "react-router-dom";
 
 const Content = () => {
-    return <> 
-        <div>
-            <p>this is the main content rn</p>
-        </div>
-    
-    
+  return (
+    <>
+      <div>
+        <h1>this is content component</h1>
+        <Outlet />
+      </div>
     </>
-}
+  );
+};
 
-
-export {Content};
+export { Content };

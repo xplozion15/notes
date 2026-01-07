@@ -1,0 +1,46 @@
+.loginFormContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  border: 2px solid peachpuff;
+}
+
+.loginForm {
+  border-radius: var(--border-radius-small);
+  padding: 1rem;
+  gap: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 24%;
+}
+
+.submitLoginButton {
+  min-height: 3.2rem;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: var(--border-radius-small);
+  color: white;
+  cursor: pointer;
+}
+
+.createNewAccount {
+  min-height: 2.5rem;
+}
+
+.formDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.formDiv > input {
+  min-height: 2.2rem;
+}
+
+h2,
+a {
+  text-align: center;
+  color: var(--main-color);
+}

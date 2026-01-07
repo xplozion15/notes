@@ -1,7 +1,9 @@
 /* css reset sheet */
 
 /* 1. Use a more-intuitive box-sizing model */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -25,18 +27,31 @@ body {
 }
 
 /* 6. Improve media defaults */
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 
 /* 7. Inherit fonts for form controls */
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 
 /* 8. Avoid text overflows */
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   overflow-wrap: break-word;
 }
 
@@ -44,35 +59,32 @@ p, h1, h2, h3, h4, h5, h6 {
 p {
   text-wrap: pretty;
 }
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-wrap: balance;
 }
 
 /*
   10. Create a root stacking context
 */
-#root, #__next {
+#root,
+#__next {
   isolation: isolate;
 }
 
-
-
 :root {
-  --hover-color-main : #e6efff;
-  --background-color-main : #ebeef5;
-  --main-color : #7ca1f5;
-  --border-radius-small : 0.7rem;
-  --text-color-main : rgb(77, 76, 76);
-  --secondary-color : #f5f5f5;
+  --hover-color-main: #e6efff;
+  --background-color-main: #ebeef5;
+  --main-color: #7ca1f5;
+  --border-radius-small: 0.7rem;
+  --text-color-main: rgb(77, 76, 76);
+  --secondary-color: #f5f5f5;
 }
 body {
   background-color: #eceef5;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-nav {
-  background-color: white;
-  margin: 1rem;
-  border-radius: 1rem;
-  padding: 0.5rem;
+  font-family: "Lilita One", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }

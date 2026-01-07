@@ -97,4 +97,33 @@ function authenticateToken(req, res, next) {
   });
 }
 
-module.exports = { registerUser, login, authenticateToken };
+async function getMe(req, res) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: req.user.userId,
+      },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        username: true,
+        email: true,
+        isAdmin: true, //needed for checking if its admin or not on frontend too
+        //not sending password to client for security purposes
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.json(user);
+  } catch (error) {
+    res.status(500).json({
+      message: "user not found",
+    });
+  }
+}
+
+module.exports = { registerUser, login, authenticateToken,getMe};
