@@ -2,11 +2,13 @@ import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   return (
     <>
       <div className={styles.loginFormContainer}>
-        <form action="" method="post" className={styles.loginForm}>
-          <h2>Login Form</h2>
+        <form action={`${API_BASE_URL}/auth/login`} method="post" className={styles.loginForm}>
+          <h2 className={styles.h2}>Login Form</h2>
           <div className={styles.formDiv}>
             <label htmlFor="username">Username</label>
             <input type="text" name="username" id="username" />
@@ -19,7 +21,7 @@ const Login = () => {
           <button type="submit" className={styles.submitLoginButton}>
             Log in
           </button>
-          <Link to="/">Create New Account</Link>
+          <Link to="/" className={styles.a}>Create New Account</Link>
         </form>
       </div>
     </>

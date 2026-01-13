@@ -6,8 +6,10 @@ const { postRouter } = require("./routes/post.routes");
 const { categoryRouter } = require("./routes/category.routes");
 const { commentRouter } = require("./routes/comment.routes");
 const { authRouter } = require("./routes/auth.routes");
+const cors = require("cors");
 
 //for form data to be accessed in the controllers
+app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

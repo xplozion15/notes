@@ -1,5 +1,28 @@
 const { prisma } = require("../lib/prisma");
 
+async function fetchCategories(req, res) {
+  try {
+    const categories = await prisma.category.findMany({
+      include: {
+        _count: {
+          select: {
+            posts: true,
+          },
+        },
+      },
+    });
+
+    return res.json({
+      "message" : "Categories fetched successfulyy",
+      categories : categories,
+    })
+  } catch (error) {
+    res.status(500).json({
+      "message" : "failed to fetch the categories",
+    })
+  }
+}
+
 async function createNewCategory(req, res) {
   try {
     const { title } = req.body;
@@ -38,4 +61,4 @@ async function fetchPostsByCategory(req, res) {
   }
 }
 
-module.exports = { fetchPostsByCategory, createNewCategory };
+module.exports = { fetchPostsByCategory, createNewCategory ,fetchCategories};

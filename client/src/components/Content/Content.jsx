@@ -3,12 +3,10 @@ import { Outlet } from "react-router-dom";
 
 const Content = () => {
   return (
-    <>
-      <div>
-        <h1>this is content component</h1>
-        <Outlet />
-      </div>
-    </>
+    <div className={styles.content}>
+
+      <Outlet />
+    </div>
   );
 };
 

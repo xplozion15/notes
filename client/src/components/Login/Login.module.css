@@ -39,8 +39,8 @@
   min-height: 2.2rem;
 }
 
-h2,
-a {
+.h2,
+.a {
   text-align: center;
   color: var(--main-color);
 }

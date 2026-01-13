@@ -27,7 +27,7 @@ const Navbar = () => {
           name="search"
           id="search"
           className={styles.search}
-          placeholder=" search blogs..."
+          placeholder=" Search blogs..."
         />
         {theme === "light" ? (
           <Moon

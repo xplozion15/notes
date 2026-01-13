@@ -1,5 +1,19 @@
 const { prisma } = require("../lib/prisma");
 
+async function fetchPosts(req, res) {
+  try {
+    const posts = await prisma.post.findMany();
+    res.json({
+      message: "posts fetched successfully",
+      posts: posts,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "failed to fetch the posts",
+    });
+  }
+}
+
 async function createPost(req, res) {
   try {
     const title = req.body.title;
@@ -58,22 +72,19 @@ async function fetchPostById(req, res) {
       where: {
         id: postId,
       },
-    });
-
-    const postComments = await prisma.comment.findMany({
-      where: {
-        postId: postId,
+      select: {
+        title: true,
+        postBody: true,
+        comments: true,
+        category: true,
+        author : true,
       },
     });
-
-    const categories = await prisma.category.findMany();
 
     post === null
       ? res.status(404).json({ error: "Post does not exist" })
       : res.json({
           post: post,
-          postComments: postComments,
-          categories: categories,
         });
   } catch (error) {
     res.status(500).json({
@@ -101,4 +112,10 @@ async function deletePost(req, res) {
   }
 }
 
-module.exports = { fetchPostById, createPost, updatePost, deletePost };
+module.exports = {
+  fetchPostById,
+  createPost,
+  updatePost,
+  deletePost,
+  fetchPosts,
+};
