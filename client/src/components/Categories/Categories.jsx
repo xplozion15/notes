@@ -16,7 +16,8 @@ const Categories = () => {
         }
 
         const result = await response.json();
-
+        
+        
         setCategoriesArray(result.categories);
       } catch (error) {
         console.error("Failed to fetch categories:", error);
@@ -31,7 +32,7 @@ const Categories = () => {
       <div className={styles.categories}>
         <p className={styles.categoryheading}>Categories</p>
         {categoriesArray.map((category) => (
-          <Link to={`/categories/${category.id}`}>
+          <Link to={`/categories/${category.id}/posts`} key={category.id}>
             <div key={category.id} className={styles.categorydiv}>
               <p>{category.title}</p>
               <p className={styles.categorycount}>{category["_count"].posts}</p>

@@ -15,9 +15,8 @@ const PostPage = () => {
           throw new Error(`Response status: ${response.status}`);
         }
         const result = await response.json();
-        setPost(result);
-        console.log(result);
-        
+        setPost(result.post);
+        console.log(result.post);
       } catch (error) {
         console.error("Failed to fetch posts:", error);
       }
@@ -27,7 +26,11 @@ const PostPage = () => {
 
   return (
     <>
-      <p>single post here </p>
+      <p>{post.title}</p>
+      {post.category && <h2>{post.category.title}</h2>}
+
+      <p>{new Date(post.createdAt).toDateString()}</p>
+      <p>{post.postBody}</p>
     </>
   );
 };

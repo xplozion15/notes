@@ -49,6 +49,9 @@ async function fetchPostsByCategory(req, res) {
       where: {
         categoryId: categoryId,
       },
+      include : {
+        category : true,
+      }
     });
 
     res.json({

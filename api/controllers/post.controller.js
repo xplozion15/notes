@@ -2,7 +2,12 @@ const { prisma } = require("../lib/prisma");
 
 async function fetchPosts(req, res) {
   try {
-    const posts = await prisma.post.findMany();
+    const posts = await prisma.post.findMany({
+      include: {
+        category: true,
+      },
+    });
+
     res.json({
       message: "posts fetched successfully",
       posts: posts,
@@ -77,7 +82,8 @@ async function fetchPostById(req, res) {
         postBody: true,
         comments: true,
         category: true,
-        author : true,
+        author: true,
+        createdAt : true,
       },
     });
 

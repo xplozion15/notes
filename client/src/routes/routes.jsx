@@ -15,7 +15,7 @@ const routes = [
     children: [
       { index: true, element: <BlogPosts /> },
       { path: "about", element: <About /> },
-      { path: "categories/:categoryId", element: <Category /> },
+      { path: "categories/:categoryId/posts", element: <Category /> },
       { path: "posts/:postId", element: <PostPage /> },
     ],
   },
