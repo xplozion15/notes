@@ -16,8 +16,7 @@ const Categories = () => {
         }
 
         const result = await response.json();
-        
-        
+
         setCategoriesArray(result.categories);
       } catch (error) {
         console.error("Failed to fetch categories:", error);

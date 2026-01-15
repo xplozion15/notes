@@ -68,11 +68,6 @@ h6 {
   text-wrap: balance;
 }
 
-
-
-
-
-
 /*
   10. Create a root stacking context
 */
@@ -93,8 +88,6 @@ body {
   background-color: #eceef5;
   font-family: "Lilita One", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
-
 
 .main-content {
   display: grid;

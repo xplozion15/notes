@@ -4,7 +4,6 @@ import { Outlet } from "react-router-dom";
 const Content = () => {
   return (
     <div className={styles.content}>
-
       <Outlet />
     </div>
   );

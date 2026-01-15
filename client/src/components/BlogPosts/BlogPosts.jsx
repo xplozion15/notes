@@ -25,7 +25,7 @@ const BlogPosts = () => {
     };
 
     fetchPost();
-  }, []);
+  }, [API_BASE_URL]);
 
   return (
     <>
@@ -39,9 +39,10 @@ const BlogPosts = () => {
               <p>{post.title}</p>
               <p>{postPreviewText}</p>
               <p>{post.category.title}</p>
-              <p>{wordCount} words. | {estimatedReadTime} minutes.</p>
+              <p>
+                {wordCount} words. | {estimatedReadTime} minutes.
+              </p>
               <p>{new Date(post.createdAt).toDateString()}</p>
-              
             </div>
           </Link>
         );

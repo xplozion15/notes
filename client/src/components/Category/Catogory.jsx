@@ -31,8 +31,6 @@ const Category = () => {
 
   return (
     <>
-     
-
       {posts.map((post) => {
         const postPreviewText = getPostPreview(post.postBody);
         const { wordCount, estimatedReadTime } = getReadingStats(post.postBody);

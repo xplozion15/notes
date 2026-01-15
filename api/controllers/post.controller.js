@@ -83,7 +83,7 @@ async function fetchPostById(req, res) {
         comments: true,
         category: true,
         author: true,
-        createdAt : true,
+        createdAt: true,
       },
     });
 

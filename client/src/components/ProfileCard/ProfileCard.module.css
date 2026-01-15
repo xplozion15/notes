@@ -1,21 +1,17 @@
 .profilepic {
-    max-width: 90%;
-    height: auto;
-    border-radius: var(--border-radius-small);
-    margin: 1rem;
-
-
+  max-width: 90%;
+  height: auto;
+  border-radius: var(--border-radius-small);
+  margin: 1rem;
 }
 
-
 .profilecard {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    align-items: center;
-    border-radius: var(--border-radius-small);
-    width: 100%;
-    padding: 0.5rem;
-    /* border: 2px solid red; */
-    
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+  border-radius: var(--border-radius-small);
+  width: 100%;
+  padding: 0.5rem;
+  /* border: 2px solid red; */
 }

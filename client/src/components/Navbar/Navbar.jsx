@@ -2,11 +2,14 @@ import styles from "./Navbar.module.css";
 import { House } from "lucide-react";
 import { Link } from "react-router";
 import { Moon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Sun } from "lucide-react";
+
+// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Navbar = () => {
   const [theme, setTheme] = useState("light");
+  const [currentUser, setCurrentUser] = useState(null);
 
   return (
     <nav className={styles.nav}>
@@ -18,7 +21,13 @@ const Navbar = () => {
       <div className={styles.navbarlinks}>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/login">Log in</Link>
+        {currentUser ? (
+          <Link to="/login" onClick={() => setCurrentUser(null)}>
+            Log out
+          </Link>
+        ) : (
+          <Link to="/login">Log in</Link>
+        )}
       </div>
 
       <div className={styles.navbaractions}>

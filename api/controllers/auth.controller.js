@@ -121,9 +121,9 @@ async function getMe(req, res) {
     return res.json(user);
   } catch (error) {
     res.status(500).json({
-      message: "user not found",
+      message: "Failed to get the user",
     });
   }
 }
 
-module.exports = { registerUser, login, authenticateToken,getMe};
+module.exports = { registerUser, login, authenticateToken, getMe };

@@ -13,13 +13,13 @@ async function fetchCategories(req, res) {
     });
 
     return res.json({
-      "message" : "Categories fetched successfulyy",
-      categories : categories,
-    })
+      message: "Categories fetched successfulyy",
+      categories: categories,
+    });
   } catch (error) {
     res.status(500).json({
-      "message" : "failed to fetch the categories",
-    })
+      message: "failed to fetch the categories",
+    });
   }
 }
 
@@ -49,9 +49,9 @@ async function fetchPostsByCategory(req, res) {
       where: {
         categoryId: categoryId,
       },
-      include : {
-        category : true,
-      }
+      include: {
+        category: true,
+      },
     });
 
     res.json({
@@ -64,4 +64,4 @@ async function fetchPostsByCategory(req, res) {
   }
 }
 
-module.exports = { fetchPostsByCategory, createNewCategory ,fetchCategories};
+module.exports = { fetchPostsByCategory, createNewCategory, fetchCategories };
