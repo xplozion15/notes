@@ -83,6 +83,7 @@ h6 {
   --border-radius-small: 0.7rem;
   --text-color-main: rgb(77, 76, 76);
   --secondary-color: #f5f5f5;
+  --error-color : rgb(230, 32, 32);
 }
 body {
   background-color: #eceef5;
