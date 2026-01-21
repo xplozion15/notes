@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getPostPreview } from "../../utils/postPreview";
 import { getReadingStats } from "../../utils/readingStats";
+import styles from "./BlogPosts.module.css";
 
 const BlogPosts = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -18,6 +19,7 @@ const BlogPosts = () => {
 
         const result = await response.json();
         setPosts(result.posts);
+     
         console.log(result);
       } catch (error) {
         console.error("Failed to fetch posts:", error);
@@ -34,9 +36,10 @@ const BlogPosts = () => {
         const { wordCount, estimatedReadTime } = getReadingStats(post.postBody);
 
         return (
-          <Link key={post.id} to={`/posts/${post.id}`}>
-            <div>
-              <p>{post.title}</p>
+          <div className={styles.blogpost}>
+            <Link key={post.id} to={`/posts/${post.id}`} className={styles.postLink}>
+            <div className={styles.linkcontent}>
+              <p className={styles.blogtitle}>{post.title}</p>
               <p>{postPreviewText}</p>
               <p>{post.category.title}</p>
               <p>
@@ -45,6 +48,7 @@ const BlogPosts = () => {
               <p>{new Date(post.createdAt).toDateString()}</p>
             </div>
           </Link>
+          </div>
         );
       })}
     </>

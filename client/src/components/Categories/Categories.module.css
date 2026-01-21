@@ -4,7 +4,8 @@
   justify-content: flex-start;
   background-color: white;
   border-radius: var(--border-radius-small);
-  min-height: 45%;
+  /* min-height: 45%; */
+  min-height: max-content;
   padding: 0.3rem;
 }
 

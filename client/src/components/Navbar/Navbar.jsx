@@ -51,6 +51,7 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         {isUserLoggedIn ? <Logout setIsUserLoggedIn={setIsUserLoggedIn}/> : <Link to="/login">Log in</Link>}
+        {!isUserLoggedIn && <Link to="/register">Register</Link>}
       </div>
 
 

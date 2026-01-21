@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getPostPreview } from "../../utils/postPreview";
 import { getReadingStats } from "../../utils/readingStats";
+import styles from "./Category.module.css";
 
 const Category = () => {
   const { categoryId } = useParams();

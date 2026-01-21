@@ -1,0 +1,40 @@
+.commentContainer {
+    background-color: white;
+    border-radius: var(--border-radius-small);
+    padding: 1rem;
+}
+
+.comment {
+    border-radius: var(--border-radius-small);
+    resize: none;
+   
+    
+    
+}
+
+.commentInputDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+
+.sendCommentButton {
+    display: flex;
+    flex-direction: row;
+  justify-content: space-between;
+    gap: 0.5rem;
+    border-radius: var(--border-radius-small);
+    padding: 0.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   width: max-content;
+    border: 2px solid var(--main-color);
+    color: white;
+    background-color: var(--main-color);
+    cursor: pointer;
+    
+}
+
+
