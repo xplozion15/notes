@@ -4,16 +4,16 @@
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  border: 2px solid peachpuff;
 }
 
 .registerForm {
+  color: var(--text-color-main);
   border-radius: var(--border-radius-small);
   padding: 1rem;
   gap: 1.3rem;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--background-color-main);
   width: 24%;
 }
 

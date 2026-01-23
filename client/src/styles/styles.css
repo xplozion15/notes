@@ -113,3 +113,10 @@ body {
   grid-template-columns: 0.2fr 0.8fr;
   gap: 1rem;
 }
+
+
+input {
+  background-color:var(--secondary-color);
+  border-radius: var(--border-radius-small);
+  border: none;
+}

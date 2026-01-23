@@ -10,7 +10,8 @@ import { Logout } from "../Logout/Logout";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Navbar = () => {
-  const [theme, setTheme] = useState("light");
+  const getTheme = localStorage.getItem("theme");
+  const [theme, setTheme] = useState(getTheme);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -41,13 +42,18 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if (theme === "dark") {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.remove("dark");
-    }
+    const applyTheme = () => {
+      if (theme === "dark") {
+        document.body.classList.add("dark");
+      } else {
+        document.body.classList.remove("dark");
+      }
+      localStorage.setItem("theme", theme);
+    };
 
-    localStorage.setItem("theme", theme);
+    document.startViewTransition(() => {
+      applyTheme();
+    });
   }, [theme]);
 
   return (

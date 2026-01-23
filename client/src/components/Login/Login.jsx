@@ -81,7 +81,7 @@ const Login = () => {
           >
             Log in
           </button>
-          <Link to="/" className={styles.a}>
+          <Link to="/register" className={styles.a}>
             Create New Account
           </Link>
         </form>
