@@ -4,7 +4,6 @@ import { useState } from "react";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Comments = ({ comments, setComments, postId, userId }) => {
-  
   async function sendCommentHandler() {
     try {
       const jwtToken = localStorage.getItem("jwtToken");
@@ -15,7 +14,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwtToken}`,
+          Authorization: `Bearer ${jwtToken}`,
         },
         body: JSON.stringify({
           comment: commentInput,
@@ -23,12 +22,9 @@ const Comments = ({ comments, setComments, postId, userId }) => {
           userId: userId,
         }),
       });
-     
-   
-      
-      
+
       if (!response.ok) throw new Error("Failed to post comment");
-      
+
       const newComment = await response.json();
       console.log(`new comment is ${newComment}`);
 
@@ -45,9 +41,18 @@ const Comments = ({ comments, setComments, postId, userId }) => {
   return (
     <>
       <div className={styles.commentContainer}>
+        <p>Comments ({comments.length})</p>
         <div className={styles.postComments}>
           {comments.map((comment) => {
-            <p key={comment.id}>{comment.commentBody}</p>;
+            return (
+              <div key={comment.id}>
+                <p>
+                  {comment.user.firstName} {comment.user.lastName}
+                </p>
+                <p>{new Date(comment.createdAt).toDateString()}</p>
+                <p>{comment.commentBody}</p>
+              </div>
+            );
           })}
         </div>
 
@@ -62,7 +67,6 @@ const Comments = ({ comments, setComments, postId, userId }) => {
             rows={"5"}
           ></textarea>
           <button
-            type="button"
             className={styles.sendCommentButton}
             onClick={sendCommentHandler}
           >

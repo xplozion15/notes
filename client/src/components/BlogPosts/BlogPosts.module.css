@@ -1,7 +1,8 @@
 .blogpost {
-    background-color: white;
+    background-color:var(--background-color-main);
     border-radius: var(--border-radius-small);
     padding: 0.5rem;
+    color: var(--text-color-main);
 }
 
 
@@ -13,6 +14,6 @@
 .postLink {
     display: inline-block; 
     text-decoration: none;
-    color: inherit;
+    color:inherit;
 }
 

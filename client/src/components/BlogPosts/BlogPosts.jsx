@@ -36,8 +36,8 @@ const BlogPosts = () => {
         const { wordCount, estimatedReadTime } = getReadingStats(post.postBody);
 
         return (
-          <div className={styles.blogpost}>
-            <Link key={post.id} to={`/posts/${post.id}`} className={styles.postLink}>
+          <div className={styles.blogpost} key={post.id} >
+            <Link  to={`/posts/${post.id}`} className={styles.postLink}>
             <div className={styles.linkcontent}>
               <p className={styles.blogtitle}>{post.title}</p>
               <p>{postPreviewText}</p>

@@ -26,6 +26,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body.dark {
+  --hover-color-main: #1f2937;
+  --background-color-main: #191e24;
+  --main-color: #7ca1f5;
+  --border-radius-small: 0.7rem;
+  --text-color-main: white;
+  --secondary-color: #2a323c;
+  --error-color: rgb(230, 32, 32);
+  --body-background-color: #0a0d13;
+}
+
 /* 6. Improve media defaults */
 img,
 picture,
@@ -78,15 +89,16 @@ h6 {
 
 :root {
   --hover-color-main: #e6efff;
-  --background-color-main: #ebeef5;
+  --background-color-main: white;
   --main-color: #7ca1f5;
   --border-radius-small: 0.7rem;
   --text-color-main: rgb(77, 76, 76);
   --secondary-color: #f5f5f5;
   --error-color: rgb(230, 32, 32);
+  --body-background-color: #eceef5;
 }
 body {
-  background-color: #eceef5;
+  background-color: var(--body-background-color);
   font-family: "Lilita One", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 

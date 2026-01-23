@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: space-evenly;
     gap: 0.5rem;
-    background-color: white;
+    background-color:var(--background-color-main);
     border-radius: var(--border-radius-small);
     padding: 1rem;
+    color: var(--text-color-main);
 }

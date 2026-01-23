@@ -8,10 +8,10 @@
 .profilecard {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--background-color-main);
   align-items: center;
   border-radius: var(--border-radius-small);
   width: 100%;
   padding: 0.5rem;
-  /* border: 2px solid red; */
+  color: var(--text-color-main);
 }

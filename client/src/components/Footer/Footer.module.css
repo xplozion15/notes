@@ -2,10 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: white; */
     border-radius: var(--border-radius-small);
     width: 80vw;
     margin: auto;
+    color: var(--text-color-main);
+    
     
 }
 

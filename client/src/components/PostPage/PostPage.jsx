@@ -30,10 +30,9 @@ const PostPage = () => {
     const getCurrentUserId = async () => {
       try {
         const jwtToken = localStorage.getItem("jwtToken");
-       
-        
+
         const response = await fetch(`${API_BASE_URL}/auth/me`, {
-          method: "GET", 
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${jwtToken}`,

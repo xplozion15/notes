@@ -40,6 +40,16 @@ const Navbar = () => {
     checkAuth();
   }, []);
 
+  useEffect(() => {
+    if (theme === "dark") {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
     <nav className={styles.nav}>
       <div className={styles.logo}>
@@ -50,11 +60,13 @@ const Navbar = () => {
       <div className={styles.navbarlinks}>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        {isUserLoggedIn ? <Logout setIsUserLoggedIn={setIsUserLoggedIn}/> : <Link to="/login">Log in</Link>}
+        {isUserLoggedIn ? (
+          <Logout setIsUserLoggedIn={setIsUserLoggedIn} />
+        ) : (
+          <Link to="/login">Log in</Link>
+        )}
         {!isUserLoggedIn && <Link to="/register">Register</Link>}
       </div>
-
-
 
       <div className={styles.navbaractions}>
         <input

@@ -80,7 +80,16 @@ async function fetchPostById(req, res) {
       select: {
         title: true,
         postBody: true,
-        comments: true,
+        comments: {
+          include: {
+            user : {
+              select : {
+                firstName : true,
+                lastName : true,
+              }
+            }
+          }
+        },
         category: true,
         author: true,
         createdAt: true,
@@ -118,10 +127,12 @@ async function deletePost(req, res) {
   }
 }
 
+
 module.exports = {
   fetchPostById,
   createPost,
   updatePost,
   deletePost,
   fetchPosts,
+
 };

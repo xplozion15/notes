@@ -9,4 +9,6 @@ postRouter.post("/", authenticateToken, postController.createPost);
 postRouter.patch("/:postId", authenticateToken, postController.updatePost);
 postRouter.delete("/:postId", authenticateToken, postController.deletePost);
 
+
+
 module.exports = { postRouter };
