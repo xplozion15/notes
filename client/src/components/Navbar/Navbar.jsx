@@ -12,6 +12,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const Navbar = () => {
   const getTheme = localStorage.getItem("theme");
   const [theme, setTheme] = useState(getTheme);
+
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -55,7 +56,6 @@ const Navbar = () => {
       applyTheme();
     });
   }, [theme]);
-
   return (
     <nav className={styles.nav}>
       <div className={styles.logo}>

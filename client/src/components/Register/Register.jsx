@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState } from "react";
 
-
 const Register = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
@@ -14,7 +13,6 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
 
   async function registerHandler(e) {
     e.preventDefault();
@@ -40,24 +38,16 @@ const Register = () => {
         return;
       }
 
-    
       navigate("/"); // home page redirect
     } catch (error) {
       setErrorMessage("Please check your network or try again later");
       console.log(error.message);
     }
-
-
-    
-
-
   }
 
   return (
-    <>  
-      
+    <>
       <div className={styles.registerFormContainer}>
-        
         <form className={styles.registerForm}>
           <h2 className={styles.h2}>Register Form</h2>
 

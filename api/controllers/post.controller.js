@@ -82,13 +82,13 @@ async function fetchPostById(req, res) {
         postBody: true,
         comments: {
           include: {
-            user : {
-              select : {
-                firstName : true,
-                lastName : true,
-              }
-            }
-          }
+            user: {
+              select: {
+                firstName: true,
+                lastName: true,
+              },
+            },
+          },
         },
         category: true,
         author: true,
@@ -127,6 +127,35 @@ async function deletePost(req, res) {
   }
 }
 
+async function fetchCommentsByPostId(req, res) {
+  try {
+    const postId = Number(req.params.postId);
+
+    const comments = await prisma.comment.findMany({
+      where: {
+        postId: postId,
+      },
+      include: {
+        user: {
+          select: {
+            firstName: true,
+            lastName: true,
+            id: true,
+          },
+        },
+      },
+    });
+    
+    res.json({
+      message: "Comments fetched successfully",
+      comments: comments,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "failed to fetch comments",
+    });
+  }
+}
 
 module.exports = {
   fetchPostById,
@@ -134,5 +163,5 @@ module.exports = {
   updatePost,
   deletePost,
   fetchPosts,
-
+  fetchCommentsByPostId,
 };

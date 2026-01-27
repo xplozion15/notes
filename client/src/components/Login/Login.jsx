@@ -2,7 +2,7 @@ import styles from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState } from "react";
-
+import { House } from "lucide-react";
 
 const Login = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -34,8 +34,6 @@ const Login = () => {
 
       const jwtToken = result.token;
 
-    
-
       localStorage.setItem("jwtToken", jwtToken);
 
       navigate("/"); //home page redirect
@@ -47,6 +45,10 @@ const Login = () => {
 
   return (
     <>
+      <Link to="/" className={styles.logo}>
+        <p >Home</p>
+      </Link>
+
       <div className={styles.loginFormContainer}>
         <form className={styles.loginForm}>
           <h2 className={styles.h2}>Login Form</h2>

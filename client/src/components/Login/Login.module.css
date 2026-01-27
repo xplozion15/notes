@@ -45,7 +45,25 @@
   color: var(--main-color);
 }
 
-
 .error {
-  color:  var(--error-color);
+  color: var(--error-color);
+}
+
+.logo {
+  position: absolute;
+  display: flex;
+  border-radius: var(--border-radius-small);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 500ms;
+  padding: 0.5rem;
+  color: var(--main-color);
+  width: 7rem;
+  margin: 1rem;
+  border: 2px solid var(--main-color);
+}
+
+.logo:hover {
+  background-color: var(--hover-color-main);
 }

@@ -4,6 +4,8 @@ import { useState } from "react";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Comments = ({ comments, setComments, postId, userId }) => {
+  const [commentInput, setCommentInput] = useState("");
+
   async function sendCommentHandler() {
     try {
       const jwtToken = localStorage.getItem("jwtToken");
@@ -25,18 +27,29 @@ const Comments = ({ comments, setComments, postId, userId }) => {
 
       if (!response.ok) throw new Error("Failed to post comment");
 
-      const newComment = await response.json();
-      console.log(`new comment is ${newComment}`);
+      // if the fetch api call is succesful then make an api call to get all comments of the post and set it using useState hook
 
-      setComments([...comments, newComment]);
+      const commentsResponse = await fetch(
+        `${API_BASE_URL}/posts/${postId}/comments`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        },
+      );
 
+      if (!commentsResponse.ok) throw new Error("Failed to fetch the comments");
+
+      const updatedCommentsData = await commentsResponse.json();
+      
+      setComments(updatedCommentsData.comments);
       setCommentInput("");
     } catch (error) {
       console.error("Error posting comment", error);
     }
   }
-
-  const [commentInput, setCommentInput] = useState("");
 
   return (
     <>
@@ -46,9 +59,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
           {comments.map((comment) => {
             return (
               <div key={comment.id}>
-                <p>
-                  {comment.user.firstName} {comment.user.lastName}
-                </p>
+                <p>{comment.user.firstName}</p>
                 <p>{new Date(comment.createdAt).toDateString()}</p>
                 <p>{comment.commentBody}</p>
               </div>
@@ -58,8 +69,10 @@ const Comments = ({ comments, setComments, postId, userId }) => {
 
         <div className={styles.commentInputDiv}>
           <textarea
+            value={commentInput}
             onChange={(e) => {
               setCommentInput(e.target.value);
+              
             }}
             name="comment"
             className={styles.comment}
