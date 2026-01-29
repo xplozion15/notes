@@ -4,7 +4,7 @@
   justify-content: flex-start;
   background-color: var(--background-color-main);
   border-radius: var(--border-radius-small);
- 
+
   /* min-height: 45%; */
   min-height: max-content;
   padding: 0.3rem;
@@ -12,9 +12,8 @@
 
 .categoryheading {
   text-align: center;
-  font-size: 1.5rem;  
-   color: var(--text-color-main);
-  
+  font-size: 1.5rem;
+  color: var(--text-color-main);
 }
 
 .categorydiv {
@@ -24,7 +23,7 @@
   justify-content: space-between;
   padding: 0.5rem;
   margin: 0.5rem 0;
-   color: var(--text-color-main);
+  color: var(--text-color-main);
   transition: background-color 300ms;
   border-radius: var(--border-radius-small);
 }

@@ -114,9 +114,8 @@ body {
   gap: 1rem;
 }
 
-
 input {
-  background-color:var(--secondary-color);
+  background-color: var(--secondary-color);
   border-radius: var(--border-radius-small);
   border: none;
 }

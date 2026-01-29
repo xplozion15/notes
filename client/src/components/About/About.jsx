@@ -11,22 +11,21 @@ const About = () => {
           scalable architecture. I’m currently focused on sharpening my
           front-end and full-stack development skills by working on hands-on
           projects that reflect real industry use cases. Through these projects,
-         
         </p>
 
         <p>
-           I aim to strengthen my understanding of web fundamentals, modern
+          I aim to strengthen my understanding of web fundamentals, modern
           frameworks, and best practices in software development. I love
           learning new technologies, experimenting with UI/UX improvements, and
           solving problems through code. Writing about my journey, challenges,
           and learnings helps me solidify my knowledge and share insights with
-          others who are on a similar path. 
+          others who are on a similar path.
         </p>
         <p>
-          My goal is to secure my first
-          internship or entry-level developer role, where I can contribute to
-          meaningful projects, learn from experienced developers, and grow into
-          a well-rounded software engineer.
+          My goal is to secure my first internship or entry-level developer
+          role, where I can contribute to meaningful projects, learn from
+          experienced developers, and grow into a well-rounded software
+          engineer.
         </p>
       </div>
     </>

@@ -43,7 +43,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
       if (!commentsResponse.ok) throw new Error("Failed to fetch the comments");
 
       const updatedCommentsData = await commentsResponse.json();
-      
+
       setComments(updatedCommentsData.comments);
       setCommentInput("");
     } catch (error) {
@@ -72,7 +72,6 @@ const Comments = ({ comments, setComments, postId, userId }) => {
             value={commentInput}
             onChange={(e) => {
               setCommentInput(e.target.value);
-              
             }}
             name="comment"
             className={styles.comment}

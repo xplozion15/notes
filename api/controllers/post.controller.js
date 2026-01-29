@@ -145,7 +145,7 @@ async function fetchCommentsByPostId(req, res) {
         },
       },
     });
-    
+
     res.json({
       message: "Comments fetched successfully",
       comments: comments,

@@ -2,7 +2,7 @@ import styles from "./Navbar.module.css";
 import { House } from "lucide-react";
 import { Link } from "react-router";
 import { Moon } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Sun } from "lucide-react";
 import { useEffect } from "react";
 import { Logout } from "../Logout/Logout";
@@ -12,8 +12,19 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const Navbar = () => {
   const getTheme = localStorage.getItem("theme");
   const [theme, setTheme] = useState(getTheme);
-
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [searchedPosts, setSearchedPosts] = useState([]);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+  const handleOutsideClick = (e) => {
+    if (searchRef.current && !searchRef.current.contains(e.target)) {
+      setSearchInput("");
+      setShowSearch(false);
+    } else {
+      console.log("search element was clicked");
+    }
+  };
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -56,12 +67,47 @@ const Navbar = () => {
       applyTheme();
     });
   }, [theme]);
+
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+
+  const searchRef = useRef(null);
+
+  useEffect(() => {
+    const searchPostsByWord = async () => {
+      try {
+        const responseOfPosts = fetch(`${API_BASE_URL}/posts/search`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!responseOfPosts.ok) {
+          throw new Error("Failed to search the posts");
+        }
+
+        const result = responseOfPosts.json().posts;
+        setSearchedPosts(result);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    searchPostsByWord();
+  }, [searchInput]);
+
   return (
     <nav className={styles.nav}>
-      <div className={styles.logo}>
+      <Link to="/" className={styles.logo}>
         <House />
         <p>Notes</p>
-      </div>
+      </Link>
 
       <div className={styles.navbarlinks}>
         <Link to="/">Home</Link>
@@ -75,13 +121,27 @@ const Navbar = () => {
       </div>
 
       <div className={styles.navbaractions}>
-        <input
-          type="search"
-          name="search"
-          id="search"
-          className={styles.search}
-          placeholder=" Search blogs..."
-        />
+        <div ref={searchRef}>
+          <input
+            type="search"
+            name="search"
+            id="search"
+            value={searchInput}
+            className={styles.search}
+            placeholder=" Search blogs..."
+            onChange={(e) => {
+              setShowSearch(true);
+              setSearchInput(e.target.value);
+            }}
+          />
+
+          {showSearch && (
+            <div className={styles.searchContainer}>
+              <p>this is a search container</p>
+            </div>
+          )}
+        </div>
+
         {theme === "light" ? (
           <Moon
             onClick={() => {

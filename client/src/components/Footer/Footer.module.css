@@ -1,12 +1,9 @@
 .footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: var(--border-radius-small);
-    width: 80vw;
-    margin: auto;
-    color: var(--text-color-main);
-    
-    
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: var(--border-radius-small);
+  width: 80vw;
+  margin: auto;
+  color: var(--text-color-main);
 }
-

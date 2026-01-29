@@ -3,11 +3,12 @@ const { prisma } = require("../lib/prisma");
 async function addCommentToPost(req, res) {
   console.log(req.body);
   try {
-    
     const postId = Number(req.body.postId);
     const comment = req.body.comment;
     const userId = Number(req.body.userId); // set by auth middleware
-    console.log(`post id is ${postId}, comment is ${ comment} , userid is ${userId}`)
+    console.log(
+      `post id is ${postId}, comment is ${comment} , userid is ${userId}`,
+    );
     await prisma.comment.create({
       data: {
         commentBody: comment,
@@ -21,7 +22,7 @@ async function addCommentToPost(req, res) {
       comment: comment,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json({
       error: error,
     });
@@ -52,7 +53,7 @@ async function updateComment(req, res) {
   try {
     const commentId = Number(req.params.commentId);
     const commentBody = req.body.comment;
-   
+
     if (commentId) {
       await prisma.comment.update({
         where: {

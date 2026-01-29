@@ -46,7 +46,7 @@ const Login = () => {
   return (
     <>
       <Link to="/" className={styles.logo}>
-        <p >Home</p>
+        <p>Home</p>
       </Link>
 
       <div className={styles.loginFormContainer}>

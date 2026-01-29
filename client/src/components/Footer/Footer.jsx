@@ -5,7 +5,6 @@ const Footer = () => {
     <>
       <div className={styles.footer}>
         <p>© 2025 Xplozion. </p>
-       
       </div>
     </>
   );

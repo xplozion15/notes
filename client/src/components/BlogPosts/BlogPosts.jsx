@@ -19,7 +19,7 @@ const BlogPosts = () => {
 
         const result = await response.json();
         setPosts(result.posts);
-     
+
         console.log(result);
       } catch (error) {
         console.error("Failed to fetch posts:", error);
@@ -36,18 +36,18 @@ const BlogPosts = () => {
         const { wordCount, estimatedReadTime } = getReadingStats(post.postBody);
 
         return (
-          <div className={styles.blogpost} key={post.id} >
-            <Link  to={`/posts/${post.id}`} className={styles.postLink}>
-            <div className={styles.linkcontent}>
-              <p className={styles.blogtitle}>{post.title}</p>
-              <p>{postPreviewText}</p>
-              <p>{post.category.title}</p>
-              <p>
-                {wordCount} words. | {estimatedReadTime} minutes.
-              </p>
-              <p>{new Date(post.createdAt).toDateString()}</p>
-            </div>
-          </Link>
+          <div className={styles.blogpost} key={post.id}>
+            <Link to={`/posts/${post.id}`} className={styles.postLink}>
+              <div className={styles.linkcontent}>
+                <p className={styles.blogtitle}>{post.title}</p>
+                <p>{postPreviewText}</p>
+                <p>{post.category.title}</p>
+                <p>
+                  {wordCount} words. | {estimatedReadTime} minutes.
+                </p>
+                <p>{new Date(post.createdAt).toDateString()}</p>
+              </div>
+            </Link>
           </div>
         );
       })}

@@ -45,7 +45,6 @@
   color: var(--main-color);
 }
 
-
 .error {
-  color:  var(--error-color);
+  color: var(--error-color);
 }

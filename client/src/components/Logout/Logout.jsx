@@ -12,7 +12,9 @@ const Logout = ({ setIsUserLoggedIn }) => {
 
   return (
     <>
-      <button className={styles.button} onClick={logoutHandler}>Log Out</button>
+      <button className={styles.button} onClick={logoutHandler}>
+        Log Out
+      </button>
     </>
   );
 };
