@@ -4,6 +4,11 @@ const About = () => {
   return (
     <>
       <div className={styles.aboutMeDiv}>
+        <img
+          src="./computer.webp"
+          alt="computer"
+          className={styles.computerImage}
+        />
         <p>
           Hi, I’m Xplozion, an aspiring Web Developer passionate about building
           modern, responsive, and user-focused web applications. I enjoy turning
@@ -27,6 +32,7 @@ const About = () => {
           experienced developers, and grow into a well-rounded software
           engineer.
         </p>
+        
       </div>
     </>
   );

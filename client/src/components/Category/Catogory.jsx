@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getPostPreview } from "../../utils/postPreview";
 import { getReadingStats } from "../../utils/readingStats";
+import styles from "./Category.module.css";
 import { Book } from "lucide-react";
 import { Calendar } from "lucide-react";
 

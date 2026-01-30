@@ -2,6 +2,7 @@ import styles from "./Register.module.css";
 import { useNavigate } from "react-router-dom";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -47,6 +48,10 @@ const Register = () => {
 
   return (
     <>
+      <Link to="/" className={styles.logo}>
+        <p>Home</p>
+      </Link>
+
       <div className={styles.registerFormContainer}>
         <form className={styles.registerForm}>
           <h2 className={styles.h2}>Register Form</h2>

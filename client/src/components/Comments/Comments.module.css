@@ -10,7 +10,7 @@
   
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin-bottom: 1.2rem;
-  
+
 }
 
 .commentTextArea {
@@ -47,7 +47,8 @@
 
 .commentHeading {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.3rem;
 }
 
 
@@ -66,4 +67,15 @@
   font-weight: 100;
   opacity: 0.7;
   font-size: 0.8rem;
+}
+
+
+.loginPrompt {
+  font-size: 1.5rem;
+}
+
+
+.loginLink {
+  color: var(--main-color);
+  text-decoration: underline;
 }

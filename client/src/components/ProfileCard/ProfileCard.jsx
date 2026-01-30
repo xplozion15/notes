@@ -5,7 +5,7 @@ const ProfileCard = () => {
     <>
       <div className={styles.profilecard}>
         <img
-          src="/public/catplayinguno.jpg"
+          src="./catplayinguno.jpg"
           alt="profile-pic"
           className={styles.profilepic}
         />

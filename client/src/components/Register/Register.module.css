@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   background-color: var(--background-color-main);
-  width: 24%;
+  width: 28%;
 }
 
 .submitRegisterButton {
@@ -47,4 +47,24 @@
 
 .error {
   color: var(--error-color);
+}
+
+
+.logo {
+  position: absolute;
+  display: flex;
+  border-radius: var(--border-radius-small);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 500ms;
+  padding: 0.5rem;
+  color: var(--main-color);
+  width: 7rem;
+  margin: 1rem;
+  border: 2px solid var(--main-color);
+}
+
+.logo:hover {
+  background-color: var(--hover-color-main);
 }
