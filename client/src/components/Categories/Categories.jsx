@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import styles from "./Categories.module.css";
 import { Link } from "react-router-dom";
 
+
+
 const Categories = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [categoriesArray, setCategoriesArray] = useState([]);
@@ -31,8 +33,13 @@ const Categories = () => {
       <div className={styles.categories}>
         <p className={styles.categoryheading}>Categories</p>
         {categoriesArray.map((category) => (
-          <Link to={`/categories/${category.id}/posts`} key={category.id}>
+          <Link
+            to={`/categories/${category.id}/posts`}
+            key={category.id}
+            className={styles.categoryLink}
+          >
             <div key={category.id} className={styles.categorydiv}>
+              
               <p>{category.title}</p>
               <p className={styles.categorycount}>{category["_count"].posts}</p>
             </div>

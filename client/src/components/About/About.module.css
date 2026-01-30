@@ -6,4 +6,5 @@
   color: var(--text-color-main);
   border-radius: var(--border-radius-small);
   padding: 1rem;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }

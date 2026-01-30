@@ -8,3 +8,39 @@
   padding: 1rem;
   color: var(--text-color-main);
 }
+
+.postTitle {
+  font-size: 3rem;
+}
+
+.postBody {
+  margin-top: 2rem;
+  font-weight: 500;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.dateAndCategoryDiv {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.categoryDiv,
+.dateDiv {
+  display: flex;
+  justify-content: space-between;
+  width: max-content;
+  gap: 0.5rem;
+  align-items: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 100;
+}
+
+.categoryIcon,
+.dateIcon {
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+  color: white;
+  background-color: var(--main-color);
+}

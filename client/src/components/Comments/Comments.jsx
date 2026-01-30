@@ -54,14 +54,14 @@ const Comments = ({ comments, setComments, postId, userId }) => {
   return (
     <>
       <div className={styles.commentContainer}>
-        <p>Comments ({comments.length})</p>
+        <p className={styles.commentHeading}>Comments ({comments.length})</p>
         <div className={styles.postComments}>
           {comments.map((comment) => {
             return (
-              <div key={comment.id}>
-                <p>{comment.user.firstName}</p>
-                <p>{new Date(comment.createdAt).toDateString()}</p>
-                <p>{comment.commentBody}</p>
+              <div key={comment.id} className={styles.comment}>
+                <p className={styles.firstName}>{comment.user.firstName}</p>
+                <p className={styles.datePosted}> {new Date(comment.createdAt).toDateString()}</p>
+                <p className={styles.commentBody}>{comment.commentBody}</p>
               </div>
             );
           })}
@@ -69,12 +69,13 @@ const Comments = ({ comments, setComments, postId, userId }) => {
 
         <div className={styles.commentInputDiv}>
           <textarea
+            
             value={commentInput}
             onChange={(e) => {
               setCommentInput(e.target.value);
             }}
             name="comment"
-            className={styles.comment}
+            className={styles.commentTextArea}
             cols={"100"}
             rows={"5"}
           ></textarea>

@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./PostPage.module.css";
 import { Comments } from "../Comments/Comments";
+import { Calendars } from "lucide-react";
+import { Book } from "lucide-react";
 
 const PostPage = () => {
   const { postId } = useParams();
@@ -57,11 +59,21 @@ const PostPage = () => {
   return (
     <>
       <div className={styles.post}>
-        <p>{post.title}</p>
-        {post.category && <h2>{post.category.title}</h2>}
+        <p className={styles.postTitle}>{post.title}</p>
 
-        <p>{new Date(post.createdAt).toDateString()}</p>
-        <p>{post.postBody}</p>
+        <div className={styles.dateAndCategoryDiv}>
+          <div className={styles.dateDiv}>
+            <Calendars className={styles.dateIcon} />
+            <p>{new Date(post.createdAt).toDateString()}</p>
+          </div>
+
+          <div className={styles.categoryDiv}>
+            <Book className={styles.categoryIcon} />
+            {post.category && <p>{post.category.title}</p>}
+          </div>
+        </div>
+
+        <p className={styles.postBody}>{post.postBody}</p>
       </div>
 
       <Comments

@@ -79,6 +79,9 @@ h6 {
   text-wrap: balance;
 }
 
+a {
+  text-decoration: none;
+}
 /*
   10. Create a root stacking context
 */
@@ -92,7 +95,7 @@ h6 {
   --background-color-main: white;
   --main-color: #7ca1f5;
   --border-radius-small: 0.7rem;
-  --text-color-main: rgb(77, 76, 76);
+  --text-color-main: rgb(51, 50, 50);
   --secondary-color: #f5f5f5;
   --error-color: rgb(230, 32, 32);
   --body-background-color: #eceef5;
@@ -106,7 +109,6 @@ body {
   display: grid;
   margin: 1rem;
   border-radius: 1rem;
-
   width: 80vw;
   margin: auto;
   min-height: 85vh;
@@ -119,3 +121,5 @@ input {
   border-radius: var(--border-radius-small);
   border: none;
 }
+
+

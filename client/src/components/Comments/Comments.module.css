@@ -3,12 +3,24 @@
   border-radius: var(--border-radius-small);
   padding: 1rem;
   color: var(--text-color-main);
+  
 }
 
 .comment {
-  border-radius: var(--border-radius-small);
-  resize: none;
+  
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin-bottom: 1.2rem;
+  
 }
+
+.commentTextArea {
+    border-radius: var(--border-radius-small);
+  resize: none;
+  background-color: var(--secondary-color);
+  color: var(--text-color-main);
+  opacity: 0.7;
+}
+
 
 .commentInputDiv {
   display: flex;
@@ -28,7 +40,30 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: max-content;
   border: 2px solid var(--main-color);
-
   background-color: var(--main-color);
   cursor: pointer;
+  color: white;
+}
+
+.commentHeading {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+
+.firstName {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  text-decoration-color: rgb(172, 172, 172);
+}
+
+.commentBody {
+  font-weight: 600;
+}
+
+.datePosted {
+  font-weight: 100;
+  opacity: 0.7;
+  font-size: 0.8rem;
 }

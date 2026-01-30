@@ -3,15 +3,67 @@
   border-radius: var(--border-radius-small);
   padding: 0.5rem;
   color: var(--text-color-main);
+  padding: 1rem;
 }
 
 .blogtitle {
+  display: inline;
+  text-decoration: none;
   font-size: 3rem;
   color: var(--text-color-main);
+  font-family: "Lilita One", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: color 300ms;
+}
+
+.blogtitle:hover {
+  color: var(--main-color);
 }
 
 .postLink {
   display: inline-block;
   text-decoration: none;
   color: inherit;
+}
+
+.categoryDiv,
+.dateDiv {
+  display: flex;
+  justify-content: space-between;
+  width: max-content;
+  gap: 0.5rem;
+  align-items: center;
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+   font-weight: 100;
+}
+
+.categoryIcon,
+.dateIcon {
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+  color: white;
+  background-color: var(--main-color);
+}
+
+.dateAndCategoryDiv {
+  display: flex;
+  justify-content: space-between;
+  width: max-content;
+  gap: 0.7rem;
+  font-weight: 100;
+  
+}
+
+
+.postPreviewText,
+.dateAndCategoryDiv,
+.wordsAndMinutesDiv {
+  margin-top: 1rem;
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  
+}
+
+
+.postPreviewText {
+  font-weight: 600;
+  font-size: 1.2rem;
 }

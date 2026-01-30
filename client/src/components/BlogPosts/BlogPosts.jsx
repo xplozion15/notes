@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getPostPreview } from "../../utils/postPreview";
 import { getReadingStats } from "../../utils/readingStats";
+import { Book } from "lucide-react";
+import { Calendars } from "lucide-react";
 import styles from "./BlogPosts.module.css";
 
 const BlogPosts = () => {
@@ -37,17 +39,27 @@ const BlogPosts = () => {
 
         return (
           <div className={styles.blogpost} key={post.id}>
-            <Link to={`/posts/${post.id}`} className={styles.postLink}>
-              <div className={styles.linkcontent}>
+            <div className={styles.linkcontent}>
+              <Link to={`/posts/${post.id}`} className={styles.titleLink}>
                 <p className={styles.blogtitle}>{post.title}</p>
-                <p>{postPreviewText}</p>
-                <p>{post.category.title}</p>
-                <p>
-                  {wordCount} words. | {estimatedReadTime} minutes.
-                </p>
-                <p>{new Date(post.createdAt).toDateString()}</p>
+              </Link>
+
+              <div className={styles.dateAndCategoryDiv}>
+                <div className={styles.dateDiv}>
+                  <Calendars className={styles.dateIcon} />
+                  <p>{new Date(post.createdAt).toDateString()}</p>
+                </div>
+                <div className={styles.categoryDiv}>
+                  <Book className={styles.categoryIcon} />
+                  <p>{post.category.title}</p>
+                </div>
               </div>
-            </Link>
+
+              <p className={styles.postPreviewText}>{postPreviewText}</p>
+              <p className={styles.wordsAndMinutesDiv}>
+                {wordCount} words | {estimatedReadTime} minutes
+              </p>
+            </div>
           </div>
         );
       })}

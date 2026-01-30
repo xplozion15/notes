@@ -1,5 +1,4 @@
 import styles from "./ProfileCard.module.css";
-import { Github } from "lucide-react";
 
 const ProfileCard = () => {
   return (
@@ -10,8 +9,8 @@ const ProfileCard = () => {
           alt="profile-pic"
           className={styles.profilepic}
         />
-        <h2>Xplozion</h2>
-        <p>I like building web applications </p>
+        <h2 className={styles.name}>Xplozion</h2>
+        <p className={styles.shortDescription}>I like building web applications </p>
       </div>
     </>
   );

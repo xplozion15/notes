@@ -4,8 +4,6 @@
   justify-content: flex-start;
   background-color: var(--background-color-main);
   border-radius: var(--border-radius-small);
-
-  /* min-height: 45%; */
   min-height: max-content;
   padding: 0.3rem;
 }
@@ -37,4 +35,10 @@
   width: 10%;
   text-align: center;
   border-radius: 0.2rem;
+  color: white;
+}
+
+.categoryLink {
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-decoration: none;
 }

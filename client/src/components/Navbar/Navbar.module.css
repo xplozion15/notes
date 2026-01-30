@@ -72,7 +72,7 @@
   padding: 0.2rem;
 }
 
-.searchContainer {
+.searchContainer  {
   color: var(--text-color-main);
   position: absolute;
   top: 10%;
