@@ -55,7 +55,7 @@ const PostPage = () => {
     fetchPost();
     getCurrentUserId();
   }, []);
-
+  
   return (
     <>
       <div className={styles.post}>

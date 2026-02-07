@@ -1,0 +1,141 @@
+/* css reset sheet */
+
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+*:not(dialog) {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+body.dark {
+  --hover-color-main: #1f2937;
+  --background-color-main: #191e24;
+  --main-color: #7ca1f5;
+  --border-radius-small: 0.7rem;
+  --text-color-main: white;
+  --secondary-color: #2a323c;
+  --error-color: rgb(230, 32, 32);
+  --body-background-color: #0a0d13;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+a {
+  text-decoration: none;
+}
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+:root {
+  --hover-color-main: #e6efff;
+  --background-color-main: white;
+  --main-color: #7ca1f5;
+  --border-radius-small: 0.7rem;
+  --text-color-main: rgb(51, 50, 50);
+  --secondary-color: #f5f5f5;
+  --error-color: rgb(230, 32, 32);
+  --body-background-color: #eceef5;
+}
+body {
+  background-color: var(--body-background-color);
+  font-family: "Lilita One", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-content {
+  display: grid;
+  margin: 1rem;
+  border-radius: 1rem;
+  width: 80vw;
+  margin: auto;
+  min-height: 85vh;
+  grid-template-columns: 0.2fr 0.8fr;
+  gap: 1rem;
+}
+
+input {
+  background-color: var(--secondary-color);
+  border-radius: var(--border-radius-small);
+  border: none;
+}
+
+.upArrow {
+  border-radius: var(--border-radius-small);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--main-color);
+  background-color: var(--background-color-main);
+  width: 4rem;
+  height: 4rem;
+  position: fixed;
+  right: 3%;
+  bottom: 10%;
+  cursor: pointer;
+}
+
+
+

@@ -4,7 +4,7 @@ const postController = require("../controllers/post.controller");
 const { authenticateToken } = require("../controllers/auth.controller");
 
 postRouter.get("/", postController.fetchPosts);
-
+postRouter.get("/search",postController.fetchSearchedPosts);
 postRouter.get("/:postId", postController.fetchPostById);
 postRouter.get("/:postId/comments", postController.fetchCommentsByPostId);
 postRouter.post("/", authenticateToken, postController.createPost);

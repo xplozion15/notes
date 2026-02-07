@@ -79,29 +79,37 @@ const Navbar = () => {
   const searchRef = useRef(null);
 
   useEffect(() => {
-    const searchPostsByWord = async () => {
-      try {
-        const responseOfPosts = fetch(`${API_BASE_URL}/posts/search`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+    const timer = setTimeout(() => {
+      const searchPostsByWord = async () => {
+        try {
+          const responseOfPosts = await fetch(
+            `${API_BASE_URL}/posts/search?word=${encodeURIComponent(searchInput)}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            },
+          );
 
-        if (!responseOfPosts.ok) {
-          throw new Error("Failed to search the posts");
+          if (!responseOfPosts.ok) {
+            throw new Error("Failed to search the posts");
+          }
+
+          const data = await responseOfPosts.json();
+          const result = data.posts;
+
+          setSearchedPosts(result);
+        } catch (error) {
+          console.log(error);
         }
+      };
 
-        const result = responseOfPosts.json().posts;
-        setSearchedPosts(result);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+      searchPostsByWord();
+    }, 300);
 
-    searchPostsByWord();
+    return () => clearTimeout(timer);
   }, [searchInput]);
-
   return (
     <nav className={styles.nav}>
       <Link to="/" className={styles.logo}>
@@ -137,7 +145,20 @@ const Navbar = () => {
 
           {showSearch && (
             <div className={styles.searchContainer}>
-              <p>this is a search container</p>
+              {searchedPosts.map((post) => {
+                return (
+                  <Link
+                    onClick={() => {
+                      setShowSearch(false);
+                    }}
+                    to={`/posts/${post.id}`}
+                    key={post.id}
+                    className={styles.searchInstance}
+                  >
+                    {post.title}
+                  </Link>
+                );
+              })}
             </div>
           )}
         </div>

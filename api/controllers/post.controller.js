@@ -162,6 +162,39 @@ async function fetchCommentsByPostId(req, res) {
   }
 }
 
+async function fetchSearchedPosts(req, res) {
+  try {
+    let searchInput = req.query.word;
+    searchInput = searchInput.trim().split(/\s+/); //regex for handling spaces and other
+    searchInput = searchInput.join("|"); // to get the array in string format to pass into prisma query ahead
+
+    const result = await prisma.post.findMany({
+      where: {
+        OR: [
+          {
+            title: {
+              search: searchInput,
+            },
+          },
+          {
+            postBody: {
+              search: searchInput,
+            },
+          },
+        ],
+      },
+    });
+
+    res.json({
+      posts: result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+}
+
 module.exports = {
   fetchPostById,
   createPost,
@@ -169,4 +202,5 @@ module.exports = {
   deletePost,
   fetchPosts,
   fetchCommentsByPostId,
+  fetchSearchedPosts,
 };

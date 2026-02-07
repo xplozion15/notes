@@ -7,10 +7,10 @@ import { Footer } from "./components/Footer/Footer";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [scrollY, setScrollY] = useState(0);
+   const [isExpanded, setIsExpanded] = useState(() => window.scrollY > 200);
 
   useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY);
+    const onScroll = () => setIsExpanded(window.scrollY > 200);
 
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -28,7 +28,7 @@ function App() {
         <Content />
       </div>
       <Footer />
-      {scrollY > 200 && <div className="upArrow" onClick={()=>{
+      {isExpanded && <div className="upArrow" onClick={()=>{
         scrollToTop();
       }}>
         <ChevronUp />

@@ -9,31 +9,31 @@ const Comments = ({ comments, setComments, postId, userId }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-      const checkAuth = async () => {
-        try {
-          const jwtToken = localStorage.getItem("jwtToken");
-  
-          const response = await fetch(`${API_BASE_URL}/auth/me`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${jwtToken}`,
-            },
-          });
-  
-          if (response.status === 200) {
-            setIsAuthenticated(true);
-          } else {
-            setIsAuthenticated(false);
-          }
-        } catch (error) {
+    const checkAuth = async () => {
+      try {
+        const jwtToken = localStorage.getItem("jwtToken");
+
+        const response = await fetch(`${API_BASE_URL}/auth/me`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        });
+
+        if (response.status === 200) {
+          setIsAuthenticated(true);
+        } else {
           setIsAuthenticated(false);
-          console.error("Auth check failed:", error);
         }
-      };
-  
-      checkAuth();
-    }, []);
+      } catch (error) {
+        setIsAuthenticated(false);
+        console.error("Auth check failed:", error);
+      }
+    };
+
+    checkAuth();
+  }, []);
 
   async function sendCommentHandler() {
     try {
@@ -76,7 +76,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
       setComments(updatedCommentsData.comments);
       setCommentInput("");
     } catch (error) {
-      console.error("Error posting comment", error);
+      console.log("Error posting comment", error);
       setIsAuthenticated(false);
     }
   }
@@ -123,7 +123,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
                   {" "}
                   {new Date(comment.createdAt).toDateString()}
                 </p>
-                <p className={styles.commentBody}>{comment.commentBody}</p>
+                <p className={styles.commentBody}>{comment.commentBody} </p>
               </div>
             );
           })}

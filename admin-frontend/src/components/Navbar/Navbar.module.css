@@ -9,7 +9,6 @@
   color: var(--main-color);
   padding: 0.5rem 1.2rem;
   text-decoration: none;
-
 }
 
 .logo:hover {
@@ -75,38 +74,16 @@
 }
 
 .searchContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 0.7rem;
-  padding: 1rem;
   color: var(--text-color-main);
   position: absolute;
   border-radius: 1.3rem;
+  padding: 0.5rem;
   top: 11%;
   right: 11%;
   z-index: 999;
-  min-height: 10rem;
+  height: 300px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
   border: 2px solid var(--text-color-main);
-  width: 20rem;
+  width: 500px;
   background-color: var(--background-color-main);
-
-}
-
-
-.searchInstance {
-  color : var(--text-color-main);
-  border-radius: var(--border-radius-small);
-  display: block;
-  border: 2px solid black;
-  padding: 0.2rem;
-  width: 100%;
-    background-color: var(--body-background-color);
-    transition: color 100ms;
-  
-}
-
-.searchInstance:hover {
-  color:  var(--main-color);
 }

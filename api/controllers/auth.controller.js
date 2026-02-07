@@ -91,7 +91,7 @@ function authenticateToken(req, res, next) {
     if (err) {
       return res.status(403).json({ message: "Invalid or expired token" });
     }
-
+    // console.log(decoded);  // req.user.userId is user id in decoded.
     req.user = decoded;
     next();
   });

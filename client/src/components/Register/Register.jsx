@@ -39,6 +39,7 @@ const Register = () => {
         return;
       }
 
+      
       navigate("/"); // home page redirect
     } catch (error) {
       setErrorMessage("Please check your network or try again later");

@@ -9,7 +9,7 @@
 .comment {
   
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.3rem;
 
 }
 
@@ -79,3 +79,4 @@
   color: var(--main-color);
   text-decoration: underline;
 }
+

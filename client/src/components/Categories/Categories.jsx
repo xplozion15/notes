@@ -12,7 +12,7 @@ const Categories = () => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(`${API_BASE_URL}/categories`);
-
+        
         if (!response.ok) {
           throw new Error(`Response status: ${response.status}`);
         }
