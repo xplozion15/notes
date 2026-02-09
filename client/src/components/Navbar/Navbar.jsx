@@ -145,18 +145,23 @@ const Navbar = () => {
 
           {showSearch && (
             <div className={styles.searchContainer}>
+              {(searchedPosts.length === 0) && (
+                <p>No results found...</p>
+              )}
               {searchedPosts.map((post) => {
                 return (
-                  <Link
-                    onClick={() => {
-                      setShowSearch(false);
-                    }}
-                    to={`/posts/${post.id}`}
-                    key={post.id}
-                    className={styles.searchInstance}
-                  >
-                    {post.title}
-                  </Link>
+                  <>
+                    <Link
+                      onClick={() => {
+                        setShowSearch(false);
+                      }}
+                      to={`/posts/${post.id}`}
+                      key={post.id}
+                      className={styles.searchInstance}
+                    >
+                      {post.title}
+                    </Link>
+                  </>
                 );
               })}
             </div>

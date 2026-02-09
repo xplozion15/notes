@@ -6,6 +6,7 @@
 }
 
 .profilecard {
+  font-size: var(--font-small);
   display: flex;
   flex-direction: column;
   background-color: var(--background-color-main);

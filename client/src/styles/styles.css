@@ -91,6 +91,12 @@ a {
 }
 
 :root {
+  /* typograpy */
+  --font-small: clamp(0.775rem, 1.8vw, 1rem);
+  --font-medium: clamp(1.25rem, 3vw, 1.75rem);
+  --font-large: clamp(2rem, 4.5vw, 3rem);
+
+  /* colours */
   --hover-color-main: #e6efff;
   --background-color-main: white;
   --main-color: #7ca1f5;
@@ -136,6 +142,3 @@ input {
   bottom: 10%;
   cursor: pointer;
 }
-
-
-

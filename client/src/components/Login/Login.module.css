@@ -30,6 +30,7 @@
 }
 
 .formDiv {
+  font-size : var(--font-small);
   color: var(--text-color-main);
   display: flex;
   flex-direction: column;
@@ -51,7 +52,7 @@
 
 .error {
   color: var(--error-color);
-  font-size: 0.8rem;
+  font-size: var(--font-small);
 }
 
 .logo {

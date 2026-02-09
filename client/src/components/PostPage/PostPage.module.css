@@ -7,10 +7,11 @@
   border-radius: var(--border-radius-small);
   padding: 1rem;
   color: var(--text-color-main);
+  font-size:  var(--font-small);
 }
 
 .postTitle {
-  font-size: 3rem;
+  font-size: var(--font-large);
 }
 
 .postBody {
