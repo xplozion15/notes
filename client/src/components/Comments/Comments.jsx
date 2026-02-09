@@ -2,8 +2,6 @@ import styles from "./Comments.module.css";
 import { Send } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Trash } from "lucide-react";
-import { Ellipsis } from "lucide-react";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -11,7 +9,8 @@ const Comments = ({ comments, setComments, postId, userId }) => {
   const [commentInput, setCommentInput] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUserId, setCurrentUserId] = useState(null);
-  const [commentOptions, setCommentOptions] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -44,6 +43,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
   }, []);
 
   async function deleteCommentHandler(commentId, postId) {
+    // calling the api
     try {
       const jwtToken = localStorage.getItem("jwtToken");
 
@@ -71,6 +71,17 @@ const Comments = ({ comments, setComments, postId, userId }) => {
   }
 
   async function sendCommentHandler() {
+    // Frontend validation
+    if (!commentInput || commentInput.trim().length === 0) {
+      setIsError(true);
+      setError("Comment cannot be empty");
+      return;
+    } else if (commentInput.length > 500) {
+      setIsError(true);
+      setError("Comment cannot exceed 500 characters");
+      return;
+    }
+
     try {
       const jwtToken = localStorage.getItem("jwtToken");
 
@@ -130,10 +141,10 @@ const Comments = ({ comments, setComments, postId, userId }) => {
               cols="100"
               rows="5"
             />
+            {isError && <p className={styles.errorText}>{error}</p>}
             <button
               className={styles.sendCommentButton}
               onClick={sendCommentHandler}
-              disabled={!commentInput.trim()}
             >
               <Send />
               Send
@@ -141,10 +152,10 @@ const Comments = ({ comments, setComments, postId, userId }) => {
           </div>
         ) : (
           <p className={styles.loginPrompt}>
-            Please{" "}
+            Please
             <Link className={styles.loginLink} to="/login">
               login
-            </Link>{" "}
+            </Link>
             to write a comment.
           </p>
         )}

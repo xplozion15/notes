@@ -32,7 +32,7 @@
 
 .categorycount {
   background-color: var(--main-color);
-  width: 10%;
+  width: 2rem;
   text-align: center;
   border-radius: 0.2rem;
   color: white;

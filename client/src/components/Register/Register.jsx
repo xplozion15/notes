@@ -17,6 +17,31 @@ const Register = () => {
 
   async function registerHandler(e) {
     e.preventDefault();
+
+    // Frontend validation
+    if (!firstName || firstName.trim().length === 0) {
+      setErrorMessage("First name should not be empty");
+      return;
+    } else if (!lastName || lastName.trim().length === 0) {
+      setErrorMessage("Last name should not be empty");
+      return;
+    } else if (!email || email.trim().length === 0) {
+      setErrorMessage("Email should not be empty");
+      return;
+    } else if (!username || username.trim().length === 0) {
+      setErrorMessage("Username should not be empty");
+      return;
+    } else if (username.length < 3 || username.length > 15) {
+      setErrorMessage("Username must be between 3 to 15 characters");
+      return;
+    } else if (!password || password.trim().length === 0) {
+      setErrorMessage("Password should not be empty");
+      return;
+    } else if (password.length < 3 || password.length > 15) {
+      setErrorMessage("Password must be between 3 to 15 characters");
+      return;
+    }
+
     try {
       const response = await fetch(`${API_BASE_URL}/auth/register`, {
         method: "POST",
@@ -39,7 +64,6 @@ const Register = () => {
         return;
       }
 
-      
       navigate("/"); // home page redirect
     } catch (error) {
       setErrorMessage("Please check your network or try again later");

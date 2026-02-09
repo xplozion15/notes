@@ -2,7 +2,6 @@ import styles from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState } from "react";
-import { House } from "lucide-react";
 
 const Login = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -13,6 +12,23 @@ const Login = () => {
 
   async function loginHandler(e) {
     e.preventDefault();
+
+    //frontend validation
+    if (!username || username.trim().length === 0) {
+      setErrorMessage("Username should not be empty");
+      return;
+    } else if (!password || password.trim().length === 0) {
+      setErrorMessage("Please dont keep the username empty");
+      return;
+    } else if (username.length < 3 || username.length > 15) {
+      setErrorMessage("Username must be between 3 to 15 characters only");
+      return;
+    } else if (password.length < 3 || password.length > 15) {
+      setErrorMessage("Password must be between 3 to 15 characters only");
+      return;
+    }
+
+    //api request
     try {
       const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
@@ -34,9 +50,11 @@ const Login = () => {
 
       const jwtToken = result.token;
 
+      //set jwttoken to localstorage
       localStorage.setItem("jwtToken", jwtToken);
 
-      navigate("/"); //home page redirect
+      //home page redirect
+      navigate("/");
     } catch (error) {
       setErrorMessage("Please check your network or try again later");
       console.log(error.message);

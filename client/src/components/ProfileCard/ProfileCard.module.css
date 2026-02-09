@@ -14,16 +14,18 @@
   width: 100%;
   padding: 0.5rem;
   color: var(--text-color-main);
+  gap: 0.3rem;
 }
 
 .shortDescription {
   font-weight: 200;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
-  
-
-
 
 .name {
   font-family: "Lilita One", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: underline;
+  text-decoration-color: var(--main-color);
+  text-decoration-thickness: 0.2rem;
+  text-underline-offset: 0.4rem;
 }
