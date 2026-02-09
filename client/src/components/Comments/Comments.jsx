@@ -2,11 +2,16 @@ import styles from "./Comments.module.css";
 import { Send } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Trash } from "lucide-react";
+import { Ellipsis } from "lucide-react";
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Comments = ({ comments, setComments, postId, userId }) => {
   const [commentInput, setCommentInput] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState(null);
+  const [commentOptions, setCommentOptions] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -21,7 +26,10 @@ const Comments = ({ comments, setComments, postId, userId }) => {
           },
         });
 
+        const user = await response.json();
+        console.log(`hehe ${user}`);
         if (response.status === 200) {
+          setCurrentUserId(user.id);
           setIsAuthenticated(true);
         } else {
           setIsAuthenticated(false);
@@ -34,6 +42,33 @@ const Comments = ({ comments, setComments, postId, userId }) => {
 
     checkAuth();
   }, []);
+
+  async function deleteCommentHandler(commentId, postId) {
+    try {
+      const jwtToken = localStorage.getItem("jwtToken");
+
+      const responseOfDelete = await fetch(
+        `${API_BASE_URL}/posts/${postId}/comments/${commentId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwtToken}`,
+          },
+          body: JSON.stringify({
+            commentId: commentId,
+          }),
+        },
+      );
+      if (!responseOfDelete.ok) throw new Error("Failed to delete the comment");
+
+      setComments((prevComments) =>
+        prevComments.filter((comment) => comment.id !== commentId),
+      );
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   async function sendCommentHandler() {
     try {
@@ -80,7 +115,8 @@ const Comments = ({ comments, setComments, postId, userId }) => {
       setIsAuthenticated(false);
     }
   }
-
+  console.log(comments);
+  console.log(`current user is ${currentUserId}`);
   return (
     <>
       <div className={styles.commentContainer}>
@@ -117,14 +153,27 @@ const Comments = ({ comments, setComments, postId, userId }) => {
         <div className={styles.postComments}>
           {comments.map((comment) => {
             return (
-              <div key={comment.id} className={styles.comment}>
-                <p className={styles.firstName}>{comment.user.firstName}</p>
-                <p className={styles.datePosted}>
-                  {" "}
-                  {new Date(comment.createdAt).toDateString()}
-                </p>
-                <p className={styles.commentBody}>{comment.commentBody} </p>
-              </div>
+              <>
+                <div key={comment.id} className={styles.comment}>
+                  <div className={styles.firstNameDateDeleteDiv}>
+                    <p className={styles.firstName}>{comment.user.firstName}</p>
+                    <p className={styles.datePosted}>
+                      {new Date(comment.createdAt).toDateString()}
+                    </p>
+                  </div>
+                  <p className={styles.commentBody}>{comment.commentBody} </p>
+                  {comment.userId === currentUserId && (
+                    <button
+                      className={styles.deleteComment}
+                      onClick={() => {
+                        deleteCommentHandler(comment.id, comment.postId);
+                      }}
+                    >
+                      delete
+                    </button>
+                  )}
+                </div>
+              </>
             );
           })}
         </div>

@@ -4,13 +4,18 @@ import styles from "./PostPage.module.css";
 import { Comments } from "../Comments/Comments";
 import { Calendars } from "lucide-react";
 import { Book } from "lucide-react";
+import { getReadingStats } from "../../utils/readingStats";
+import { Clock8 } from "lucide-react";
+import { TextAlignCenter } from "lucide-react";
 
 const PostPage = () => {
   const { postId } = useParams();
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-  const [post, setPost] = useState("");
+  const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [currentUserId, setCurrentUserId] = useState(null);
+  const [wordCount, setWordCount] = useState(null);
+  const [estimatedReadTime, setEstimatedReadTime] = useState(null);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -22,6 +27,10 @@ const PostPage = () => {
         }
         const result = await response.json();
         setPost(result.post);
+        setWordCount(getReadingStats(result.post.postBody).wordCount);
+        setEstimatedReadTime(
+          getReadingStats(result.post.postBody).estimatedReadTime,
+        );
         setComments(result.post.comments);
         console.log(result.post);
       } catch (error) {
@@ -55,10 +64,15 @@ const PostPage = () => {
     fetchPost();
     getCurrentUserId();
   }, []);
-  
+
+  if (!post) {
+    return <p>loading the post...</p>;
+  }
+
   return (
     <>
       <div className={styles.post}>
+        
         <p className={styles.postTitle}>{post.title}</p>
 
         <div className={styles.dateAndCategoryDiv}>
@@ -66,12 +80,17 @@ const PostPage = () => {
             <Calendars className={styles.dateIcon} />
             <p>{new Date(post.createdAt).toDateString()}</p>
           </div>
+          
 
           <div className={styles.categoryDiv}>
             <Book className={styles.categoryIcon} />
             {post.category && <p>{post.category.title}</p>}
           </div>
         </div>
+
+        <p className={styles.wordsAndMinutesDiv}>
+          {wordCount} words | {estimatedReadTime} minutes
+        </p>
 
         <p className={styles.postBody}>{post.postBody}</p>
       </div>

@@ -44,3 +44,9 @@
   color: white;
   background-color: var(--main-color);
 }
+
+
+.wordsAndMinutesDiv {
+  font-weight: 100;
+  opacity: 0.6;
+}

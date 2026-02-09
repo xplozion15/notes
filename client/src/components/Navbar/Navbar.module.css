@@ -79,10 +79,10 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 0.7rem;
-  padding: 1rem;
+  padding: 0.2rem;
   color: var(--text-color-main);
   position: absolute;
-  border-radius: 1.3rem;
+  border-radius: 1rem;
   top: 11%;
   right: 11%;
   z-index: 999;
@@ -99,8 +99,8 @@
   color : var(--text-color-main);
   border-radius: var(--border-radius-small);
   display: block;
-  border: 2px solid black;
-  padding: 0.2rem;
+  /* border: 2px solid black; */
+  padding: 0.3rem;
   width: 100%;
     background-color: var(--body-background-color);
     transition: color 100ms;

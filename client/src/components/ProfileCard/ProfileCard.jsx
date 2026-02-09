@@ -5,12 +5,12 @@ const ProfileCard = () => {
     <>
       <div className={styles.profilecard}>
         <img
-          src="./catplayinguno.jpg"
-          alt="profile-pic"
+          src="/cat_avatar.png"
+          alt="cat_avatar"
           className={styles.profilepic}
         />
         <h2 className={styles.name}>Xplozion</h2>
-        <p className={styles.shortDescription}>I like building web applications </p>
+        <p className={styles.shortDescription}>I build web applications </p>
       </div>
     </>
   );
