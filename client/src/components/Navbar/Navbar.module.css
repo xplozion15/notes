@@ -9,6 +9,7 @@
   color: var(--main-color);
   padding: 0.5rem 1.2rem;
   text-decoration: none;
+  font-weight: 100;
 
 }
 
@@ -17,6 +18,7 @@
 }
 
 .nav {
+  font-size: var(--font-medium);
   background-color: var(--background-color-main);
   margin: 1rem;
   border-radius: 1rem;
@@ -30,6 +32,7 @@
 }
 
 .navbarlinks {
+  font-weight: 100;
   display: flex;
   list-style-type: none;
   gap: 3rem;
@@ -75,6 +78,7 @@
 }
 
 .searchContainer {
+  font-size: var(--font-medium);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

@@ -63,7 +63,7 @@ const PostPage = () => {
 
     fetchPost();
     getCurrentUserId();
-  }, []);
+  }, [API_BASE_URL,postId]);
 
   if (!post) {
     return <p>loading the post...</p>;
@@ -72,7 +72,6 @@ const PostPage = () => {
   return (
     <>
       <div className={styles.post}>
-        
         <p className={styles.postTitle}>{post.title}</p>
 
         <div className={styles.dateAndCategoryDiv}>
@@ -80,7 +79,6 @@ const PostPage = () => {
             <Calendars className={styles.dateIcon} />
             <p>{new Date(post.createdAt).toDateString()}</p>
           </div>
-          
 
           <div className={styles.categoryDiv}>
             <Book className={styles.categoryIcon} />
@@ -93,6 +91,7 @@ const PostPage = () => {
         </p>
 
         <p className={styles.postBody}>{post.postBody}</p>
+        
       </div>
 
       <Comments

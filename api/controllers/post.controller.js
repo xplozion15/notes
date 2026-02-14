@@ -3,6 +3,11 @@ const { prisma } = require("../lib/prisma");
 async function fetchPosts(req, res) {
   try {
     const posts = await prisma.post.findMany({
+      orderBy: [
+        {
+          createdAt: "desc",
+        },
+      ],
       include: {
         category: true,
       },
@@ -81,6 +86,11 @@ async function fetchPostById(req, res) {
         title: true,
         postBody: true,
         comments: {
+          orderBy: [
+            {
+              createdAt: "desc",
+            },
+          ],
           include: {
             user: {
               select: {

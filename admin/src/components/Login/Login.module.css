@@ -14,6 +14,7 @@
   flex-direction: column;
   background-color: var(--background-color-main);
   width: 24%;
+
 }
 
 .submitLoginButton {
@@ -37,6 +38,7 @@
 
 .formDiv > input {
   min-height: 2.2rem;
+  color: var(--text-color-main);
 }
 
 .h2,

@@ -27,6 +27,12 @@ body {
 }
 
 body.dark {
+  /* typography */
+  --font-small: clamp(0.775rem, 1.8vw, 1rem);
+  --font-medium: clamp(0.7rem, 2.2vw, 1.1rem);
+  --font-large: clamp(2rem, 4.5vw, 3rem);
+
+  /* colours */
   --hover-color-main: #1f2937;
   --background-color-main: #191e24;
   --main-color: #7ca1f5;
@@ -93,7 +99,7 @@ a {
 :root {
   /* typograpy */
   --font-small: clamp(0.775rem, 1.8vw, 1rem);
-  --font-medium: clamp(1.25rem, 3vw, 1.75rem);
+  --font-medium: clamp(0.7rem, 2.2vw, 1.1rem);
   --font-large: clamp(2rem, 4.5vw, 3rem);
 
   /* colours */

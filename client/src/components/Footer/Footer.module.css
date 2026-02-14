@@ -1,4 +1,5 @@
 .footer {
+  font-size: var(--font-small);
   display: flex;
   flex-direction: column;
   align-items: center;
