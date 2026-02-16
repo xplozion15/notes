@@ -1,8 +1,52 @@
+import styles from "./Stats.module.css";
+import { useEffect, useState } from "react";
+
 const Stats = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const jwtToken = localStorage.getItem("jwtToken");
+  const [postsCount, setPostsCount] = useState(null);
+  const [categoriesCount, setCategoriesCount] = useState(null);
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/stats`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch the stats");
+        }
+
+        const stats = await response.json();
+        setPostsCount(stats.postsCount);
+        setCategoriesCount(stats.categoriesCount);
+      } catch (error) {
+        console.log(error);
+        throw new Error("Failed to fetch the stats");
+      }
+    }
+
+    fetchStats();
+  }, [API_BASE_URL,jwtToken]);
+
   return (
     <>
-      <p>stats component</p>
-      <p>No of posts - 10</p>
+      <div className={styles.stats}>
+        <div className={styles.statElement}>
+          <p className={styles.statDescription}>Number of posts</p>
+          <p className={styles.number}>{postsCount}</p>
+        </div>
+
+        <div className={styles.statElement}>
+          <p className={styles.statDescription}>Number of categories</p>
+          <p className={styles.number}>{categoriesCount}</p>
+        </div>
+      </div>
     </>
   );
 };
