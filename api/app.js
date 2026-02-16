@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+
 const { indexRouter } = require("./routes/index.routes");
 const { postRouter } = require("./routes/post.routes");
 const { categoryRouter } = require("./routes/category.routes");
