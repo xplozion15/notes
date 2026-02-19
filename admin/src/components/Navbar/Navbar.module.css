@@ -9,7 +9,8 @@
   color: var(--main-color);
   padding: 0.5rem 1.2rem;
   text-decoration: none;
-
+  font-size: var(--font-medium);
+  font-weight: 800;
 }
 
 .logo:hover {
@@ -17,6 +18,8 @@
 }
 
 .nav {
+  display: flex;
+  align-items: center;
   background-color: var(--background-color-main);
   margin: 1rem;
   border-radius: 1rem;

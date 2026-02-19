@@ -5,8 +5,6 @@ import { Comments } from "../Comments/Comments";
 import { Calendars } from "lucide-react";
 import { Book } from "lucide-react";
 import { getReadingStats } from "../../utils/readingStats";
-import { Clock8 } from "lucide-react";
-import { TextAlignCenter } from "lucide-react";
 
 const PostPage = () => {
   const { postId } = useParams();
