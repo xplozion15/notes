@@ -7,6 +7,7 @@
   box-sizing: border-box;
 }
 
+
 /* 2. Remove default margin */
 *:not(dialog) {
   margin: 0;
@@ -43,6 +44,9 @@ textarea,
 select {
   font: inherit;
 }
+
+
+
 
 /* 8. Avoid text overflows */
 p,

@@ -1,0 +1,52 @@
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+const DeleteDialog = ({
+  setShowDeleteModal,
+  dialogRef,
+  postIdToDelete,
+  setPosts,
+}) => {
+  async function deleteHandler() {
+    setShowDeleteModal(false);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/posts/${postIdToDelete}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete the posts");
+      }
+      setPosts((prevPosts) =>
+        prevPosts.filter((post) => post.id !== postIdToDelete),
+      );
+      return;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  return (
+    <>
+      <dialog id="delete-dialog" ref={dialogRef}>
+        <p>Are you sure you want to delete this post?</p>
+        <button
+          commandfor="my-dialog"
+          command="close"
+          onClick={() => {
+            setShowDeleteModal(false);
+          }}
+        >
+          No
+        </button>
+        <button onClick={deleteHandler}>Yes</button>
+      </dialog>
+    </>
+  );
+};
+
+export { DeleteDialog };

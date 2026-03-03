@@ -132,7 +132,7 @@ async function deletePost(req, res) {
     });
   } catch (error) {
     res.status(500).json({
-      message: "Failed the delete the post",
+      message: error,
     });
   }
 }

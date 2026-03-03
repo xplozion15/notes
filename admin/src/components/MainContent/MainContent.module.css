@@ -13,10 +13,12 @@
   flex-direction: row;
   gap: 1rem;
   justify-content: flex-end;
-  align-self: flex-end;
+  align-self: flex-start;
   width: 18rem;
   height: 2.5rem;
-  margin-top: 1rem;
+  margin: 1rem;
+  margin-top: 3rem;
+ 
 }
 
 .dashboardButtons {
@@ -41,6 +43,10 @@
 
 .adminDashboardHeading {
   color: var(--main-color);
-  font-size: var(--font-large);
-  font-weight: 200;
+  font-size: calc(1rem + var(--font-medium));
+  font-weight: 600;
+  margin: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
