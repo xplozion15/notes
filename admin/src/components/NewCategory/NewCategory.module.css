@@ -1,0 +1,32 @@
+.newCategoryContainer {
+  width: 30vw;
+  border: 2px solid gray;
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-small);
+  background-color: var(--secondary-color);
+}
+
+.inputDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputDiv input {
+  min-height: 2rem;
+  width: 100%;
+  border-radius: var(--border-radius-small);
+  background-color: var(--background-color-main);
+  color: white;
+}
+.newCategoryContainer button {
+  width: 100%;
+  min-height: 2.5rem;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  border: 2px solid var(--background-color-main);
+}

@@ -27,6 +27,20 @@
   font-weight: 100;
 }
 
+.categoryDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  border-radius: var(--border-radius-small);
+  background-color: var(--secondary-color);
+  padding: 0.5rem;
+  margin: 0.5rem;
+  align-items: center;
+  width: 15rem;
+  gap: 1rem;
+}
+
 .post {
   display: flex;
   flex-direction: column;
@@ -95,5 +109,5 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
- box-shadow: 0 0 10px 500vw rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 10px 500vw rgba(0, 0, 0, 0.6);
 }

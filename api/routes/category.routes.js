@@ -4,7 +4,11 @@ const categoryController = require("../controllers/category.controller");
 const { authenticateToken } = require("../controllers/auth.controller");
 
 categoryRouter.get("/", categoryController.fetchCategories);
-
+categoryRouter.delete(
+  "/:categoryId",
+  authenticateToken,
+  categoryController.deleteCategory,
+);
 categoryRouter.get(
   "/:categoryId/posts",
   categoryController.fetchPostsByCategory,

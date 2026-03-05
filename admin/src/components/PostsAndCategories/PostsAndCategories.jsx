@@ -4,15 +4,25 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { Link } from "react-router-dom";
 import { getPostPreview } from "../../utils/postPreview";
 import { DeleteDialog } from "../DeleteDialog/DeleteDialog";
-
+import { Trash } from "lucide-react";
+import { CategoryDeleteDialog } from "../CategoryDeleteDialog/CategoryDeleteDialog";
+import { SquarePen } from "lucide-react";
 
 const PostsAndCategories = () => {
   const [activeStatus, setActiveStatus] = useState("posts");
   const [posts, setPosts] = useState([]);
   const [categories, setCategories] = useState([]);
+
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [postIdToDelete, setPostIdToDelete] = useState(null);
+
+  const [showCategoryDeleteModal, setShowCategoryDeleteModal] = useState(false);
+  const [categoryIdToDelete, setCategoryIdToDelete] = useState(null);
+
+  const [editingCategoryId, setEditingCategoryId] = useState(null);
+
   const dialogRef = useRef(null);
+  const categoryDialogRef = useRef(null);
 
   useEffect(() => {
     async function fetchPosts() {
@@ -65,7 +75,20 @@ const PostsAndCategories = () => {
     openOrCloseDeleteDialog();
   }, [showDeleteModal]);
 
-  console.log(dialogRef.current);
+  useEffect(() => {
+    async function openOrCloseCategoryDeleteDialog() {
+      try {
+        if (showCategoryDeleteModal) {
+          categoryDialogRef.current?.showModal();
+        } else {
+          categoryDialogRef.current?.close();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    openOrCloseCategoryDeleteDialog();
+  }, [showCategoryDeleteModal]);
 
   return (
     <>
@@ -75,6 +98,14 @@ const PostsAndCategories = () => {
         postIdToDelete={postIdToDelete}
         setPosts={setPosts}
       />
+
+      <CategoryDeleteDialog
+        setShowCategoryDeleteModal={setShowCategoryDeleteModal}
+        categoryDialogRef={categoryDialogRef}
+        categoryIdToDelete={categoryIdToDelete}
+        setCategories={setCategories}
+      />
+
       <div className={styles.activityDiv}>
         <button
           className={`${styles.tab} ${activeStatus === "posts" ? styles.posts : ""}`}
@@ -107,13 +138,13 @@ const PostsAndCategories = () => {
                   <p>{new Date(post.createdAt).toDateString()}</p>
                 </div>
                 <div className={styles.buttonsDiv}>
-                  <Link className={styles.buttons}>Read more</Link>
+                  {/* <Link className={styles.buttons}>Read more</Link> */}
                   <Link className={styles.buttons}>Edit</Link>
                   <button
                     className={styles.deletePostButton}
                     onClick={() => {
                       setShowDeleteModal(true);
-                      setPostIdToDelete(post.id)
+                      setPostIdToDelete(post.id);
                     }}
                   >
                     Delete
@@ -127,7 +158,42 @@ const PostsAndCategories = () => {
       {activeStatus === "categories" && (
         <div>
           {categories.map((category) => {
-            return <p key={category.id}> {category.title}</p>;
+            return (
+              <>
+                <div className={styles.categoryDiv}>
+                  {editingCategoryId === category.id ? (
+                    <input type="text" value={category.title} />
+                  ) : (
+                    <p
+                      className={styles.category}
+                      onClick={() => setEditingCategoryId(category.id)}
+                    >
+                      {category.title}
+                    </p>
+                  )}
+                  {editingCategoryId !== category.id && (
+                    <>
+                      <button
+                        onClick={() => {
+                          setEditingCategoryId(category.id);
+                        }}
+                      >
+                        <SquarePen />
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          setShowCategoryDeleteModal(true);
+                          setCategoryIdToDelete(category.id);
+                        }}
+                      >
+                        <Trash />
+                      </button>
+                    </>
+                  )}
+                </div>
+              </>
+            );
           })}
         </div>
       )}

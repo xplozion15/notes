@@ -29,13 +29,21 @@ async function createNewCategory(req, res) {
 
     await prisma.category.create({
       data: {
-        title: title,
+        title: title.trim(),
       },
     });
     res.json({
       message: "Category created successfully",
     });
   } catch (error) {
+    if (error.code === "P2002") {
+      return res.status(400).json({
+        message: "Category already exists",
+      });
+    }
+
+    console.error(error);
+
     res.status(500).json({
       message: "failed to create a category",
     });
@@ -63,5 +71,53 @@ async function fetchPostsByCategory(req, res) {
     });
   }
 }
+async function deleteCategory(req, res) {
+  try {
+    // Convert the categoryId from URL params to a number
+    const categoryId = Number(req.params.categoryId);
 
-module.exports = { fetchPostsByCategory, createNewCategory, fetchCategories };
+    //Check if the category even exists
+    const category = await prisma.category.findUnique({
+      where: { id: categoryId },
+    });
+
+    if (!category) {
+      return res.status(404).json({
+        message: "Category not found",
+      });
+    }
+
+    //Check if any posts are still using this category
+    const postsCount = await prisma.post.count({
+      where: { categoryId },
+    });
+
+    // dont delete category if posts are there
+    if (postsCount > 0) {
+      return res.status(400).json({
+        message:
+          "Cannot delete category because posts are still assigned to it.",
+      });
+    }
+
+    // delete category
+    await prisma.category.delete({
+      where: { id: categoryId },
+    });
+
+    return res.json({
+      message: "Category deleted successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Failed to delete category",
+    });
+  }
+}
+
+module.exports = {
+  fetchPostsByCategory,
+  createNewCategory,
+  fetchCategories,
+  deleteCategory,
+};
