@@ -4,6 +4,7 @@ import { MainContent } from "../components/MainContent/MainContent";
 import { Error404 } from "../components/Error404/Error404";
 import { EditPost } from "../components/EditPost/EditPost";
 import { NewPost } from "../components/NewPost/NewPost";
+import { PostPage } from "../components/PostPage/PostPage";
 import { EditCategory } from "../components/EditCategory/EditCategory";
 import { NewCategory } from "../components/NewCategory/NewCategory";
 
@@ -16,6 +17,10 @@ const routes = [
       {
         index: true,
         element: <MainContent />,
+      },
+      {
+        path : "posts/:postId",
+        element : <PostPage/>
       },
       {
         path: "posts/:postId/edit",

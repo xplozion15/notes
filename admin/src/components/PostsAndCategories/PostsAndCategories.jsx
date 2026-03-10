@@ -138,7 +138,7 @@ const PostsAndCategories = () => {
                   <p>{new Date(post.createdAt).toDateString()}</p>
                 </div>
                 <div className={styles.buttonsDiv}>
-                  {/* <Link className={styles.buttons}>Read more</Link> */}
+                  <Link to={`posts/${post.id}`} className={styles.buttons}>Read more</Link>
                   <Link className={styles.buttons}>Edit</Link>
                   <button
                     className={styles.deletePostButton}

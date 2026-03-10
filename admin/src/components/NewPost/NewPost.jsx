@@ -3,17 +3,17 @@ import { useRef, useEffect, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 const TINY_MCE_API_KEY = import.meta.env.VITE_TINY_MCE_API_KEY;
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { useNavigate } from "react-router-dom";
 
 const NewPost = () => {
   const editorRef = useRef(null);
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
-  const [currentCategory,setCurrentCategory] = useState(null);
-
-  // const log = () => {
-  //   if (editorRef.current) {
-  //     console.log(editorRef.current.getContent());
-  //   }
-  // };
+  const [postData, setPostData] = useState({
+    title: "",
+    categoryId: "",
+    postBody: "",
+  });
 
   useEffect(() => {
     async function fetchCategories() {
@@ -33,6 +33,25 @@ const NewPost = () => {
     fetchCategories();
   }, []);
 
+  async function savePostHandler() {
+    try {
+      const response = await fetch(`${API_BASE_URL}/posts`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+        },
+        body: JSON.stringify(postData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save the post");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <div className={styles.newPostContainer}>
@@ -42,19 +61,42 @@ const NewPost = () => {
             type="text"
             id="postTitleInput"
             className={styles.postTitleInput}
+            onChange={(e) => {
+              setPostData((prevPost) => {
+                return {
+                  ...prevPost,
+                  title: e.target.value,
+                };
+              });
+            }}
           />
         </div>
 
         <div className={styles.postInputDiv}>
           <label htmlFor="category">Select Category</label>
-          <select name="category" id="category" className={styles.select} onChange={(e)=>{
-            console.log(e.target.value);
-            setCurrentCategory(e.target.value);
-          }}>
+          <select
+            name="category"
+             value={postData.categoryId}
+            id="category"
+            className={styles.select}
+            onChange={(e) => {
+              setPostData((prevPost) => {
+                return {
+                  ...prevPost,
+                  categoryId: e.target.value,
+                };
+              });
+            }}
+          > 
+            <option value="">Select category</option>
             {categories.map((category) => {
               return (
                 <>
-                  <option value={category.title} key={category.id} className={styles.option}>
+                  <option
+                    value={category.id}
+                    key={category.id}
+                    className={styles.option}
+                  >
                     {category.title}
                   </option>
                 </>
@@ -67,6 +109,9 @@ const NewPost = () => {
           <label htmlFor="postBody">BODY</label>
 
           <Editor
+            onEditorChange={(postBody) => {
+              setPostData((prevPost) => ({ ...prevPost, postBody: postBody }));
+            }}
             apiKey={TINY_MCE_API_KEY}
             onInit={(_evt, editor) => (editorRef.current = editor)}
             initialValue="<p>Write your blog here...</p>"
@@ -106,8 +151,14 @@ const NewPost = () => {
             }}
           />
           <div className={styles.newPostButtonsContainer}>
-            <button>Cancel</button>
-            <button>Publish</button>
+            <button
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Cancel
+            </button>
+            <button onClick={savePostHandler}>Publish</button>
           </div>
         </div>
       </div>

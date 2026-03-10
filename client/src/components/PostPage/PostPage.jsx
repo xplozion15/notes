@@ -61,12 +61,13 @@ const PostPage = () => {
 
     fetchPost();
     getCurrentUserId();
-  }, [API_BASE_URL,postId]);
+  }, [API_BASE_URL, postId]);
 
   if (!post) {
     return <p>loading the post...</p>;
   }
 
+  console.log(post.postBody);
   return (
     <>
       <div className={styles.post}>
@@ -88,8 +89,11 @@ const PostPage = () => {
           {wordCount} words | {estimatedReadTime} minutes
         </p>
 
-        <p className={styles.postBody}>{post.postBody}</p>
-        
+     
+        <div
+          className={styles.postBody}
+          dangerouslySetInnerHTML={{ __html: post.postBody }}
+        />
       </div>
 
       <Comments

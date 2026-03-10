@@ -1,4 +1,5 @@
 const { prisma } = require("../lib/prisma");
+const {sanitizeBlogs} = require("../utils/sanitizeBlogs");
 
 async function fetchPosts(req, res) {
   try {
@@ -25,12 +26,17 @@ async function fetchPosts(req, res) {
 }
 
 async function createPost(req, res) {
+  console.log(req.body);
+
+  const sanitizedPostBody = sanitizeBlogs(req.body.postBody);
+
   try {
     const title = req.body.title;
     const authorId = Number(req.user.userId); // set by auth middleware
     const categoryId = Number(req.body.categoryId);
-    const postBody = req.body.postBody;
+    const postBody = sanitizedPostBody;
 
+    console.log(categoryId);
     const newPost = await prisma.post.create({
       data: {
         title: title,
@@ -45,6 +51,8 @@ async function createPost(req, res) {
       post: newPost,
     });
   } catch (error) {
+    console.log(error.message);
+    
     res.status(500).json({
       error: "Failed to create the post",
     });
@@ -132,7 +140,7 @@ async function deletePost(req, res) {
     });
   } catch (error) {
     res.status(500).json({
-      message: error,
+      message: error.message,
     });
   }
 }
