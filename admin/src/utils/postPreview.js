@@ -1,6 +1,7 @@
+
+
 const getPostPreview = (postBody) => {
-  const previewLength = 50;
-  return postBody.slice(0, previewLength) + ". . .";
+  return postBody.replace(/<[^>]+>/g, "").slice(0, 50) + "...";
 };
 
 export { getPostPreview };
