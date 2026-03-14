@@ -19,4 +19,10 @@ categoryRouter.post(
   categoryController.createNewCategory,
 );
 
+categoryRouter.patch(
+  "/:categoryId",
+  authenticateToken,
+  categoryController.updateCategory,
+);
+
 module.exports = { categoryRouter };

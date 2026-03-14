@@ -138,7 +138,9 @@ const PostsAndCategories = () => {
                   <p>{new Date(post.createdAt).toDateString()}</p>
                 </div>
                 <div className={styles.buttonsDiv}>
-                  <Link to={`posts/${post.id}`} className={styles.buttons}>Read more</Link>
+                  <Link to={`posts/${post.id}`} className={styles.buttons}>
+                    Read more
+                  </Link>
                   <Link className={styles.buttons}>Edit</Link>
                   <button
                     className={styles.deletePostButton}
@@ -162,7 +164,32 @@ const PostsAndCategories = () => {
               <>
                 <div className={styles.categoryDiv}>
                   {editingCategoryId === category.id ? (
-                    <input type="text" value={category.title} />
+                    <input
+                      type="text"
+                      value={category.title}
+                      onBlur={async (e) => {
+                        try {
+                          const response = await fetch(
+                            `${API_BASE_URL}/categories/${category.id}`,
+                            {
+                              method: "PATCH",
+                              headers: {
+                                Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+                              },
+                              body: JSON.stringify({
+                                categoryTitle: e.target.value,
+                              }),
+                            },
+                          );
+
+                          if (!response.ok) {
+                            throw new Error("Failed to update category");
+                          }
+                        } catch (error) {
+                          console.log(error);
+                        }
+                      }}
+                    />
                   ) : (
                     <p
                       className={styles.category}
