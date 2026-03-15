@@ -1,5 +1,5 @@
 const { prisma } = require("../lib/prisma");
-const {sanitizeBlogs} = require("../utils/sanitizeBlogs");
+const { sanitizeBlogs } = require("../utils/sanitizeBlogs");
 
 async function fetchPosts(req, res) {
   try {
@@ -52,7 +52,7 @@ async function createPost(req, res) {
     });
   } catch (error) {
     console.log(error.message);
-    
+
     res.status(500).json({
       error: "Failed to create the post",
     });
@@ -62,7 +62,7 @@ async function createPost(req, res) {
 async function updatePost(req, res) {
   try {
     const postId = Number(req.params.postId);
-    const postBody = req.body.postBody;
+    const { postBody, title, categoryId } = req.body;
 
     await prisma.post.update({
       where: {
@@ -70,14 +70,17 @@ async function updatePost(req, res) {
       },
       data: {
         postBody: postBody,
+        title: title,
+        categoryId: Number(categoryId),
       },
     });
     res.json({
       message: "post updated successfully",
     });
   } catch (error) {
+    console.log(error.message)
     res.status(500).json({
-      message: "failed to update the post",
+      message: "failed to update the post due to internal server error",
     });
   }
 }

@@ -141,7 +141,9 @@ const PostsAndCategories = () => {
                   <Link to={`posts/${post.id}`} className={styles.buttons}>
                     Read more
                   </Link>
-                  <Link className={styles.buttons}>Edit</Link>
+                  <Link to={`posts/${post.id}/edit`} className={styles.buttons}>
+                    Edit
+                  </Link>
                   <button
                     className={styles.deletePostButton}
                     onClick={() => {
