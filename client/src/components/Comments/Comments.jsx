@@ -116,9 +116,10 @@ const Comments = ({ comments, setComments, postId, userId }) => {
       );
 
       if (!commentsResponse.ok) throw new Error("Failed to fetch the comments");
+
       setIsAuthenticated(true);
       const updatedCommentsData = await commentsResponse.json();
-
+      setIsError(false);
       setComments(updatedCommentsData.comments);
       setCommentInput("");
     } catch (error) {
