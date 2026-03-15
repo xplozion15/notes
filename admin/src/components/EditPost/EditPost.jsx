@@ -77,7 +77,7 @@ const EditPost = () => {
       if (!response.ok) {
         throw new Error("Failed to save the post");
       }
-
+ 
       navigate("/");
     } catch (error) {
       console.log(error);

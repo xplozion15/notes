@@ -7,37 +7,43 @@ import { NewPost } from "../components/NewPost/NewPost";
 import { PostPage } from "../components/PostPage/PostPage";
 import { EditCategory } from "../components/EditCategory/EditCategory";
 import { NewCategory } from "../components/NewCategory/NewCategory";
+import { AdminRoute } from "../components/AdminRoute/AdminRoute";
 
 const routes = [
   {
-    path: "/",
-    element: <App />,
-    errorElement: <Error404 />,
+    element: <AdminRoute/>,
     children: [
       {
-        index: true,
-        element: <MainContent />,
+        path: "/",
+        element: <App />,
+        errorElement: <Error404 />,
+        children: [
+          {
+            index: true,
+            element: <MainContent />,
+          },
+          {
+            path: "posts/:postId",
+            element: <PostPage />,
+          },
+          {
+            path: "posts/:postId/edit",
+            element: <EditPost />,
+          },
+          {
+            path: "posts/new",
+            element: <NewPost />,
+          },
+          {
+            path: "categories/:categoryId/edit",
+            element: <EditCategory />,
+          },
+          {
+            path: "categories/new",
+            element: <NewCategory />,
+          },
+        ],
       },
-      {
-        path : "posts/:postId",
-        element : <PostPage/>
-      },
-      {
-        path: "posts/:postId/edit",
-        element: <EditPost />,
-      },
-      {
-        path: "posts/new",
-        element: <NewPost />,
-      },
-      {
-        path: "categories/:categoryId/edit",
-        element: <EditCategory />,
-      },
-      { 
-        path : "categories/new",
-        element : <NewCategory/>,
-      }
     ],
   },
   {

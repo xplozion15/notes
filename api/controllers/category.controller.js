@@ -29,7 +29,7 @@ async function createNewCategory(req, res) {
 
     await prisma.category.create({
       data: {
-        title: title.trim(),
+        title: title.trim(), 
       },
     });
     res.json({
@@ -117,8 +117,10 @@ async function deleteCategory(req, res) {
 
 async function updateCategory(req, res) {
   //get category name and id
+   console.log(req.body)
   const categoryTitle = req.body.categoryTitle;
-  const categoryId = Number(req.params.categoryId);
+  const categoryId = Number(req.body.categoryId); 
+ 
 
   try {
     // find the unique category with id

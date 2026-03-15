@@ -31,15 +31,41 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
+  /* border: 2px solid red; */
   border-radius: var(--border-radius-small);
   background-color: var(--secondary-color);
   padding: 0.5rem;
   margin: 0.5rem;
   align-items: center;
-  width: 15rem;
+  width: 19rem;
   gap: 1rem;
 }
+
+.category {
+ 
+  width: 60%;
+}
+.editCategoryInput {
+  width: 100%;
+  border-radius: 0.5rem;
+  color: white;
+
+}
+
+.categoryButtonsDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 0.5rem;
+  width: 45%;
+
+}
+
+.categoryButtons {
+  border-radius: var(--border-radius-small);
+  width: 50%
+}
+
 
 .post {
   display: flex;

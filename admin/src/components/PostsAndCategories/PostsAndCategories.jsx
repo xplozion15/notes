@@ -4,9 +4,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { Link } from "react-router-dom";
 import { getPostPreview } from "../../utils/postPreview";
 import { DeleteDialog } from "../DeleteDialog/DeleteDialog";
-import { Trash } from "lucide-react";
 import { CategoryDeleteDialog } from "../CategoryDeleteDialog/CategoryDeleteDialog";
-import { SquarePen } from "lucide-react";
 
 const PostsAndCategories = () => {
   const [activeStatus, setActiveStatus] = useState("posts");
@@ -19,7 +17,10 @@ const PostsAndCategories = () => {
   const [showCategoryDeleteModal, setShowCategoryDeleteModal] = useState(false);
   const [categoryIdToDelete, setCategoryIdToDelete] = useState(null);
 
-  const [editingCategoryId, setEditingCategoryId] = useState(null);
+  const [editingCategoryData, setEditingCategoryData] = useState({
+    id: null,
+    title: "",
+  });
 
   const dialogRef = useRef(null);
   const categoryDialogRef = useRef(null);
@@ -164,22 +165,31 @@ const PostsAndCategories = () => {
           {categories.map((category) => {
             return (
               <>
-                <div className={styles.categoryDiv}>
-                  {editingCategoryId === category.id ? (
+                <div className={styles.categoryDiv} key={category.id}>
+                  {editingCategoryData.id === category.id ? (
                     <input
+                      className={styles.editCategoryInput}
                       type="text"
-                      value={category.title}
-                      onBlur={async (e) => {
+                      value={editingCategoryData.title}
+                      onChange={(e) => {
+                        setEditingCategoryData({
+                          ...editingCategoryData,
+                          title: e.target.value,
+                        });
+                      }}
+                      onBlur={async () => {
                         try {
                           const response = await fetch(
                             `${API_BASE_URL}/categories/${category.id}`,
                             {
                               method: "PATCH",
                               headers: {
+                                "Content-Type": "application/json",
                                 Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
                               },
                               body: JSON.stringify({
-                                categoryTitle: e.target.value,
+                                categoryId: editingCategoryData.id,
+                                categoryTitle: editingCategoryData.title,
                               }),
                             },
                           );
@@ -187,6 +197,9 @@ const PostsAndCategories = () => {
                           if (!response.ok) {
                             throw new Error("Failed to update category");
                           }
+
+                        
+                        
                         } catch (error) {
                           console.log(error);
                         }
@@ -195,29 +208,42 @@ const PostsAndCategories = () => {
                   ) : (
                     <p
                       className={styles.category}
-                      onClick={() => setEditingCategoryId(category.id)}
+                      onClick={() => {
+                        setEditingCategoryData({
+                          ...editingCategoryData,
+                          id: category.id,
+                        });
+                      }}
                     >
                       {category.title}
                     </p>
                   )}
-                  {editingCategoryId !== category.id && (
+                  {editingCategoryData.id !== category.id && (
                     <>
-                      <button
-                        onClick={() => {
-                          setEditingCategoryId(category.id);
-                        }}
-                      >
-                        <SquarePen />
-                      </button>
+                      <div className={styles.categoryButtonsDiv}>
+                        <button
+                          className={styles.categoryButtons}
+                          onClick={() => {
+                            setEditingCategoryData({
+                              ...editingCategoryData,
+                              id: category.id,
+                              title: category.title,
+                            });
+                          }}
+                        >
+                          Edit
+                        </button>
 
-                      <button
-                        onClick={() => {
-                          setShowCategoryDeleteModal(true);
-                          setCategoryIdToDelete(category.id);
-                        }}
-                      >
-                        <Trash />
-                      </button>
+                        <button
+                          className={styles.categoryButtons}
+                          onClick={() => {
+                            setShowCategoryDeleteModal(true);
+                            setCategoryIdToDelete(category.id);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </>
                   )}
                 </div>
