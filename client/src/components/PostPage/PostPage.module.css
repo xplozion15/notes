@@ -12,12 +12,13 @@
 
 .postTitle {
   font-size: var(--font-large);
+  font-weight: 600;
 }
 
 .postBody {
   margin-top: 2rem;
   font-weight: 500;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+ font-family: "Syne", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .dateAndCategoryDiv {
@@ -34,7 +35,7 @@
   width: max-content;
   gap: 0.5rem;
   align-items: center;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: "Syne", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 100;
 }
 

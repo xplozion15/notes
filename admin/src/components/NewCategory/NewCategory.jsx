@@ -42,6 +42,7 @@ const NewCategory = () => {
             }}
           />
         </div>
+        
         <button
           onClick={saveCategory}
         >

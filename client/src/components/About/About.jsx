@@ -5,35 +5,32 @@ const About = () => {
     <>
       <div className={styles.aboutMeDiv}>
         <p>
-          Hi, I’m Xplozion, an aspiring Web Developer passionate about building
-          modern, responsive, and user-focused web applications. I enjoy turning
-          ideas into real-world products using clean code, intuitive design, and
-          scalable architecture. I’m currently focused on sharpening my
-          front-end and full-stack development skills by working on hands-on
-          projects that reflect real industry use cases. Through these projects,
+          Hi, I’m Xplozion. I’m learning to become a web developer and I enjoy
+          building websites that are simple, easy to use, and look good. I like
+          turning ideas into real projects using clean code and straightforward
+          designs.
         </p>
 
-           <p>
-          I aim to strengthen my understanding of web fundamentals, modern
-          frameworks, and best practices in software development. I love
-          learning new technologies, experimenting with UI/UX improvements, and
-          solving problems through code. Writing about my journey, challenges,
-          and learnings helps me solidify my knowledge and share insights with
-          others who are on a similar path.
+        <p>
+          Right now, I’m working on small projects to improve my front-end and
+          full-stack skills. These projects help me understand the basics of web
+          development, learn new tools, and practice good coding habits. I enjoy
+          trying new technologies, experimenting with design, and solving
+          problems with code. I also like sharing what I learn and the
+          challenges I face because it helps me remember and can help others who
+          are learning too.
         </p>
-        
+
         <img
           src="./about_image.jpg"
           alt="about_image_computer"
           className={styles.computerImage}
         />
 
-     
         <p>
-          My goal is to secure my first internship or entry-level developer
-          role, where I can contribute to meaningful projects, learn from
-          experienced developers, and grow into a well-rounded software
-          engineer.
+          My goal is to get my first internship or junior developer role, where
+          I can work on real projects, learn from experienced developers, and
+          grow as a software engineer.
         </p>
       </div>
     </>

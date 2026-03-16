@@ -113,8 +113,9 @@ a {
   --body-background-color: #eceef5;
 }
 body {
-  background-color: var(--body-background-color);
-  font-family: "Lilita One", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--body-background-color); 
+  
+  font-family: "Syne", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .main-content {

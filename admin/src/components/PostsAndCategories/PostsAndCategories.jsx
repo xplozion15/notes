@@ -91,6 +91,7 @@ const PostsAndCategories = () => {
     openOrCloseCategoryDeleteDialog();
   }, [showCategoryDeleteModal]);
 
+  console.log(categories)
   return (
     <>
       <DeleteDialog
