@@ -52,3 +52,9 @@
   color: white;
 }
 
+
+
+
+.errorMessage {
+  color :var(--error-color);
+}

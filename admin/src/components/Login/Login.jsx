@@ -2,7 +2,6 @@ import styles from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState } from "react";
-import { House } from "lucide-react";
 
 const Login = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -12,7 +11,28 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   async function loginHandler(e) {
+    //prevent default form behaviour
     e.preventDefault();
+
+    //frontend validation of the form
+    const trimmedUsername = username.trim();
+    const trimmedPassword = password.trim();
+
+    if (trimmedUsername.length === 0) {
+      setErrorMessage("Username cannot be empty");
+      return;
+    } else if (trimmedUsername.length < 3 || trimmedUsername.length > 16) {
+      setErrorMessage("Username must be 3 to 16 characters only");
+      return;
+    } else if (trimmedPassword.length === 0) {
+      setErrorMessage("Password cannot be empty");
+      return;
+    } else if (trimmedPassword.length < 3 || trimmedPassword.length > 16) {
+      setErrorMessage("Password must be 3 to 16 characters only");
+      return;
+    }
+
+    //fetch request
     try {
       const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",

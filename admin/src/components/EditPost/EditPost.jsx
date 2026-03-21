@@ -15,6 +15,7 @@ const EditPost = () => {
     categoryId: "",
     postBody: "",
   });
+  const [errorMessage,setErrorMessage] = useState("");
 
   //get the post Id from use params react router method
   let params = useParams();
@@ -63,7 +64,28 @@ const EditPost = () => {
 
   // function to run when save is clicked
   async function updatePostHandler() {
-    console.log(`${postData.title},${postData.categoryId}`)
+    
+    //validation for the update post inputs 
+    if(postData.title.trim().length === 0) {
+      setErrorMessage("Post title cannot be empty");
+      return
+    }
+    else if(postData.title.trim().length < 5 || postData.title.trim().length > 90) {
+      setErrorMessage("Post title length must be between 5 to 90 characters");
+      return;
+    }
+    else if (postData.categoryId === "") {
+      setErrorMessage("Select a category");
+      return
+    }
+    else if(postData.postBody.trim().length === 0 ) {
+      setErrorMessage("Post body must not be empty");
+      return;
+    }
+
+
+
+    //fetch request
     try {
       const response = await fetch(`${API_BASE_URL}/posts/${postId}`, {
         method: "PATCH",
@@ -182,6 +204,9 @@ const EditPost = () => {
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:1rem; background-color:#2a323c;color:white;  }",
             }}
           />
+
+          {errorMessage !== "" && <p className={styles.errorMessage}>{errorMessage}</p>}
+         
           <div className={styles.newPostButtonsContainer}>
             <button
               onClick={() => {
