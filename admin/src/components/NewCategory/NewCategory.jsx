@@ -5,9 +5,23 @@ import { useNavigate } from "react-router-dom";
 
 const NewCategory = () => {
   const [title, setTitle] = useState("");
+  const [errorMessage, setErrorMesssage] = useState(null);
   const navigate = useNavigate();
 
   async function saveCategory() {
+    //validation logic for the title input on frontend
+    const trimmedTitle = title.trim();
+
+    if (trimmedTitle.length === 0) {
+      console.log("lengh is 0 ");
+      setErrorMesssage("Title should not be empty");
+      return;
+    } else if (trimmedTitle.length > 14) {
+      setErrorMesssage("Title length should be less than 14 characters");
+      return;
+    }
+
+    //try catch block for api request and state changes for new renders
     try {
       const response = await fetch(`${API_BASE_URL}/categories`, {
         method: "POST",
@@ -40,14 +54,11 @@ const NewCategory = () => {
             onChange={(e) => {
               setTitle(e.target.value);
             }}
+            value={title}
           />
         </div>
-        
-        <button
-          onClick={saveCategory}
-        >
-          Save
-        </button>
+        {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+        <button onClick={saveCategory}>Save</button>
       </div>
     </>
   );
