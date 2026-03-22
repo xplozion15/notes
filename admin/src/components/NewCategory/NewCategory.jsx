@@ -50,6 +50,8 @@ const NewCategory = () => {
         <div className={styles.inputDiv}>
           <label htmlFor="newCategory">New Category Name?</label>
           <input
+            id="newCategory"
+            name="newCategory"
             type="text"
             onChange={(e) => {
               setTitle(e.target.value);

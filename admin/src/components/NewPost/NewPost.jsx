@@ -81,7 +81,7 @@ const NewPost = () => {
     <>
       <div className={styles.newPostContainer}>
         <div className={styles.postInputDiv}>
-          <label htmlFor="postTitle">TITLE </label>
+          <label htmlFor="postTitleInput">TITLE </label>
           <input
             type="text"
             id="postTitleInput"
