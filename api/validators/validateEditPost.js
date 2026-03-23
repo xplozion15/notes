@@ -10,7 +10,7 @@ const validateEditPost = [
 
   body("categoryId").isInt().withMessage("Select a valid category"),
 
-  body("postBody").isEmpty().withMessage("Post body cannot be empty"),
+  body("postBody").notEmpty().withMessage("Post body cannot be empty"),
 ];
 
 module.exports = { validateEditPost };

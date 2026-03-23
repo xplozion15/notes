@@ -184,8 +184,16 @@ async function fetchCommentsByPostId(req, res) {
 }
 
 async function fetchSearchedPosts(req, res) {
+  //searched input value from the query of the route
+  let searchInput = req.query.word;
+  
+  //validation
+  if(searchInput.length === 0  || searchInput.length > 15) {
+    return
+  }  
+
   try {
-    let searchInput = req.query.word;
+    
     searchInput = searchInput.trim().split(/\s+/); //regex for handling spaces and other
     searchInput = searchInput.join("|"); // to get the array in string format to pass into prisma query ahead
 
