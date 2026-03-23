@@ -22,10 +22,22 @@ const Register = () => {
     if (!firstName || firstName.trim().length === 0) {
       setErrorMessage("First name should not be empty");
       return;
+    } else if (firstName.trim().length < 3 || firstName.trim().length > 15) {
+      setErrorMessage(
+        "First name length should be between 3 to 15 characters only",
+      );
+      return;
     } else if (!lastName || lastName.trim().length === 0) {
       setErrorMessage("Last name should not be empty");
       return;
-    } else if (!email || email.trim().length === 0) {
+      
+    }
+    else if (lastName.trim().length < 3 || lastName.trim().length > 15) {
+      setErrorMessage(
+        "Last name length should be between 3 to 15 characters only",
+      );
+    }
+    else if (!email || email.trim().length === 0) {
       setErrorMessage("Email should not be empty");
       return;
     } else if (!username || username.trim().length === 0) {

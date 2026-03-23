@@ -78,7 +78,7 @@ async function updatePost(req, res) {
       message: "post updated successfully",
     });
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
     res.status(500).json({
       message: "failed to update the post due to internal server error",
     });
@@ -185,18 +185,21 @@ async function fetchCommentsByPostId(req, res) {
 
 async function fetchSearchedPosts(req, res) {
   //searched input value from the query of the route
-  let searchInput = req.query.word;
-  
+  let searchInput = req.query.word.trim();
+
   //validation
-  if(searchInput.length === 0  || searchInput.length > 15) {
-    return
-  }  
+  if (searchInput.length === 0 || searchInput.length > 90) {
+    return;
+  }
 
   try {
+    //regex for handling spaces and other characters
+    searchInput = searchInput.split(/\s+/);
+    // to get the array in string format to pass into prisma query ahead
+    searchInput = searchInput.join("|");
     
-    searchInput = searchInput.trim().split(/\s+/); //regex for handling spaces and other
-    searchInput = searchInput.join("|"); // to get the array in string format to pass into prisma query ahead
 
+  
     const result = await prisma.post.findMany({
       where: {
         OR: [
