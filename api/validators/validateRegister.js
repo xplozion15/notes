@@ -11,9 +11,9 @@ const validateRegister = [
   body("lastName")
     .trim()
     .notEmpty()
-    .withMessage("First name should not be empty")
+    .withMessage("Last name should not be empty")
     .isLength({ min: 3, max: 15 })
-    .withMessage("First name length should be between 3 to 15 characters only"),
+    .withMessage("Last name length should be between 3 to 15 characters only"),
 
   body("username")
     .trim()

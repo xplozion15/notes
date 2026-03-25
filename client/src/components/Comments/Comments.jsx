@@ -82,6 +82,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
       return;
     }
 
+    //try catch block to send the comment
     try {
       const jwtToken = localStorage.getItem("jwtToken");
       console.log(`${commentInput},${postId},${userId}`);
@@ -95,14 +96,19 @@ const Comments = ({ comments, setComments, postId, userId }) => {
         body: JSON.stringify({
           comment: commentInput,
           postId: postId,
-          // userId: userId,
         }),
       });
 
-      if (!response.ok) throw new Error("Failed to post comment");
+      const result = await response.json();
 
-      // if the fetch api call is succesful then make an api call to get all comments of the post and set it using useState hook
+      if (!response.ok) {
+        setIsError(true);
+        console.log(result);
+        setError(result.message);
+        return;
+      }
 
+      // if the fetch api call is succesful to send the post then make an api call to get all comments of the post to refetch the comments
       const commentsResponse = await fetch(
         `${API_BASE_URL}/posts/${postId}/comments`,
         {

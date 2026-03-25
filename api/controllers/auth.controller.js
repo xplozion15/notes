@@ -6,6 +6,7 @@ require("dotenv").config();
 const secret = process.env.JWT_SECRET;
 
 async function registerUser(req, res) {
+  console.log(req.body);
   //validation
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

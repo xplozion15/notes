@@ -14,42 +14,43 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
   async function registerHandler(e) {
     e.preventDefault();
 
     // Frontend validation
-    if (!firstName || firstName.trim().length === 0) {
-      setErrorMessage("First name should not be empty");
-      return;
-    } else if (firstName.trim().length < 3 || firstName.trim().length > 15) {
-      setErrorMessage(
-        "First name length should be between 3 to 15 characters only",
-      );
-      return;
-    } else if (!lastName || lastName.trim().length === 0) {
-      setErrorMessage("Last name should not be empty");
-      return;
-    } else if (lastName.trim().length < 3 || lastName.trim().length > 15) {
-      setErrorMessage(
-        "Last name length should be between 3 to 15 characters only",
-      );
-    } else if (!email || email.trim().length === 0) {
-      setErrorMessage("Email should not be empty");
-      return;
-    } else if (!username || username.trim().length === 0) {
-      setErrorMessage("Username should not be empty");
-      return;
-    } else if (username.length < 3 || username.length > 15) {
-      setErrorMessage("Username must be between 3 to 15 characters");
-      return;
-    } else if (!password || password.trim().length === 0) {
-      setErrorMessage("Password should not be empty");
-      return;
-    } else if (password.length < 3 || password.length > 15) {
-      setErrorMessage("Password must be between 3 to 15 characters");
-      return;
-    }
+    // if (!firstName || firstName.trim().length === 0) {
+    //   setErrorMessage("First name should not be empty");
+    //   return;
+    // } else if (firstName.trim().length < 3 || firstName.trim().length > 15) {
+    //   setErrorMessage(
+    //     "First name length should be between 3 to 15 characters only",
+    //   );
+    //   return;
+    // } else if (!lastName || lastName.trim().length === 0) {
+    //   setErrorMessage("Last name should not be empty");
+    //   return;
+    // } else if (lastName.trim().length < 3 || lastName.trim().length > 15) {
+    //   setErrorMessage(
+    //     "Last name length should be between 3 to 15 characters only",
+    //   );
+    // } else if (!email || email.trim().length === 0) {
+    //   setErrorMessage("Email should not be empty");
+    //   return;
+    // } else if (!username || username.trim().length === 0) {
+    //   setErrorMessage("Username should not be empty");
+    //   return;
+    // } else if (username.length < 3 || username.length > 15) {
+    //   setErrorMessage("Username must be between 3 to 15 characters");
+    //   return;
+    // } else if (!password || password.trim().length === 0) {
+    //   setErrorMessage("Password should not be empty");
+    //   return;
+    // } else if (password.length < 3 || password.length > 15) {
+    //   setErrorMessage("Password must be between 3 to 15 characters");
+    //   return;
+    // }
 
     try {
       const response = await fetch(`${API_BASE_URL}/auth/register`, {
@@ -69,6 +70,7 @@ const Register = () => {
       const result = await response.json();
 
       if (!response.ok) {
+        setIsError(true);
         setErrorMessage(result.message);
         return;
       }
@@ -135,7 +137,7 @@ const Register = () => {
             />
           </div>
 
-          <p className={styles.error}>{errorMessage}</p>
+          {isError && <p className={styles.error}>{errorMessage}</p>}
 
           <button
             type="submit"
