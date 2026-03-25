@@ -43,3 +43,8 @@
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   text-decoration: none;
 }
+
+.loading,
+.empty {
+  color: var(--text-color-main);
+}

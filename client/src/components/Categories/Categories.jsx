@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 const Categories = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [categoriesArray, setCategoriesArray] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchCategories = async () => {
       try {
         const response = await fetch(`${API_BASE_URL}/categories`);
@@ -20,11 +22,21 @@ const Categories = () => {
         setCategoriesArray(result.categories);
       } catch (error) {
         console.error("Failed to fetch categories:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchCategories();
-  }, []);
+  }, [API_BASE_URL]);
+
+  //check loading state to show loading posts/no categories found
+  if (isLoading) {
+    return <p className={styles.loading}>Loading categories...</p>;
+  }
+  if (categoriesArray.length === 0) {
+    return <p className={styles.empty}>No posts found...</p>;
+  }
 
   return (
     <>

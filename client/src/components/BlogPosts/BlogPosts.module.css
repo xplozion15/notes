@@ -68,3 +68,8 @@
   font-weight: 600;
   font-size: var(--font-small);
 }
+
+.loading,
+.empty {
+  color: var(--text-color-main);
+}
