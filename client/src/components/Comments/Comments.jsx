@@ -103,7 +103,6 @@ const Comments = ({ comments, setComments, postId, userId }) => {
 
       if (!response.ok) {
         setIsError(true);
-        console.log(result);
         setError(result.message);
         return;
       }
@@ -123,6 +122,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
       if (!commentsResponse.ok) throw new Error("Failed to fetch the comments");
 
       const updatedCommentsData = await commentsResponse.json();
+
       setIsError(false);
       setComments(updatedCommentsData.comments);
       setCommentInput("");

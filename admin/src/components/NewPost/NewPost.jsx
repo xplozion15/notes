@@ -64,8 +64,12 @@ const NewPost = () => {
         body: JSON.stringify(postData),
       });
 
+      const result = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed to save the post");
+        setErrorMessage(result.message);
+        return;
+        // throw new Error("Failed to save the post");
       }
       navigate("/");
     } catch (error) {

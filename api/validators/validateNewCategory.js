@@ -1,7 +1,7 @@
 const { body } = require("express-validator");
 
 const validateNewCategory = [
-  body("newCategory")
+  body("title")
     .trim()
     .notEmpty()
     .withMessage("Title should not be empty")
