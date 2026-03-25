@@ -1,10 +1,20 @@
 const bcrypt = require("bcryptjs");
 const { prisma } = require("../lib/prisma");
 const jwt = require("jsonwebtoken");
+const { query, validationResult } = require("express-validator");
 require("dotenv").config();
 const secret = process.env.JWT_SECRET;
 
 async function registerUser(req, res) {
+  //validation
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      message: errors.array()[0].msg,
+    });
+  }
+
+  //try catch block for the controller
   try {
     const { firstName, lastName, email, username, password } = req.body;
 
@@ -32,6 +42,14 @@ async function registerUser(req, res) {
 }
 
 async function login(req, res) {
+  //validation
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      message: errors.array()[0].msg,
+    });
+  }
+
   try {
     //destructuring password and username from the request body
     const { username, password } = req.body;

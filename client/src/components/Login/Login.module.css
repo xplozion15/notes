@@ -30,18 +30,17 @@
 }
 
 .formDiv {
-  font-size : var(--font-small);
+  font-size: var(--font-small);
   color: var(--text-color-main);
   display: flex;
   flex-direction: column;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 .formDiv > input {
   color: var(--text-color-main);
   min-height: 2.2rem;
   font-weight: 100;
-
 }
 
 .h2,

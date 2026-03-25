@@ -145,9 +145,7 @@ const Navbar = () => {
 
           {showSearch && (
             <div className={styles.searchContainer}>
-              {(searchedPosts.length === 0) && (
-                <p>No results found...</p>
-              )}
+              {searchedPosts.length === 0 && <p>No results found...</p>}
               {searchedPosts.map((post) => {
                 return (
                   <>

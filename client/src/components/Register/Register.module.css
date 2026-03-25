@@ -34,13 +34,12 @@
 .formDiv {
   display: flex;
   flex-direction: column;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
-
 
 .formDiv > input {
   min-height: 2.2rem;
-  color : var(--text-color-main);
+  color: var(--text-color-main);
 }
 
 .h2,
@@ -51,9 +50,8 @@
 
 .error {
   color: var(--error-color);
-  font-size: var(--font-small)
+  font-size: var(--font-small);
 }
-
 
 .logo {
   position: absolute;

@@ -9,6 +9,4 @@ const validateNewCategory = [
     .withMessage("Title length should be less than 14 characters"),
 ];
 
-
-
 module.exports = { validateNewCategory };

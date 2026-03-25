@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import styles from "./Categories.module.css";
 import { Link } from "react-router-dom";
 
-
-
 const Categories = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [categoriesArray, setCategoriesArray] = useState([]);
@@ -12,7 +10,7 @@ const Categories = () => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(`${API_BASE_URL}/categories`);
-        
+
         if (!response.ok) {
           throw new Error(`Response status: ${response.status}`);
         }
@@ -39,7 +37,6 @@ const Categories = () => {
             className={styles.categoryLink}
           >
             <div key={category.id} className={styles.categorydiv}>
-              
               <p>{category.title}</p>
               <p className={styles.categorycount}>{category["_count"].posts}</p>
             </div>

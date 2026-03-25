@@ -32,8 +32,8 @@
   width: max-content;
   gap: 0.5rem;
   align-items: center;
-   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-   font-weight: 100;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 100;
 }
 
 .categoryIcon,
@@ -50,18 +50,14 @@
   width: max-content;
   gap: 0.7rem;
   font-weight: 100;
-  
 }
-
 
 .postPreviewText,
 .dateAndCategoryDiv,
 .wordsAndMinutesDiv {
   margin-top: 1rem;
-   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
-
 
 .postPreviewText {
   font-weight: 600;

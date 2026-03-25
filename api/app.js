@@ -21,7 +21,7 @@ app.use("/categories", categoryRouter);
 app.use("/posts/:postId/comments", commentRouter);
 app.use("/comments", commentRouter);
 app.use("/auth", authRouter);
-app.use("/stats",statsRouter)
+app.use("/stats", statsRouter);
 
 app.listen(port, () => {
   console.log(`Notes - a personal blog app ${port} http://localhost:3000/`);

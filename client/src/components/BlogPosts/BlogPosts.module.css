@@ -4,7 +4,7 @@
   padding: 0.5rem;
   color: var(--text-color-main);
   padding: 1rem;
-  font-size:  var(--font-small);
+  font-size: var(--font-small);
 }
 
 .blogtitle {
@@ -14,7 +14,7 @@
   color: var(--text-color-main);
   font-family: "Syne", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: color 300ms;
-   font-weight: 600;
+  font-weight: 600;
 }
 
 .blogtitle:hover {
@@ -34,8 +34,8 @@
   width: max-content;
   gap: 0.5rem;
   align-items: center;
-   font-family: "Syne", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-   font-weight: 100;
+  font-family: "Syne", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 100;
 }
 
 .categoryIcon,
@@ -52,18 +52,14 @@
   width: max-content;
   gap: 0.7rem;
   font-weight: 100;
-  
 }
-
 
 .postPreviewText,
 .dateAndCategoryDiv,
 .wordsAndMinutesDiv {
   margin-top: 1rem;
-   font-family: "Syne", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  
+  font-family: "Syne", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
 
 .wordsAndMinutesDiv {
   opacity: 0.6;
@@ -72,4 +68,3 @@
   font-weight: 600;
   font-size: var(--font-small);
 }
-

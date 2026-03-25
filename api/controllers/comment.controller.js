@@ -1,7 +1,14 @@
 const { prisma } = require("../lib/prisma");
 
 async function addCommentToPost(req, res) {
-  console.log(req.body);
+  //validation
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      message: errors.array()[0].msg,
+    });
+  }
+
   try {
     const postId = Number(req.body.postId);
     const comment = req.body.comment;
@@ -24,7 +31,7 @@ async function addCommentToPost(req, res) {
   } catch (error) {
     console.log(error);
     res.status(500).json({
-      error: error,
+      message: error,
     });
   }
 }

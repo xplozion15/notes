@@ -12,7 +12,7 @@ const validateLogin = [
     .trim()
     .notEmpty()
     .withMessage("Password cannot be empty")
-    .isLength({ min: 3, max: 15})
+    .isLength({ min: 3, max: 15 })
     .withMessage("Password must be 3 to 15 characters only"),
 ];
 

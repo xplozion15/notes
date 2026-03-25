@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const NewPost = () => {
   const editorRef = useRef(null);
   const navigate = useNavigate();
-  const [errorMessage,setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [categories, setCategories] = useState([]);
   const [postData, setPostData] = useState({
     title: "",
@@ -35,27 +35,23 @@ const NewPost = () => {
   }, []);
 
   async function savePostHandler() {
-    
-
     //validation for the new post fields
-    if(postData.title.trim().length === 0) {
+    if (postData.title.trim().length === 0) {
       setErrorMessage("Post title cannot be empty");
-      return
-    }
-    else if(postData.title.trim().length < 5 || postData.title.trim().length > 90) {
+      return;
+    } else if (
+      postData.title.trim().length < 5 ||
+      postData.title.trim().length > 90
+    ) {
       setErrorMessage("Post title length must be between 5 to 90 characters");
       return;
-    }
-    else if (postData.categoryId === "") {
+    } else if (postData.categoryId === "") {
       setErrorMessage("Select a category");
-      return
-    }
-    else if(postData.postBody.trim().length === 0 ) {
+      return;
+    } else if (postData.postBody.trim().length === 0) {
       setErrorMessage("Post body must not be empty");
       return;
     }
-   
-
 
     //fetch request
     try {
@@ -101,7 +97,7 @@ const NewPost = () => {
           <label htmlFor="category">Select Category</label>
           <select
             name="category"
-             value={postData.categoryId}
+            value={postData.categoryId}
             id="category"
             className={styles.select}
             onChange={(e) => {
@@ -112,7 +108,7 @@ const NewPost = () => {
                 };
               });
             }}
-          > 
+          >
             <option value="">Select category</option>
             {categories.map((category) => {
               return (
@@ -175,7 +171,9 @@ const NewPost = () => {
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:1rem; background-color:#2a323c;color:white;  }",
             }}
           />
-          {errorMessage !== "" && <p className={styles.errorMessage}>{errorMessage}</p>}
+          {errorMessage !== "" && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
           <div className={styles.newPostButtonsContainer}>
             <button
               onClick={() => {
@@ -184,7 +182,7 @@ const NewPost = () => {
             >
               Cancel
             </button>
-            
+
             <button onClick={savePostHandler}>Publish</button>
           </div>
         </div>

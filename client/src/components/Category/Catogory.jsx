@@ -19,7 +19,7 @@ const Category = () => {
         const response = await fetch(
           `${API_BASE_URL}/categories/${categoryId}/posts`,
         );
-        
+
         if (!response.ok) {
           throw new Error(`Response status: ${response.status}`);
         }
@@ -28,19 +28,21 @@ const Category = () => {
         console.log(result.categoryPosts);
       } catch (error) {
         console.error("Failed to fetch posts:", error);
-      }
-      finally {
-        setLoading(false); 
+      } finally {
+        setLoading(false);
       }
     };
     fetchPostsById();
-    
   }, [categoryId]);
-  console.log(posts)
+  console.log(posts);
   return (
     <>
       {loading && <p className={styles.blogpost}>Posts are loading...</p>}
-      {posts.length === 0 && <p className={styles.blogpost}>There are no posts in this category yet.</p>}
+      {posts.length === 0 && (
+        <p className={styles.blogpost}>
+          There are no posts in this category yet.
+        </p>
+      )}
 
       {posts.map((post) => {
         const postPreviewText = getPostPreview(post.postBody);

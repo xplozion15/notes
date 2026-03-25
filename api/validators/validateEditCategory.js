@@ -4,10 +4,10 @@ const validateEditCategory = [
   body("categoryId").isInt().withMessage("Category id should be a number"),
   body("categoryTitle")
     .trim()
-    .isEmpty()
+    .notEmpty()
     .withMessage("Category title should not be empty")
     .isLength({ min: 1, max: 15 })
     .withMessage("Category title length should be 1 to 15 characters"),
 ];
 
-export { validateEditCategory };
+module.exports = { validateEditCategory };

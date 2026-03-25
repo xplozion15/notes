@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import App from "./App.jsx";
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import { routes } from "./routes/routes.jsx"
+import { routes } from "./routes/routes.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -13,6 +13,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </React.StrictMode>,
 );
-
-
-

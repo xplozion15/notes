@@ -91,7 +91,7 @@ const PostsAndCategories = () => {
     openOrCloseCategoryDeleteDialog();
   }, [showCategoryDeleteModal]);
 
-  console.log(categories)
+  console.log(categories);
   return (
     <>
       <DeleteDialog
@@ -198,9 +198,6 @@ const PostsAndCategories = () => {
                           if (!response.ok) {
                             throw new Error("Failed to update category");
                           }
-
-                        
-                        
                         } catch (error) {
                           console.log(error);
                         }

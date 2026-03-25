@@ -42,14 +42,12 @@
 }
 
 .category {
- 
   width: 60%;
 }
 .editCategoryInput {
   width: 100%;
   border-radius: 0.5rem;
   color: white;
-
 }
 
 .categoryButtonsDiv {
@@ -58,14 +56,12 @@
   justify-content: space-evenly;
   gap: 0.5rem;
   width: 45%;
-
 }
 
 .categoryButtons {
   border-radius: var(--border-radius-small);
-  width: 50%
+  width: 50%;
 }
-
 
 .post {
   display: flex;

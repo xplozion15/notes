@@ -7,7 +7,6 @@
   box-sizing: border-box;
 }
 
-
 /* 2. Remove default margin */
 *:not(dialog) {
   margin: 0;
@@ -44,9 +43,6 @@ textarea,
 select {
   font: inherit;
 }
-
-
-
 
 /* 8. Avoid text overflows */
 p,
@@ -94,7 +90,6 @@ a {
   --secondary-color: #2a323c;
   --error-color: rgb(255, 0, 0);
   --body-background-color: #0a0d13;
-
 
   /* typography */
   --font-small: clamp(0.775rem, 1.8vw, 1rem);

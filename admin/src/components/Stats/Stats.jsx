@@ -32,7 +32,7 @@ const Stats = () => {
     }
 
     fetchStats();
-  }, [API_BASE_URL,jwtToken]);
+  }, [API_BASE_URL, jwtToken]);
 
   return (
     <>

@@ -89,7 +89,6 @@ const PostPage = () => {
           {wordCount} words | {estimatedReadTime} minutes
         </p>
 
-     
         <div
           className={styles.postBody}
           dangerouslySetInnerHTML={{ __html: post.postBody }}

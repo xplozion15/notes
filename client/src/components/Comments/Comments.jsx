@@ -153,9 +153,9 @@ const Comments = ({ comments, setComments, postId, userId }) => {
           </div>
         ) : (
           <p className={styles.loginPrompt}>
-            Please 
-             <Link className={styles.loginLink} to="/login">
-               login 
+            Please
+            <Link className={styles.loginLink} to="/login">
+              login
             </Link>
             to write a comment.
           </p>

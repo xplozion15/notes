@@ -36,13 +36,11 @@
   padding: 1rem;
 }
 
-
 .newPostButtonsContainer > button {
-    width:12rem;
-    height: 3rem;
-    border-radius: var(--border-radius-small);
+  width: 12rem;
+  height: 3rem;
+  border-radius: var(--border-radius-small);
 }
-
 
 .select {
   padding: 0.5rem;
@@ -53,5 +51,5 @@
 }
 
 .errorMessage {
-  color :var(--error-color);
+  color: var(--error-color);
 }

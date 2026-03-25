@@ -26,17 +26,24 @@ async function fetchPosts(req, res) {
 }
 
 async function createPost(req, res) {
-  console.log(req.body);
+  //validation
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      message: errors.array()[0].msg,
+    });
+  }
 
+  //sanitize the blog using  dom purify
   const sanitizedPostBody = sanitizeBlogs(req.body.postBody);
 
+  //try catch block for creating the post/handling errors
   try {
     const title = req.body.title;
     const authorId = Number(req.user.userId); // set by auth middleware
     const categoryId = Number(req.body.categoryId);
     const postBody = sanitizedPostBody;
 
-    console.log(categoryId);
     const newPost = await prisma.post.create({
       data: {
         title: title,
@@ -54,12 +61,21 @@ async function createPost(req, res) {
     console.log(error.message);
 
     res.status(500).json({
-      error: "Failed to create the post",
+      message: "Failed to create the post",
     });
   }
 }
 
 async function updatePost(req, res) {
+  //validation
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      message: errors.array()[0].msg,
+    });
+  }
+
+  //try catch block for updating the post and handling failures
   try {
     const postId = Number(req.params.postId);
     const { postBody, title, categoryId } = req.body;
@@ -197,9 +213,7 @@ async function fetchSearchedPosts(req, res) {
     searchInput = searchInput.split(/\s+/);
     // to get the array in string format to pass into prisma query ahead
     searchInput = searchInput.join("|");
-    
 
-  
     const result = await prisma.post.findMany({
       where: {
         OR: [

@@ -11,7 +11,7 @@ import { AdminRoute } from "../components/AdminRoute/AdminRoute";
 
 const routes = [
   {
-    element: <AdminRoute/>,
+    element: <AdminRoute />,
     children: [
       {
         path: "/",
