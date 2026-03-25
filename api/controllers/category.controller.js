@@ -1,4 +1,5 @@
 const { prisma } = require("../lib/prisma");
+const { query, validationResult } = require("express-validator");
 
 async function fetchCategories(req, res) {
   try {

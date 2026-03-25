@@ -1,4 +1,5 @@
 const { prisma } = require("../lib/prisma");
+const { query, validationResult } = require("express-validator");
 
 async function addCommentToPost(req, res) {
   //validation

@@ -1,5 +1,6 @@
 const { prisma } = require("../lib/prisma");
 const { sanitizeBlogs } = require("../utils/sanitizeBlogs");
+const { query, validationResult } = require("express-validator");
 
 async function fetchPosts(req, res) {
   try {
