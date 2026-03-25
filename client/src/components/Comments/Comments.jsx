@@ -84,7 +84,6 @@ const Comments = ({ comments, setComments, postId, userId }) => {
 
     try {
       const jwtToken = localStorage.getItem("jwtToken");
-
       console.log(`${commentInput},${postId},${userId}`);
 
       const response = await fetch(`${API_BASE_URL}/comments/`, {
@@ -96,7 +95,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
         body: JSON.stringify({
           comment: commentInput,
           postId: postId,
-          userId: userId,
+          // userId: userId,
         }),
       });
 
@@ -117,18 +116,15 @@ const Comments = ({ comments, setComments, postId, userId }) => {
 
       if (!commentsResponse.ok) throw new Error("Failed to fetch the comments");
 
-      setIsAuthenticated(true);
       const updatedCommentsData = await commentsResponse.json();
       setIsError(false);
       setComments(updatedCommentsData.comments);
       setCommentInput("");
     } catch (error) {
       console.log("Error posting comment", error);
-      setIsAuthenticated(false);
     }
   }
-  console.log(comments);
-  console.log(`current user is ${currentUserId}`);
+
   return (
     <>
       <div className={styles.commentContainer}>

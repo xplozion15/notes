@@ -1,6 +1,5 @@
 const { prisma } = require("../lib/prisma");
 
-
 async function showIndexPage(req, res) {
   try {
     const posts = await prisma.post.findMany();

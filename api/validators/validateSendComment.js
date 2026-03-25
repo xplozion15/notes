@@ -1,7 +1,7 @@
 const { body } = require("express-validator");
 
 const validateSendComment = [
-  body("commentInput")
+  body("comment")
     .trim()
     .notEmpty()
     .withMessage("Comment cannot be empty")
@@ -9,7 +9,6 @@ const validateSendComment = [
     .withMessage("Comment cannot exceed 500 characters"),
 
   body("postId").isInt().withMessage("PostId is not valid"),
-  body("userId").isInt().withMessage("UserId is not valid"),
 ];
 
 module.exports = { validateSendComment };

@@ -6,8 +6,9 @@ const { validateSendComment } = require("../validators/validateSendComment");
 
 commentRouter.post(
   "/",
-  authenticateToken,
   validateSendComment,
+  authenticateToken,
+
   commentController.addCommentToPost,
 );
 commentRouter.delete(

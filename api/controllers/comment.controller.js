@@ -10,10 +10,13 @@ async function addCommentToPost(req, res) {
     });
   }
 
+  //try catch block for adding a comment/catching erros
   try {
     const postId = Number(req.body.postId);
     const comment = req.body.comment;
-    const userId = Number(req.body.userId); // set by auth middleware
+    const userId = req.user.userId; // set by auth middleware
+
+    console.log(`usser id is ${req.user}`);
     console.log(
       `post id is ${postId}, comment is ${comment} , userid is ${userId}`,
     );
