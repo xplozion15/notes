@@ -31,7 +31,7 @@ const AdminRoute = () => {
           setAdminStatus(true);
           return;
         } else {
-          //remove jwt token from localstorage as user isnt an admin 
+          //remove jwt token from localstorage as user isnt an admin
           localStorage.removeItem("jwtToken");
           setAdminStatus(false);
           return;
@@ -51,7 +51,14 @@ const AdminRoute = () => {
 
   //render outlet if admin status is true
   if (loading) return <p>Checking if user is admin or not...</p>;
-  return !adminStatus ? <Navigate to="/login" /> : <Outlet />;
+  return !adminStatus ? (
+    <Navigate
+      to="/login"
+      state={{ message: "Only admins can access this site" }}
+    />
+  ) : (
+    <Outlet />
+  );
 };
 
 export { AdminRoute };

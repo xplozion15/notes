@@ -1,7 +1,7 @@
 import styles from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Login = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -9,6 +9,18 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  //useEffect to check jwt is present or not on based on that redirect if the user is already logged in
+  useEffect(() => {
+    // convert jwtToken string to boolean using !! and then check if user is logged in or not
+    const isLoggedIn = !!localStorage.getItem("jwtToken");
+
+    // if user is logged in then protect the route by redirecting them to homepage
+    if (isLoggedIn) {
+      navigate("/");
+      return;
+    }
+  }, [navigate]);
 
   async function loginHandler(e) {
     e.preventDefault();

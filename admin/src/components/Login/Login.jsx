@@ -2,6 +2,9 @@ import styles from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { Toaster, toast } from "sonner";
 
 const Login = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -9,6 +12,27 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  // to tell where you are currently in the app and find the message later
+  const location = useLocation();
+
+  //useEffect to show the error whenever the state changes which is being received from the admin routes component through <Navigate/>
+  useEffect(() => {
+    if (location.state?.message) {
+      toast.error(location.state.message);
+    }
+  }, [location.state]);
+
+  //useEffect to check jwt is present or not on based on that redirect if the user is already logged in
+  useEffect(() => {
+    // convert jwtToken string to boolean using !! and then check if user is logged in or not
+    const isLoggedIn = !!localStorage.getItem("jwtToken");
+
+    // if user is logged in then protect the route by redirecting them to homepage
+    if (isLoggedIn) {
+      navigate("/");
+      return;
+    }
+  }, [navigate]);
 
   async function loginHandler(e) {
     //prevent default form behaviour
@@ -65,6 +89,8 @@ const Login = () => {
 
   return (
     <>
+      {/* toast element from npm sonner library */}
+      <Toaster />
       <Link to="/" className={styles.logo}>
         <p>Home</p>
       </Link>
