@@ -14,7 +14,6 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [isError, setIsError] = useState(false);
 
   // useEffect to redirect  users from /login to / root
   useEffect(() => {
@@ -62,6 +61,7 @@ const Register = () => {
       setErrorMessage(
         "Last name length should be between 3 to 15 characters only",
       );
+      return;
     } else if (!email || email.trim().length === 0) {
       setErrorMessage("Email should not be empty");
       return;
@@ -97,7 +97,6 @@ const Register = () => {
       const result = await response.json();
 
       if (!response.ok) {
-        setIsError(true);
         setErrorMessage(result.message);
         return;
       }
@@ -164,8 +163,7 @@ const Register = () => {
             />
           </div>
 
-          {isError && <p className={styles.error}>{errorMessage}</p>}
-
+          <p className={styles.error}>{errorMessage}</p>
           <button
             type="submit"
             className={styles.submitRegisterButton}
