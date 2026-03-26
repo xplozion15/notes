@@ -16,17 +16,32 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isError, setIsError] = useState(false);
 
-  //useEffect to check jwt is present or not on based on that redirect if the user is already logged in
+  // useEffect to redirect  users from /login to / root
   useEffect(() => {
-    // convert jwtToken string to boolean using !! and then check if user is logged in or not
-    const isLoggedIn = !!localStorage.getItem("jwtToken");
+    const jwtToken = localStorage.getItem("jwtToken"); // get  the token
+    if (!jwtToken) return; // no token then skip
 
-    // if user is logged in then protect the route by redirecting them to homepage
-    if (isLoggedIn) {
-      navigate("/");
-      return;
-    }
-  }, [navigate]);
+    const checkAuth = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/auth/me`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        });
+
+        if (!res.ok) return; // invalid token then skip
+
+        const data = await res.json();
+        if (data) navigate("/"); // redirect if its a valid user (to the / route)
+      } catch (err) {
+        console.error("Auth check failed", err);
+      }
+    };
+
+    checkAuth();
+  }, [navigate, API_BASE_URL]);
 
   async function registerHandler(e) {
     e.preventDefault();

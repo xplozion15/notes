@@ -12,8 +12,35 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  // to tell where you are currently in the app and find the message later
+  // to tell where you are currently in the app and find the message passed from admin routes
   const location = useLocation();
+
+  // useEffect to redirect admin users from /login to / root
+  useEffect(() => {
+    const jwtToken = localStorage.getItem("jwtToken"); // get  the token
+    if (!jwtToken) return; // no token then skip
+
+    const checkAuth = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/auth/me`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        });
+
+        if (!res.ok) return; // invalid token then skip
+
+        const data = await res.json();
+        if (data.isAdmin) navigate("/"); // redirect if admin (to the / route)
+      } catch (err) {
+        console.error("Auth check failed", err);
+      }
+    };
+
+    checkAuth();
+  }, [navigate, API_BASE_URL]);
 
   //useEffect to show the error whenever the state changes which is being received from the admin routes component through <Navigate/>
   useEffect(() => {
@@ -21,18 +48,6 @@ const Login = () => {
       toast.error(location.state.message);
     }
   }, [location.state]);
-
-  //useEffect to check jwt is present or not on based on that redirect if the user is already logged in
-  useEffect(() => {
-    // convert jwtToken string to boolean using !! and then check if user is logged in or not
-    const isLoggedIn = !!localStorage.getItem("jwtToken");
-
-    // if user is logged in then protect the route by redirecting them to homepage
-    if (isLoggedIn) {
-      navigate("/");
-      return;
-    }
-  }, [navigate]);
 
   async function loginHandler(e) {
     //prevent default form behaviour
