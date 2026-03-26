@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 
 const AdminRoute = () => {
-  const navigate = useNavigate();
   const [adminStatus, setAdminStatus] = useState(false);
-  // get the jwt token
-  const storedJwtToken = localStorage.getItem("jwtToken");
+  const [loading, setLoading] = useState(true);
 
   // useEffect to check if user is admin or not
   useEffect(() => {
+    // get the jwt token
+    const storedJwtToken = localStorage.getItem("jwtToken");
     async function verifyAdminStatus() {
       try {
         const response = await fetch(`${API_BASE_URL}/auth/me`, {
@@ -20,8 +20,7 @@ const AdminRoute = () => {
         });
 
         if (!response.ok) {
-          navigate("/login");
-          throw new Error("Failed to load the route");
+          return;
         }
 
         const userData = await response.json();
@@ -32,23 +31,27 @@ const AdminRoute = () => {
           setAdminStatus(true);
           return;
         } else {
-          navigate("/login");
+          //remove jwt token from localstorage as user isnt an admin 
+          localStorage.removeItem("jwtToken");
           setAdminStatus(false);
           return;
         }
       } catch (error) {
-        //if unexpected errors are shown then just nagivate to login and set state to false
+        //if unexpected errors are shown then just set state to false
         setAdminStatus(false);
-        navigate("/login");
+        localStorage.removeItem("jwtToken");
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }
 
     verifyAdminStatus();
-  }, [storedJwtToken, navigate]);
+  }, []);
 
   //render outlet if admin status is true
-  return adminStatus && <Outlet />;
+  if (loading) return <p>Checking if user is admin or not...</p>;
+  return !adminStatus ? <Navigate to="/login" /> : <Outlet />;
 };
 
 export { AdminRoute };
