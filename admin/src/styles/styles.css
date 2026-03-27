@@ -34,6 +34,7 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+  border-radius: var(--border-radius-small);
 }
 
 /* 7. Inherit fonts for form controls */
@@ -72,6 +73,7 @@ h6 {
 
 a {
   text-decoration: none;
+  color: var(--main-color);
 }
 /*
   10. Create a root stacking context
@@ -101,9 +103,6 @@ body {
   font-family: "Lilita One", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-a {
-  color: white;
-}
 
 .main-content {
   display: grid;
@@ -136,3 +135,5 @@ input {
   bottom: 10%;
   cursor: pointer;
 }
+
+
