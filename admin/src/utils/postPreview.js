@@ -1,4 +1,5 @@
 const getPostPreview = (postBody) => {
+  console.log(postBody);
   return (
     postBody
       .replace(/<[^>]+>/g, "")

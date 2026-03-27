@@ -91,7 +91,7 @@ const PostsAndCategories = () => {
     openOrCloseCategoryDeleteDialog();
   }, [showCategoryDeleteModal]);
 
-  console.log(categories)
+  console.log(categories);
   return (
     <>
       <DeleteDialog
@@ -133,9 +133,13 @@ const PostsAndCategories = () => {
             return (
               <div key={post.id} className={styles.post}>
                 <p className={styles.postTitle}>{post.title}</p>
-                <p className={styles.postBody}>
-                  {getPostPreview(post.postBody)}
-                </p>
+                <p
+                  className={styles.postBody}
+                  dangerouslySetInnerHTML={{
+                    __html: getPostPreview(post.postBody),
+                  }}
+                ></p>
+
                 <div className={styles.dateDiv}>
                   <p>{new Date(post.createdAt).toDateString()}</p>
                 </div>
@@ -201,9 +205,7 @@ const PostsAndCategories = () => {
 
                           setCategories({
                             ...categories,
-                            
-                          })
-                        
+                          });
                         } catch (error) {
                           console.log(error);
                         }
