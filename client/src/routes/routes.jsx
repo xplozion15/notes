@@ -27,6 +27,7 @@ const routes = [
     path: "/register",
     element: <Register />,
   },
+  
 ];
 
 export { routes };

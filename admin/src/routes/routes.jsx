@@ -12,19 +12,21 @@ import { AdminRoute } from "../components/AdminRoute/AdminRoute";
 const routes = [
   {
     element: <AdminRoute />,
+    errorElement: <Error404 />,
     children: [
       {
         path: "/",
         element: <App />,
-        errorElement: <Error404 />,
         children: [
           {
             index: true,
             element: <MainContent />,
+            
           },
           {
             path: "posts/:postId",
             element: <PostPage />,
+            
           },
           {
             path: "posts/:postId/edit",

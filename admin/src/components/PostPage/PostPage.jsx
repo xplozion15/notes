@@ -14,6 +14,7 @@ const PostPage = () => {
   const [currentUserId, setCurrentUserId] = useState(null);
   const [wordCount, setWordCount] = useState(null);
   const [estimatedReadTime, setEstimatedReadTime] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -33,6 +34,8 @@ const PostPage = () => {
         console.log(result.post);
       } catch (error) {
         console.error("Failed to fetch posts:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -63,11 +66,14 @@ const PostPage = () => {
     getCurrentUserId();
   }, [API_BASE_URL, postId]);
 
-  if (!post) {
-    return <p>loading the post...</p>;
+  if (isLoading) {
+    return <p>Fetching post...</p>;
   }
 
-  console.log(post.postBody);
+  if (!post) {
+    return <p>Unable to fetch the post. Try again later...</p>;
+  }
+
   return (
     <>
       <div className={styles.post}>

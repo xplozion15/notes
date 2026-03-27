@@ -1,0 +1,32 @@
+.container {
+  height: 100vh;
+  background-color:rgb(35, 35, 35);
+   color: var(--text-color-main);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+ 
+}
+
+.code {
+  font-size: 5rem;
+  color: var(--main-color);
+  margin: 0;
+}
+
+.message {
+  color: white;
+  margin: 0;
+}
+
+.link {
+  margin-top: 0.5rem;
+  color: var(--main-color);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--hover-color-main);
+}
