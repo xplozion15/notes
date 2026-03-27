@@ -99,8 +99,9 @@ const EditPost = () => {
         return;
       }
 
-      navigate("/");
+      navigate(`/posts/${postId}`);
     } catch (error) {
+      setErrorMessage(error.message)
       console.log(error);
     }
   }
@@ -204,9 +205,7 @@ const EditPost = () => {
             }}
           />
 
-          {errorMessage !== "" && (
-            <p className={styles.errorMessage}>{errorMessage}</p>
-          )}
+          <p className={styles.errorMessage}>{errorMessage}</p>
 
           <div className={styles.newPostButtonsContainer}>
             <button

@@ -1,3 +1,5 @@
+import styles from "./CategoryDeleteDialog.module.css"
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const CategoryDeleteDialog = ({
@@ -35,9 +37,10 @@ const CategoryDeleteDialog = ({
 
   return (
     <>
-      <dialog id="category-delete-dialog" ref={categoryDialogRef}>
+      <dialog id="category-delete-dialog" ref={categoryDialogRef} className={styles.deleteModal}>
         <p>Are you sure you want to delete this category?</p>
-        <button
+        <div className={styles.buttonsDiv}>
+          <button
           commandfor="my-dialog"
           command="close"
           onClick={() => {
@@ -46,7 +49,8 @@ const CategoryDeleteDialog = ({
         >
           No
         </button>
-        <button onClick={categoryDeleteHandler}>Yes</button>
+        <button onClick={categoryDeleteHandler} className={styles.deleteButton}>Yes</button>
+        </div>
       </dialog>
     </>
   );

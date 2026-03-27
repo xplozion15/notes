@@ -91,7 +91,7 @@ const PostsAndCategories = () => {
     openOrCloseCategoryDeleteDialog();
   }, [showCategoryDeleteModal]);
 
-  console.log(categories);
+  console.log(categories)
   return (
     <>
       <DeleteDialog
@@ -198,6 +198,12 @@ const PostsAndCategories = () => {
                           if (!response.ok) {
                             throw new Error("Failed to update category");
                           }
+
+                          setCategories({
+                            ...categories,
+                            
+                          })
+                        
                         } catch (error) {
                           console.log(error);
                         }
@@ -233,7 +239,7 @@ const PostsAndCategories = () => {
                         </button>
 
                         <button
-                          className={styles.categoryButtons}
+                          className={`${styles.categoryButtons} ${styles.categoryDeleteButton}`}
                           onClick={() => {
                             setShowCategoryDeleteModal(true);
                             setCategoryIdToDelete(category.id);

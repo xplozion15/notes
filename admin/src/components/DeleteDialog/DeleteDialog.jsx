@@ -1,3 +1,5 @@
+import styles from "./DeleteDialog.module.css";
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const DeleteDialog = ({
@@ -32,18 +34,20 @@ const DeleteDialog = ({
 
   return (
     <>
-      <dialog id="delete-dialog" ref={dialogRef}>
+      <dialog id="delete-dialog" ref={dialogRef} className={styles.deleteModal}>
         <p>Are you sure you want to delete this post?</p>
-        <button
-          commandfor="my-dialog"
-          command="close"
-          onClick={() => {
-            setShowDeleteModal(false);
-          }}
-        >
-          No
-        </button>
-        <button onClick={deleteHandler}>Yes</button>
+        <div className={styles.buttonsDiv}>
+          <button
+            commandfor="my-dialog"
+            command="close"
+            onClick={() => {
+              setShowDeleteModal(false);
+            }}
+          >
+            No
+          </button>
+          <button onClick={deleteHandler} className={styles.deleteButton}>Yes</button>
+        </div>
       </dialog>
     </>
   );
