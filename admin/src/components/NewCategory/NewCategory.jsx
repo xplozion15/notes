@@ -37,7 +37,7 @@ const NewCategory = () => {
       }
 
       const result = await response.json();
-      navigate("/");
+      navigate("/", { viewTransition: true });
       console.log(result);
     } catch (error) {
       console.log(error);

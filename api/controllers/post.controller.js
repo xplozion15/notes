@@ -37,7 +37,9 @@ async function createPost(req, res) {
 
   //sanitize the blog using  dom purify
   const sanitizedPostBody = sanitizeBlogs(req.body.postBody);
-  console.log(`this is post body after sanitizing in my controller \n${sanitizedPostBody}`);
+  console.log(
+    `this is post body after sanitizing in my controller \n${sanitizedPostBody}`,
+  );
   //try catch block for creating the post/handling errors
   try {
     const title = req.body.title;

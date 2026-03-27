@@ -7,7 +7,7 @@ const Logout = ({ setIsUserLoggedIn }) => {
   function logoutHandler() {
     localStorage.removeItem("jwtToken");
     setIsUserLoggedIn(false);
-    navigate("/");
+    navigate("/", { viewTransition: true });
   }
 
   return (

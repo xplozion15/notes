@@ -144,10 +144,18 @@ const PostsAndCategories = () => {
                   <p>{new Date(post.createdAt).toDateString()}</p>
                 </div>
                 <div className={styles.buttonsDiv}>
-                  <Link to={`posts/${post.id}`} className={styles.buttons}>
+                  <Link
+                    to={`posts/${post.id}`}
+                    className={styles.buttons}
+                    viewTransition
+                  >
                     Read more
                   </Link>
-                  <Link to={`posts/${post.id}/edit`} className={styles.buttons}>
+                  <Link
+                    to={`posts/${post.id}/edit`}
+                    className={styles.buttons}
+                    viewTransition
+                  >
                     Edit
                   </Link>
                   <button

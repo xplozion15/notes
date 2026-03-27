@@ -132,7 +132,7 @@ const Login = () => {
           >
             Log in
           </button>
-          <Link to="/register" className={styles.a}>
+          <Link to="/register" className={styles.a} viewTransition>
             Create New Account
           </Link>
         </form>

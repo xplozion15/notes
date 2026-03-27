@@ -14,10 +14,18 @@ const MainContent = () => {
 
         <Stats />
         <div className={styles.dashboardButtonsDiv}>
-          <Link className={styles.dashboardButtons} to="/posts/new">
+          <Link
+            className={styles.dashboardButtons}
+            to="/posts/new"
+            viewTransition
+          >
             Create post
           </Link>
-          <Link className={styles.dashboardButtons} to="/categories/new">
+          <Link
+            className={styles.dashboardButtons}
+            to="/categories/new"
+            viewTransition
+          >
             Create category
           </Link>
         </div>

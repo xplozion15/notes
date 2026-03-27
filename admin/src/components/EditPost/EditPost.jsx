@@ -99,9 +99,9 @@ const EditPost = () => {
         return;
       }
 
-      navigate(`/posts/${postId}`);
+      navigate(`/posts/${postId}`, { viewTransition: true });
     } catch (error) {
-      setErrorMessage(error.message)
+      setErrorMessage(error.message);
       console.log(error);
     }
   }
@@ -210,7 +210,7 @@ const EditPost = () => {
           <div className={styles.newPostButtonsContainer}>
             <button
               onClick={() => {
-                navigate("/");
+                navigate("/", { viewTransition: true });
               }}
             >
               Cancel

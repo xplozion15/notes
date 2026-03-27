@@ -71,7 +71,7 @@ const NewPost = () => {
         return;
         // throw new Error("Failed to save the post");
       }
-      navigate("/");
+      navigate("/", { viewTransition: true });
     } catch (error) {
       console.log(error);
     }
@@ -181,7 +181,7 @@ const NewPost = () => {
           <div className={styles.newPostButtonsContainer}>
             <button
               onClick={() => {
-                navigate("/");
+                navigate("/", { viewTransition: true });
               }}
             >
               Cancel

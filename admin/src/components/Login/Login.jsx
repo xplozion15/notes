@@ -33,7 +33,7 @@ const Login = () => {
         if (!res.ok) return; // invalid token then skip
 
         const data = await res.json();
-        if (data.isAdmin) navigate("/"); // redirect if admin (to the / route)
+        if (data.isAdmin) navigate("/", { viewTransition: true }); // redirect if admin (to the / route)
       } catch (err) {
         console.error("Auth check failed", err);
       }
@@ -95,7 +95,7 @@ const Login = () => {
 
       localStorage.setItem("jwtToken", jwtToken);
 
-      navigate("/"); //home page redirect
+      navigate("/", { viewTransition: true }); //home page redirect
     } catch (error) {
       setErrorMessage("Please check your network or try again later");
       console.log(error.message);
@@ -115,7 +115,7 @@ const Login = () => {
           },
         }}
       />
-      <Link to="/" className={styles.logo}>
+      <Link to="/" className={styles.logo} viewTransition>
         <p>Home</p>
       </Link>
 

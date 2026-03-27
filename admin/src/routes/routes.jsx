@@ -21,12 +21,10 @@ const routes = [
           {
             index: true,
             element: <MainContent />,
-            
           },
           {
             path: "posts/:postId",
             element: <PostPage />,
-            
           },
           {
             path: "posts/:postId/edit",

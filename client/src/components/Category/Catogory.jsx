@@ -51,7 +51,11 @@ const Category = () => {
         return (
           <div className={styles.blogpost} key={post.id}>
             <div className={styles.linkcontent}>
-              <Link to={`/posts/${post.id}`} className={styles.titleLink}>
+              <Link
+                to={`/posts/${post.id}`}
+                className={styles.titleLink}
+                viewTransition
+              >
                 <p className={styles.blogtitle}>{post.title}</p>
               </Link>
 

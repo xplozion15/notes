@@ -47,6 +47,7 @@ const Categories = () => {
             to={`/categories/${category.id}/posts`}
             key={category.id}
             className={styles.categoryLink}
+            viewTransition
           >
             <div key={category.id} className={styles.categorydiv}>
               <p>{category.title}</p>

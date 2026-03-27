@@ -1,13 +1,12 @@
 .container {
   height: 100vh;
-  background-color:rgb(35, 35, 35);
-   color: var(--text-color-main);
+  background-color: rgb(35, 35, 35);
+  color: var(--text-color-main);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
- 
 }
 
 .code {

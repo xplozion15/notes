@@ -156,7 +156,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
         ) : (
           <p className={styles.loginPrompt}>
             Please
-            <Link className={styles.loginLink} to="/login">
+            <Link className={styles.loginLink} to="/login" viewTransition>
               login
             </Link>
             to write a comment.

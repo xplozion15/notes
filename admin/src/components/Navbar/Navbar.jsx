@@ -5,15 +5,17 @@ import { House } from "lucide-react";
 const Navbar = () => {
   return (
     <nav className={styles.nav}>
-      <Link to="/" className={styles.logo}>
+      <Link to="/" className={styles.logo} viewTransition>
         {" "}
         <House /> Notes
       </Link>
+
       <Link
         to="/login"
         onClick={() => {
           localStorage.removeItem("jwtToken");
         }}
+        viewTransition
       >
         Logout
       </Link>

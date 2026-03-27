@@ -112,20 +112,30 @@ const Navbar = () => {
   }, [searchInput]);
   return (
     <nav className={styles.nav}>
-      <Link to="/" className={styles.logo}>
+      <Link to="/" className={styles.logo} viewTransition>
         <House />
         <p>Notes</p>
       </Link>
 
       <div className={styles.navbarlinks}>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
+        <Link to="/" viewTransition>
+          Home
+        </Link>
+        <Link to="/about" viewTransition>
+          About
+        </Link>
         {isUserLoggedIn ? (
           <Logout setIsUserLoggedIn={setIsUserLoggedIn} />
         ) : (
-          <Link to="/login">Log in</Link>
+          <Link to="/login" viewTransition>
+            Log in
+          </Link>
         )}
-        {!isUserLoggedIn && <Link to="/register">Register</Link>}
+        {!isUserLoggedIn && (
+          <Link to="/register" viewTransition>
+            Register
+          </Link>
+        )}
       </div>
 
       <div className={styles.navbaractions}>
@@ -156,6 +166,7 @@ const Navbar = () => {
                       to={`/posts/${post.id}`}
                       key={post.id}
                       className={styles.searchInstance}
+                      viewTransition
                     >
                       {post.title}
                     </Link>

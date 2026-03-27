@@ -46,7 +46,9 @@ const DeleteDialog = ({
           >
             No
           </button>
-          <button onClick={deleteHandler} className={styles.deleteButton}>Yes</button>
+          <button onClick={deleteHandler} className={styles.deleteButton}>
+            Yes
+          </button>
         </div>
       </dialog>
     </>

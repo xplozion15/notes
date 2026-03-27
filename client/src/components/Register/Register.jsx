@@ -34,7 +34,7 @@ const Register = () => {
 
         const data = await res.json();
         // redirect if its a valid user (to the / route)
-        if (data) navigate("/");
+        if (data) navigate("/", { viewTransition: true });
       } catch (err) {
         console.error("Auth check failed", err);
       }
@@ -103,11 +103,15 @@ const Register = () => {
       }
 
       //navigate to home page & show user registered succesfully toast
-      navigate("/", {
-        state: {
-          message: "User has been registered successfully!",
+      navigate(
+        "/",
+        {
+          state: {
+            message: "User has been registered successfully!",
+          },
         },
-      });
+        { viewTransition: true },
+      );
     } catch (error) {
       setErrorMessage("Please check your network or try again later");
       console.log(error.message);
@@ -116,7 +120,7 @@ const Register = () => {
 
   return (
     <>
-      <Link to="/" className={styles.logo}>
+      <Link to="/" className={styles.logo} viewTransition>
         <p>Home</p>
       </Link>
 
