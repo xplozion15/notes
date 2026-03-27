@@ -68,12 +68,17 @@
   height: fit-content;
   background-color: var(--secondary-color);
   border: 2px solid var(--secondary-color);
-  border-radius: 0.3rem;
+  border-radius: 0.7rem;
   font-weight: 400;
   height: 2.5rem;
   width: 13rem;
   padding: 0.2rem;
   color: var(--text-color-main);
+}
+
+.search:focus {
+  border-color: var(--main-color);
+  outline: none; /* removes default browser outline */
 }
 
 .searchContainer {

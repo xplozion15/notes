@@ -33,7 +33,8 @@ const Register = () => {
         if (!res.ok) return; // invalid token then skip
 
         const data = await res.json();
-        if (data) navigate("/"); // redirect if its a valid user (to the / route)
+        // redirect if its a valid user (to the / route)
+        if (data) navigate("/");
       } catch (err) {
         console.error("Auth check failed", err);
       }
@@ -101,7 +102,12 @@ const Register = () => {
         return;
       }
 
-      navigate("/"); // home page redirect
+      //navigate to home page & show user registered succesfully toast
+      navigate("/", {
+        state: {
+          message: "User has been registered successfully!",
+        },
+      });
     } catch (error) {
       setErrorMessage("Please check your network or try again later");
       console.log(error.message);

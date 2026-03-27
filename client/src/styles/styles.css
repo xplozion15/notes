@@ -49,6 +49,7 @@ picture,
 video,
 canvas,
 svg {
+  border-radius: var(--border-radius-small);
   display: block;
   max-width: 100%;
 }
@@ -87,6 +88,7 @@ h6 {
 
 a {
   text-decoration: none;
+  color: var(--main-color);
 }
 /*
   10. Create a root stacking context

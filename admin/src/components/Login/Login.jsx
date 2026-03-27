@@ -105,7 +105,16 @@ const Login = () => {
   return (
     <>
       {/* toast element from npm sonner library */}
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          style: {
+            backgroundColor: "var(--background-color-main)",
+            color: "var(--text-color-main)",
+            border: "2px solid var(--background-color-main)",
+            borderRadius: "var(--border-radius-small)",
+          },
+        }}
+      />
       <Link to="/" className={styles.logo}>
         <p>Home</p>
       </Link>

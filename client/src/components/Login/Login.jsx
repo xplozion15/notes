@@ -1,6 +1,5 @@
 import styles from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState, useEffect } from "react";
 
 const Login = () => {
@@ -28,7 +27,8 @@ const Login = () => {
         if (!res.ok) return; // invalid token then skip
 
         const data = await res.json();
-        if (data) navigate("/"); // redirect if its a valid user (to the / route)
+
+        if (data) navigate("/");
       } catch (err) {
         console.error("Auth check failed", err);
       }
@@ -81,7 +81,11 @@ const Login = () => {
       localStorage.setItem("jwtToken", jwtToken);
 
       //home page redirect
-      navigate("/");
+      navigate("/", {
+        state: {
+          message: "User successfully logged in!",
+        },
+      });
     } catch (error) {
       setErrorMessage("Please check your network or try again later");
       console.log(error.message);
