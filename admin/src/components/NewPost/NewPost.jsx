@@ -20,7 +20,7 @@ const NewPost = () => {
     async function fetchCategories() {
       try {
         const response = await fetch(`${API_BASE_URL}/categories`);
-
+        
         if (!response.ok) {
           throw new Error("Failed to fetch categories");
         }
@@ -69,10 +69,10 @@ const NewPost = () => {
       if (!response.ok) {
         setErrorMessage(result.message);
         return;
-        // throw new Error("Failed to save the post");
       }
       navigate("/", { viewTransition: true });
     } catch (error) {
+      setErrorMessage("Something went wrong");
       console.log(error);
     }
   }

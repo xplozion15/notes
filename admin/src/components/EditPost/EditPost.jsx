@@ -101,7 +101,7 @@ const EditPost = () => {
 
       navigate(`/posts/${postId}`, { viewTransition: true });
     } catch (error) {
-      setErrorMessage(error.message);
+      setErrorMessage("Something went wrong");
       console.log(error);
     }
   }

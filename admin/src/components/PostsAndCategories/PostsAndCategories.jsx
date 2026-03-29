@@ -138,7 +138,7 @@ const PostsAndCategories = () => {
       });
     } catch (error) {
       //show toast
-      toast.error("Internal server error. Try again later.");
+      toast.error("Something went wrong");
       //to update the ui
       setEditingCategoryData({
         id: "",
