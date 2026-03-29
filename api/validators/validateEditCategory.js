@@ -1,7 +1,6 @@
 const { body } = require("express-validator");
 
 const validateEditCategory = [
-  body("categoryId").isInt().withMessage("Category id should be a number"),
   body("categoryTitle")
     .trim()
     .notEmpty()

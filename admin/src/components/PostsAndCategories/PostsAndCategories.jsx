@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { getPostPreview } from "../../utils/postPreview";
 import { DeleteDialog } from "../DeleteDialog/DeleteDialog";
 import { CategoryDeleteDialog } from "../CategoryDeleteDialog/CategoryDeleteDialog";
+import { Toaster, toast } from "sonner";
 
 const PostsAndCategories = () => {
   const [activeStatus, setActiveStatus] = useState("posts");
@@ -24,6 +25,7 @@ const PostsAndCategories = () => {
 
   const dialogRef = useRef(null);
   const categoryDialogRef = useRef(null);
+  const editCategoryInputRef = useRef(null);
 
   useEffect(() => {
     async function fetchPosts() {
@@ -90,6 +92,61 @@ const PostsAndCategories = () => {
     }
     openOrCloseCategoryDeleteDialog();
   }, [showCategoryDeleteModal]);
+
+  async function updateCategoryHandler() {
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/categories/${editingCategoryData.id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          },
+          body: JSON.stringify({
+            categoryId: editingCategoryData.id,
+            categoryTitle: editingCategoryData.title,
+          }),
+        },
+      );
+      const result = await response.json();
+      if (!response.ok) {
+        //show toast
+        toast.error(result.message);
+        return;
+      }
+
+      //set categories state if request is succesful so that the ui will be updated
+      const updatedCategory = categories.map((category) => {
+        if (category.id !== editingCategoryData.id) {
+          return category;
+        } else if (category.id === editingCategoryData.id) {
+          return {
+            ...category,
+            title: editingCategoryData.title,
+          };
+        }
+      });
+      console.log(updatedCategory);
+      //set the category
+      setCategories(updatedCategory);
+
+      //also reset editing category data state to avoid input element being displayed on re-render
+      setEditingCategoryData({
+        id: "",
+        title: "",
+      });
+    } catch (error) {
+      //show toast
+      toast.error("Internal server error. Try again later.");
+      //to update the ui
+      setEditingCategoryData({
+        id: "",
+        title: "",
+      });
+      console.log(error);
+    }
+  }
 
   console.log(categories);
   return (
@@ -190,34 +247,14 @@ const PostsAndCategories = () => {
                           title: e.target.value,
                         });
                       }}
-                      onBlur={async () => {
-                        try {
-                          const response = await fetch(
-                            `${API_BASE_URL}/categories/${category.id}`,
-                            {
-                              method: "PATCH",
-                              headers: {
-                                "Content-Type": "application/json",
-                                Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-                              },
-                              body: JSON.stringify({
-                                categoryId: editingCategoryData.id,
-                                categoryTitle: editingCategoryData.title,
-                              }),
-                            },
-                          );
-
-                          if (!response.ok) {
-                            throw new Error("Failed to update category");
-                          }
-
-                          setCategories({
-                            ...categories,
-                          });
-                        } catch (error) {
-                          console.log(error);
+                      onBlur={updateCategoryHandler}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          updateCategoryHandler();
                         }
                       }}
+                      ref={editCategoryInputRef}
                     />
                   ) : (
                     <p
@@ -238,6 +275,7 @@ const PostsAndCategories = () => {
                         <button
                           className={styles.categoryButtons}
                           onClick={() => {
+                            //set the editing category data
                             setEditingCategoryData({
                               ...editingCategoryData,
                               id: category.id,
@@ -266,6 +304,16 @@ const PostsAndCategories = () => {
           })}
         </div>
       )}
+      <Toaster
+        toastOptions={{
+          style: {
+            backgroundColor: "var(--background-color-main)",
+            color: "var(--text-color-main)",
+            border: "2px solid var(--background-color-main)",
+            borderRadius: "var(--border-radius-small)",
+          },
+        }}
+      />
     </>
   );
 };
