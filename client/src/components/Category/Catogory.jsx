@@ -11,6 +11,9 @@ const Category = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  
+
+
   useEffect(() => {
     const fetchPostsById = async () => {
       const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;

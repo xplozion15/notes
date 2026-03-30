@@ -1,5 +1,5 @@
 .profilepic {
-  max-width: 90%;
+  max-width: 70%;
   height: auto;
   border-radius: var(--border-radius-small);
   margin: 1rem;
@@ -29,4 +29,11 @@
   text-decoration-color: var(--main-color);
   text-decoration-thickness: 0.2rem;
   text-underline-offset: 0.4rem;
+}
+
+
+@media (max-width:786px) {
+  .profilepic {
+    max-width: 40%;
+  }
 }

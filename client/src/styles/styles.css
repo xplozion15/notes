@@ -129,8 +129,15 @@ body {
   min-height: 85vh;
   grid-template-columns: 0.2fr 0.8fr;
   gap: 1rem;
+  grid-template-areas: "sidebar content";
 }
 
+.sidebar {
+  grid-area: sidebar;
+}
+.content {
+  grid-area: content;
+}
 input {
   background-color: var(--secondary-color);
   border-radius: var(--border-radius-small);
@@ -150,4 +157,22 @@ input {
   right: 3%;
   bottom: 10%;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    width: 95vw;
+    grid-template-areas:
+      "content"
+      "sidebar";
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    margin-top: 2rem;
+  }
+
+  .upArrow {
+    display: none;
+  }
 }

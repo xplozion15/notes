@@ -9,7 +9,7 @@ const MainContent = () => {
     <>
       <main className={styles.main}>
         <h1 className={styles.adminDashboardHeading}>
-          <UserStar /> Admin-dashboard
+          <UserStar /> Admin-dashboard{" "}
         </h1>
 
         <Stats />
@@ -19,14 +19,14 @@ const MainContent = () => {
             to="/posts/new"
             viewTransition
           >
-            New post
+            Create post
           </Link>
           <Link
             className={styles.dashboardButtons}
             to="/categories/new"
             viewTransition
           >
-            New category
+            Create category
           </Link>
         </div>
         <PostsAndCategories />

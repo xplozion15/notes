@@ -56,3 +56,10 @@
 .loading {
   color: var(--text-color-main);
 }
+
+
+@media (max-width:768px) {
+  .post {
+    width: 95vw;
+  }
+}

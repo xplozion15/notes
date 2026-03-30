@@ -7,6 +7,7 @@ const Categories = () => {
   const [categoriesArray, setCategoriesArray] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+
   useEffect(() => {
     setIsLoading(true);
     const fetchCategories = async () => {

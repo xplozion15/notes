@@ -44,8 +44,12 @@ function App() {
     <>
       <Navbar />
       <div className="main-content">
-        <Sidebar />
-        <Content />
+        <div className="sidebar">
+          <Sidebar />
+        </div>
+        <div className="content">
+          <Content />
+        </div>
       </div>
       <Footer />
       {isExpanded && (
