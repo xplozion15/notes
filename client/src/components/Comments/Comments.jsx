@@ -1,7 +1,8 @@
 import styles from "./Comments.module.css";
 import { Send } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { CommentDeleteDialog } from "../CommentDeleteDialog/CommentDeleteDialog";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -11,6 +12,25 @@ const Comments = ({ comments, setComments, postId, userId }) => {
   const [currentUserId, setCurrentUserId] = useState(null);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState("");
+
+  const [showCommentDeleteDialog, setShowCommentDeleteDialog] = useState(false);
+  const [commentToDelete, setCommentToDelete] = useState({});
+  const commentDeleteDialogRef = useRef(null);
+
+  useEffect(() => {
+    async function openOrCloseCommentDeleteDialog() {
+      try {
+        if (showCommentDeleteDialog) {
+          commentDeleteDialogRef.current?.showModal();
+        } else {
+          commentDeleteDialogRef.current?.close();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    openOrCloseCommentDeleteDialog();
+  }, [showCommentDeleteDialog]);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -41,34 +61,6 @@ const Comments = ({ comments, setComments, postId, userId }) => {
 
     checkAuth();
   }, []);
-
-  async function deleteCommentHandler(commentId, postId) {
-    // calling the api
-    try {
-      const jwtToken = localStorage.getItem("jwtToken");
-
-      const responseOfDelete = await fetch(
-        `${API_BASE_URL}/posts/${postId}/comments/${commentId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${jwtToken}`,
-          },
-          body: JSON.stringify({
-            commentId: commentId,
-          }),
-        },
-      );
-      if (!responseOfDelete.ok) throw new Error("Failed to delete the comment");
-
-      setComments((prevComments) =>
-        prevComments.filter((comment) => comment.id !== commentId),
-      );
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
 
   async function sendCommentHandler() {
     // Frontend validation
@@ -133,6 +125,13 @@ const Comments = ({ comments, setComments, postId, userId }) => {
 
   return (
     <>
+      <CommentDeleteDialog
+        setShowCommentDeleteDialog={setShowCommentDeleteDialog}
+        commentDeleteDialogRef={commentDeleteDialogRef}
+        commentToDelete={commentToDelete}
+        setComments={setComments}
+      />
+
       <div className={styles.commentContainer}>
         {isAuthenticated ? (
           <div className={styles.commentInputDiv}>
@@ -180,7 +179,11 @@ const Comments = ({ comments, setComments, postId, userId }) => {
                     <button
                       className={styles.deleteComment}
                       onClick={() => {
-                        deleteCommentHandler(comment.id, comment.postId);
+                        setShowCommentDeleteDialog(true);
+                        setCommentToDelete({
+                          commentId: comment.id,
+                          postId: comment.postId,
+                        });
                       }}
                     >
                       delete

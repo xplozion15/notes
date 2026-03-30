@@ -1,38 +1,38 @@
 import styles from "./Comments.module.css";
+import { useEffect, useRef, useState } from "react";
+import { CommentDeleteDialog } from "../CommentDeleteDialog/CommentDeleteDialog";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Comments = ({ comments, setComments }) => {
-  async function deleteCommentHandler(commentId, postId) {
-    // calling the api
-    try {
-      const jwtToken = localStorage.getItem("jwtToken");
+  const [showCommentDeleteDialog, setShowCommentDeleteDialog] = useState(false);
+  const [commentToDelete, setCommentToDelete] = useState({});
+  const commentDeleteDialogRef = useRef(null);
 
-      const responseOfDelete = await fetch(
-        `${API_BASE_URL}/posts/${postId}/comments/${commentId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${jwtToken}`,
-          },
-          body: JSON.stringify({
-            commentId: commentId,
-          }),
-        },
-      );
-      if (!responseOfDelete.ok) throw new Error("Failed to delete the comment");
-
-      setComments((prevComments) =>
-        prevComments.filter((comment) => comment.id !== commentId),
-      );
-    } catch (error) {
-      throw new Error(error);
+  useEffect(() => {
+    async function openOrCloseCommentDeleteDialog() {
+      try {
+        if (showCommentDeleteDialog) {
+          commentDeleteDialogRef.current?.showModal();
+        } else {
+          commentDeleteDialogRef.current?.close();
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
+    openOrCloseCommentDeleteDialog();
+  }, [showCommentDeleteDialog]);
 
   return (
     <>
+      <CommentDeleteDialog
+        setShowCommentDeleteDialog={setShowCommentDeleteDialog}
+        commentDeleteDialogRef={commentDeleteDialogRef}
+        commentToDelete={commentToDelete}
+        setComments={setComments}
+      />
+
       <div className={styles.commentContainer}>
         <p className={styles.commentHeading}>Comments ({comments.length})</p>
         <div className={styles.postComments}>
@@ -51,7 +51,11 @@ const Comments = ({ comments, setComments }) => {
                   <button
                     className={styles.deleteComment}
                     onClick={() => {
-                      deleteCommentHandler(comment.id, comment.postId);
+                      setShowCommentDeleteDialog(true);
+                      setCommentToDelete({
+                        commentId: comment.id,
+                        postId: comment.postId,
+                      });
                     }}
                   >
                     delete
