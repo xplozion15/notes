@@ -91,3 +91,10 @@
   width: 500px;
   background-color: var(--background-color-main);
 }
+
+
+@media (max-width: 480px){
+      .nav {
+         width: 93vw;
+      }
+}

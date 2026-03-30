@@ -108,7 +108,7 @@ const EditPost = () => {
   console.log(postData);
   return (
     <>
-      <div className={styles.newPostContainer}>
+      <div className={styles.editPostContainer}>
         <div className={styles.postInputDiv}>
           <label htmlFor="postTitle">TITLE </label>
           <input
@@ -207,7 +207,7 @@ const EditPost = () => {
 
           <p className={styles.errorMessage}>{errorMessage}</p>
 
-          <div className={styles.newPostButtonsContainer}>
+          <div className={styles.updatePostButtonsContainer}>
             <button
               onClick={() => {
                 navigate("/", { viewTransition: true });
@@ -215,7 +215,7 @@ const EditPost = () => {
             >
               Cancel
             </button>
-            <button onClick={updatePostHandler}>Update</button>
+            <button onClick={updatePostHandler} className={styles.updateButton}>Update</button>
           </div>
         </div>
       </div>

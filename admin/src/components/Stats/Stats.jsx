@@ -38,12 +38,12 @@ const Stats = () => {
     <>
       <div className={styles.stats}>
         <div className={styles.statElement}>
-          <p className={styles.statDescription}>Number of posts</p>
+          <p className={styles.statDescription}>Posts</p>
           <p className={styles.number}>{postsCount}</p>
         </div>
 
         <div className={styles.statElement}>
-          <p className={styles.statDescription}>Number of categories</p>
+          <p className={styles.statDescription}>Categories</p>
           <p className={styles.number}>{categoriesCount}</p>
         </div>
       </div>

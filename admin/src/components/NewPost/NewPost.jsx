@@ -187,7 +187,7 @@ const NewPost = () => {
               Cancel
             </button>
 
-            <button onClick={savePostHandler}>Publish</button>
+            <button onClick={savePostHandler} className={styles.publishButton}>Publish</button>
           </div>
         </div>
       </div>

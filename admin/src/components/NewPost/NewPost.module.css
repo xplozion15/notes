@@ -53,3 +53,17 @@
 .errorMessage {
   color: var(--error-color);
 }
+
+.publishButton {
+  background-color: var(--main-color);
+   color: var(--text-color-main);
+}
+
+.newPostButtonsContainer  button {
+  cursor: pointer;
+}
+@media (max-width: 480px){
+      .newPostContainer {
+         width: 93vw;
+      }
+}

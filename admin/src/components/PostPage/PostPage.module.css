@@ -9,8 +9,8 @@
   color: var(--text-color-main);
   font-size: var(--font-small);
   width: 80vw;
-  margin: 1rem auto;
-  padding: 1.5rem;
+  margin: auto;
+  padding: 1rem;
 }
 
 .postTitle {
@@ -52,4 +52,11 @@
 .wordsAndMinutesDiv {
   font-weight: 100;
   opacity: 0.6;
+}
+
+
+@media (max-width: 480px){
+      .post {
+         width: 93vw;
+      }
 }

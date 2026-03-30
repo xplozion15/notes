@@ -33,6 +33,7 @@
     background-color 0.5s ease;
   color: var(--main-color);
   border: 2px solid var(--main-color);
+  
 }
 
 .dashboardButtons:hover {
@@ -42,10 +43,18 @@
 
 .adminDashboardHeading {
   color: var(--main-color);
-  font-size: calc(1rem + var(--font-medium));
+  font-size: calc(0.5rem + var(--font-medium));
   font-weight: 600;
   margin: 0.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+
+
+@media (max-width: 480px){
+      .main {
+        width: 93vw;
+      }
 }

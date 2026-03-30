@@ -1,4 +1,4 @@
-.newPostContainer {
+.editPostContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -28,7 +28,7 @@
   height: 2.5rem;
 }
 
-.newPostButtonsContainer {
+.updatePostButtonsContainer {
   display: flex;
   gap: 1rem;
   width: 100%;
@@ -36,7 +36,7 @@
   padding: 1rem;
 }
 
-.newPostButtonsContainer > button {
+.updatePostButtonsContainer > button {
   width: 12rem;
   height: 3rem;
   border-radius: var(--border-radius-small);
@@ -52,4 +52,19 @@
 
 .errorMessage {
   color: var(--error-color);
+}
+
+.updateButton {
+  background-color: var(--main-color);
+  color: var(--text-color-main);
+}
+
+.updatePostButtonsContainer button {
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .editPostContainer {
+    width: 93vw;
+  }
 }

@@ -34,3 +34,10 @@
 .errorMessage {
   color: var(--error-color);
 }
+
+
+@media (max-width: 480px){
+      .newCategoryContainer {
+         width: 90vw;
+      }
+}
