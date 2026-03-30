@@ -70,7 +70,12 @@ const Category = () => {
                 </div>
               </div>
 
-              <p className={styles.postPreviewText}>{postPreviewText}</p>
+              <p
+                className={styles.postBody}
+                dangerouslySetInnerHTML={{
+                  __html: getPostPreview(postPreviewText),
+                }}
+              ></p>
               <p className={styles.wordsAndMinutesDiv}>
                 {wordCount} words | {estimatedReadTime} minutes
               </p>

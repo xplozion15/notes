@@ -73,3 +73,7 @@
 .empty {
   color: var(--text-color-main);
 }
+
+.postBody {
+  margin-top: 0.4rem;
+}
