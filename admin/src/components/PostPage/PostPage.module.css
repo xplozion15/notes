@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-
   background-color: var(--background-color-main);
   border-radius: var(--border-radius-small);
   padding: 1rem;

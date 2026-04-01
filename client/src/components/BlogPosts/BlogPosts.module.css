@@ -1,7 +1,6 @@
 .blogpost {
   background-color: var(--background-color-main);
   border-radius: var(--border-radius-small);
-  padding: 0.5rem;
   color: var(--text-color-main);
   padding: 1rem;
   font-size: var(--font-small);

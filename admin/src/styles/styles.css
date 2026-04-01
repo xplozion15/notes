@@ -120,17 +120,4 @@ input {
   border: none;
 }
 
-.upArrow {
-  border-radius: var(--border-radius-small);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--main-color);
-  background-color: var(--background-color-main);
-  width: 4rem;
-  height: 4rem;
-  position: fixed;
-  right: 3%;
-  bottom: 10%;
-  cursor: pointer;
-}
+

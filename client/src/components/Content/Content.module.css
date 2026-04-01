@@ -1,5 +1,4 @@
 .content {
-  /* background-color: white; */
   border-radius: var(--border-radius-small);
   display: flex;
   flex-direction: column;

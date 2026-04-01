@@ -24,7 +24,6 @@
 
 .deleteButton {
   border-radius: var(--border-radius-small);
-
   color: var(--text-color-main);
   background-color: var(--error-color);
 }
