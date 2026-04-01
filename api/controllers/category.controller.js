@@ -20,7 +20,7 @@ async function fetchCategories(req, res) {
   } catch (error) {
     console.error(error);
     return res.status(500).json({
-      message: "failed to fetch the categories",
+      message: "failed to fetch categories",
     });
   }
 }

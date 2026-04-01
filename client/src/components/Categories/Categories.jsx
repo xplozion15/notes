@@ -23,7 +23,7 @@ const Categories = () => {
         setCategoriesArray(result.categories);
       } catch (error) {
         console.error("Failed to fetch categories:", error);
-        setError(error.message);
+        setError("Failed to fetch categories");
       } finally {
         setIsLoading(false);
       }
@@ -37,7 +37,7 @@ const Categories = () => {
     return <p className={styles.loading}>Loading categories...</p>;
   }
   if (error) {
-    return <p>{error}...</p>;
+    return <p className={styles.error}>{error}...</p>;
   }
   if (categoriesArray.length === 0) {
     return <p className={styles.empty}>No Categories found...</p>;

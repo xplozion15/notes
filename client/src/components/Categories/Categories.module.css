@@ -45,6 +45,7 @@
 }
 
 .loading,
-.empty {
+.empty,
+.error {
   color: var(--text-color-main);
 }

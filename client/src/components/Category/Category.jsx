@@ -20,14 +20,15 @@ const Category = () => {
         const response = await fetch(
           `${API_BASE_URL}/categories/${categoryId}/posts`,
         );
+        const result = await response.json();
 
         if (!response.ok) {
+          setError(result.message);
           throw new Error(`Response status: ${response.status}`);
         }
-        const result = await response.json();
         setPosts(result.categoryPosts);
       } catch (error) {
-        console.error("Failed to fetch posts:", error);
+        console.error(error);
         setError("Failed to fetch posts");
       } finally {
         setLoading(false);
