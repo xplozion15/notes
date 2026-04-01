@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./PostPage.module.css";
 import { Comments } from "../Comments/Comments";
-import { Calendars } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { Book } from "lucide-react";
 import { getReadingStats } from "../../utils/readingStats";
 
@@ -81,7 +81,7 @@ const PostPage = () => {
 
         <div className={styles.dateAndCategoryDiv}>
           <div className={styles.dateDiv}>
-            <Calendars className={styles.dateIcon} />
+            <Calendar className={styles.dateIcon} />
             <p>{new Date(post.createdAt).toDateString()}</p>
           </div>
 

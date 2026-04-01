@@ -32,12 +32,10 @@
 }
 
 @media (max-width: 480px) {
-
   .stat {
-      margin-top: 3rem;
-  padding: 0.5rem;
+    margin-top: 3rem;
+    padding: 0.5rem;
   }
-
 
   .statElement {
     /* border: 2px solid red; */

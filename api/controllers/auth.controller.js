@@ -4,11 +4,10 @@ const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 
 const secret = process.env.JWT_SECRET;
-//check if jwt is missing or not 
+//check if jwt is missing or not
 if (!secret) {
   throw new Error("JWT_SECRET missing");
 }
-
 
 async function registerUser(req, res) {
   //validation

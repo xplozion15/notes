@@ -136,8 +136,6 @@
   color: var(--main-color);
 }
 
-
-
 @media (max-width: 1200px) {
   .nav {
     min-width: 90vw;
@@ -147,8 +145,6 @@
   .menuIcon {
     display: block;
   }
-
- 
 
   .navbarlinks {
     visibility: hidden;
@@ -175,9 +171,6 @@
     width: 100%;
   }
 }
-
-
-
 
 @media (max-width: 768px) {
   .nav {

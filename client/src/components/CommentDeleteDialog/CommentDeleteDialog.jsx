@@ -22,7 +22,6 @@ const CommentDeleteDialog = ({
             "Content-Type": "application/json",
             Authorization: `Bearer ${jwtToken}`,
           },
-      
         },
       );
       if (!responseOfDelete.ok) throw new Error("Failed to delete the comment");
@@ -33,37 +32,32 @@ const CommentDeleteDialog = ({
         ),
       );
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
 
   return (
-  
-      <dialog
-        id="delete-dialog"
-        ref={commentDeleteDialogRef}
-        className={styles.commentDeleteDialog}
-      >
-        <p>Are you sure you want to delete this Comment?</p>
-        <div className={styles.buttonsDiv}>
-          <button
-            commandfor="my-dialog"
-            command="close"
-            onClick={() => {
-              setShowCommentDeleteDialog(false);
-            }}
-          >
-            No
-          </button>
-          <button
-            onClick={commentDeleteHandler}
-            className={styles.deleteButton}
-          >
-            Yes
-          </button>
-        </div>
-      </dialog>
-
+    <dialog
+      id="delete-dialog"
+      ref={commentDeleteDialogRef}
+      className={styles.commentDeleteDialog}
+    >
+      <p>Are you sure you want to delete this Comment?</p>
+      <div className={styles.buttonsDiv}>
+        <button
+          commandfor="my-dialog"
+          command="close"
+          onClick={() => {
+            setShowCommentDeleteDialog(false);
+          }}
+        >
+          No
+        </button>
+        <button onClick={commentDeleteHandler} className={styles.deleteButton}>
+          Yes
+        </button>
+      </div>
+    </dialog>
   );
 };
 

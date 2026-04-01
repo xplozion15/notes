@@ -33,7 +33,7 @@ const routes = [
             path: "posts/new",
             element: <NewPost />,
           },
-        
+
           {
             path: "categories/new",
             element: <NewCategory />,

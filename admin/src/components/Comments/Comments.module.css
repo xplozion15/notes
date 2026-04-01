@@ -103,10 +103,8 @@
   opacity: 0.6;
 }
 
-
-
-@media (max-width: 480px){
-      .commentContainer {
-        width: 93vw;
-      }
+@media (max-width: 480px) {
+  .commentContainer {
+    width: 93vw;
+  }
 }

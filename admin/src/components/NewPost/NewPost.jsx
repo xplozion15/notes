@@ -116,15 +116,13 @@ const NewPost = () => {
             <option value="">Select category</option>
             {categories.map((category) => {
               return (
-                <>
-                  <option
-                    value={category.id}
-                    key={category.id}
-                    className={styles.option}
-                  >
-                    {category.title}
-                  </option>
-                </>
+                <option
+                  value={category.id}
+                  key={category.id}
+                  className={styles.option}
+                >
+                  {category.title}
+                </option>
               );
             })}
           </select>
@@ -187,7 +185,9 @@ const NewPost = () => {
               Cancel
             </button>
 
-            <button onClick={savePostHandler} className={styles.publishButton}>Publish</button>
+            <button onClick={savePostHandler} className={styles.publishButton}>
+              Publish
+            </button>
           </div>
         </div>
       </div>

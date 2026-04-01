@@ -26,8 +26,7 @@ const Stats = () => {
         setPostsCount(stats.postsCount);
         setCategoriesCount(stats.categoriesCount);
       } catch (error) {
-        console.log(error);
-        throw new Error("Failed to fetch the stats");
+        console.error(error);
       }
     }
 

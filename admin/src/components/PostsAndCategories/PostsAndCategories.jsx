@@ -234,72 +234,70 @@ const PostsAndCategories = () => {
         <div>
           {categories.map((category) => {
             return (
-              <>
-                <div className={styles.categoryDiv} key={category.id}>
-                  {editingCategoryData.id === category.id ? (
-                    <input
-                      className={styles.editCategoryInput}
-                      type="text"
-                      value={editingCategoryData.title}
-                      onChange={(e) => {
-                        setEditingCategoryData({
-                          ...editingCategoryData,
-                          title: e.target.value,
-                        });
-                      }}
-                      onBlur={updateCategoryHandler}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          e.preventDefault();
-                          updateCategoryHandler();
-                        }
-                      }}
-                      ref={editCategoryInputRef}
-                    />
-                  ) : (
-                    <p
-                      className={styles.category}
-                      onClick={() => {
-                        setEditingCategoryData({
-                          ...editingCategoryData,
-                          id: category.id,
-                        });
-                      }}
-                    >
-                      {category.title}
-                    </p>
-                  )}
-                  {editingCategoryData.id !== category.id && (
-                    <>
-                      <div className={styles.categoryButtonsDiv}>
-                        <button
-                          className={styles.categoryButtons}
-                          onClick={() => {
-                            //set the editing category data
-                            setEditingCategoryData({
-                              ...editingCategoryData,
-                              id: category.id,
-                              title: category.title,
-                            });
-                          }}
-                        >
-                          Edit
-                        </button>
+              <div className={styles.categoryDiv} key={category.id}>
+                {editingCategoryData.id === category.id ? (
+                  <input
+                    className={styles.editCategoryInput}
+                    type="text"
+                    value={editingCategoryData.title}
+                    onChange={(e) => {
+                      setEditingCategoryData({
+                        ...editingCategoryData,
+                        title: e.target.value,
+                      });
+                    }}
+                    onBlur={updateCategoryHandler}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        updateCategoryHandler();
+                      }
+                    }}
+                    ref={editCategoryInputRef}
+                  />
+                ) : (
+                  <p
+                    className={styles.category}
+                    onClick={() => {
+                      setEditingCategoryData({
+                        ...editingCategoryData,
+                        id: category.id,
+                      });
+                    }}
+                  >
+                    {category.title}
+                  </p>
+                )}
+                {editingCategoryData.id !== category.id && (
+                  <>
+                    <div className={styles.categoryButtonsDiv}>
+                      <button
+                        className={styles.categoryButtons}
+                        onClick={() => {
+                          //set the editing category data
+                          setEditingCategoryData({
+                            ...editingCategoryData,
+                            id: category.id,
+                            title: category.title,
+                          });
+                        }}
+                      >
+                        Edit
+                      </button>
 
-                        <button
-                          className={`${styles.categoryButtons} ${styles.categoryDeleteButton}`}
-                          onClick={() => {
-                            setShowCategoryDeleteModal(true);
-                            setCategoryIdToDelete(category.id);
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </>
-                  )}
-                </div>
-              </>
+                      <button
+                        className={`${styles.categoryButtons} ${styles.categoryDeleteButton}`}
+                        onClick={() => {
+                          setShowCategoryDeleteModal(true);
+                          setCategoryIdToDelete(category.id);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
             );
           })}
         </div>

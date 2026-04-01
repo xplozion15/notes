@@ -23,7 +23,7 @@
   font-weight: 200;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 0.9rem;
-text-wrap: pretty;
+  text-wrap: pretty;
 }
 
 .name {
@@ -34,8 +34,7 @@ text-wrap: pretty;
   text-underline-offset: 0.4rem;
 }
 
-
-@media (max-width:786px) {
+@media (max-width: 786px) {
   .profilepic {
     max-width: 40%;
   }

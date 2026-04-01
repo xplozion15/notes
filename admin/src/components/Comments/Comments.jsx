@@ -10,7 +10,7 @@ const Comments = ({ comments, setComments }) => {
   const commentDeleteDialogRef = useRef(null);
 
   useEffect(() => {
-    async function openOrCloseCommentDeleteDialog() {
+    function openOrCloseCommentDeleteDialog() {
       try {
         if (showCommentDeleteDialog) {
           commentDeleteDialogRef.current?.showModal();
@@ -38,30 +38,28 @@ const Comments = ({ comments, setComments }) => {
         <div className={styles.postComments}>
           {comments.map((comment) => {
             return (
-              <>
-                <div key={comment.id} className={styles.comment}>
-                  <div className={styles.firstNameDateDeleteDiv}>
-                    <p className={styles.firstName}>{comment.user.firstName}</p>
-                    <p className={styles.datePosted}>
-                      {new Date(comment.createdAt).toDateString()}
-                    </p>
-                  </div>
-                  <p className={styles.commentBody}>{comment.commentBody} </p>
-
-                  <button
-                    className={styles.deleteComment}
-                    onClick={() => {
-                      setShowCommentDeleteDialog(true);
-                      setCommentToDelete({
-                        commentId: comment.id,
-                        postId: comment.postId,
-                      });
-                    }}
-                  >
-                    delete
-                  </button>
+              <div key={comment.id} className={styles.comment}>
+                <div className={styles.firstNameDateDeleteDiv}>
+                  <p className={styles.firstName}>{comment.user.firstName}</p>
+                  <p className={styles.datePosted}>
+                    {new Date(comment.createdAt).toDateString()}
+                  </p>
                 </div>
-              </>
+                <p className={styles.commentBody}>{comment.commentBody} </p>
+
+                <button
+                  className={styles.deleteComment}
+                  onClick={() => {
+                    setShowCommentDeleteDialog(true);
+                    setCommentToDelete({
+                      commentId: comment.id,
+                      postId: comment.postId,
+                    });
+                  }}
+                >
+                  delete
+                </button>
+              </div>
             );
           })}
         </div>

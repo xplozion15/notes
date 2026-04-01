@@ -27,7 +27,6 @@
 
 .createNewAccount {
   min-height: 2.5rem;
-  
 }
 
 .formDiv {
@@ -74,8 +73,7 @@
   background-color: var(--hover-color-main);
 }
 
-
-@media (max-width:768px) {
+@media (max-width: 768px) {
   .loginForm {
     min-width: 80%;
   }

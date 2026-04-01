@@ -159,12 +159,10 @@ input {
   cursor: pointer;
 }
 
-
-
 @media (max-width: 1200px) {
-    .main-content {
-      width: 90vw;
-    }
+  .main-content {
+    width: 90vw;
+  }
 }
 @media (max-width: 768px) {
   .main-content {

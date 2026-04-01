@@ -215,7 +215,9 @@ const EditPost = () => {
             >
               Cancel
             </button>
-            <button onClick={updatePostHandler} className={styles.updateButton}>Update</button>
+            <button onClick={updatePostHandler} className={styles.updateButton}>
+              Update
+            </button>
           </div>
         </div>
       </div>

@@ -95,7 +95,7 @@ async function updatePost(req, res) {
       message: "post updated successfully",
     });
   } catch (error) {
-    console.error(error)
+    console.error(error);
     res.status(500).json({
       message: "failed to update the post due to internal server error",
     });

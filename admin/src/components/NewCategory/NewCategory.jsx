@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const NewCategory = () => {
   const [title, setTitle] = useState("");
-  const [errorMessage, setErrorMesssage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
   async function saveCategory() {
@@ -14,10 +14,10 @@ const NewCategory = () => {
 
     if (trimmedTitle.length === 0) {
       console.log("lengh is 0 ");
-      setErrorMesssage("Title should not be empty");
+      setErrorMessage("Title should not be empty");
       return;
     } else if (trimmedTitle.length > 14) {
-      setErrorMesssage("Title length should be less than 14 characters");
+      setErrorMessage("Title length should be less than 14 characters");
       return;
     }
 

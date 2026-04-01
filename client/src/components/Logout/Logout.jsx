@@ -7,7 +7,7 @@ const Logout = ({ setIsUserLoggedIn, setShowNavbarLinks, showNavbarLinks }) => {
   function logoutHandler() {
     localStorage.removeItem("jwtToken");
     setIsUserLoggedIn(false);
-    
+
     navigate("/", { viewTransition: true });
   }
 

@@ -79,8 +79,8 @@ const Login = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: username,
-          password: password,
+          username: trimmedUsername,
+          password: trimmedPassword,
         }),
       });
 
@@ -97,8 +97,8 @@ const Login = () => {
 
       navigate("/", { viewTransition: true }); //home page redirect
     } catch (error) {
+      console.error(error);
       setErrorMessage("Please check your network or try again later");
-      console.log(error.message);
     }
   }
 

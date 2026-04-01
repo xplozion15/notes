@@ -164,31 +164,29 @@ const Comments = ({ comments, setComments, postId }) => {
         <div className={styles.postComments}>
           {comments.map((comment) => {
             return (
-              
-                <div key={comment.id} className={styles.comment}>
-                  <div className={styles.firstNameDateDeleteDiv}>
-                    <p className={styles.firstName}>{comment.user.firstName}</p>
-                    <p className={styles.datePosted}>
-                      {new Date(comment.createdAt).toDateString()}
-                    </p>
-                  </div>
-                  <p className={styles.commentBody}>{comment.commentBody} </p>
-                  {comment.userId === currentUserId && (
-                    <button
-                      className={styles.deleteComment}
-                      onClick={() => {
-                        setShowCommentDeleteDialog(true);
-                        setCommentToDelete({
-                          commentId: comment.id,
-                          postId: comment.postId,
-                        });
-                      }}
-                    >
-                      delete
-                    </button>
-                  )}
+              <div key={comment.id} className={styles.comment}>
+                <div className={styles.firstNameDateDeleteDiv}>
+                  <p className={styles.firstName}>{comment.user.firstName}</p>
+                  <p className={styles.datePosted}>
+                    {new Date(comment.createdAt).toDateString()}
+                  </p>
                 </div>
-             
+                <p className={styles.commentBody}>{comment.commentBody} </p>
+                {comment.userId === currentUserId && (
+                  <button
+                    className={styles.deleteComment}
+                    onClick={() => {
+                      setShowCommentDeleteDialog(true);
+                      setCommentToDelete({
+                        commentId: comment.id,
+                        postId: comment.postId,
+                      });
+                    }}
+                  >
+                    delete
+                  </button>
+                )}
+              </div>
             );
           })}
         </div>

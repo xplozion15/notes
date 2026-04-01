@@ -6,7 +6,6 @@ const Navbar = () => {
   return (
     <nav className={styles.nav}>
       <Link to="/" className={styles.logo} viewTransition>
-        {" "}
         <House /> Notes
       </Link>
 

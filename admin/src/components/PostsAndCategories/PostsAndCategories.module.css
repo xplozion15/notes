@@ -33,7 +33,6 @@
   min-width: 5rem;
 }
 
-
 .categoryDiv {
   display: flex;
   flex-direction: row;
@@ -135,5 +134,3 @@
   background-color: red;
   color: white;
 }
-
-

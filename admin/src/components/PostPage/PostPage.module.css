@@ -54,9 +54,8 @@
   opacity: 0.6;
 }
 
-
-@media (max-width: 480px){
-      .post {
-         width: 93vw;
-      }
+@media (max-width: 480px) {
+  .post {
+    width: 93vw;
+  }
 }

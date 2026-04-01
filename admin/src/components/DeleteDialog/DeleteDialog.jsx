@@ -38,8 +38,6 @@ const DeleteDialog = ({
         <p>Are you sure you want to delete this post?</p>
         <div className={styles.buttonsDiv}>
           <button
-            commandfor="my-dialog"
-            command="close"
             onClick={() => {
               setShowDeleteModal(false);
             }}
