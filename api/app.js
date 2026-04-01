@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+require("dotenv").config();
 
 const { indexRouter } = require("./routes/index.routes");
 const { postRouter } = require("./routes/post.routes");
@@ -24,5 +25,5 @@ app.use("/auth", authRouter);
 app.use("/stats", statsRouter);
 
 app.listen(port, () => {
-  console.log(`Notes - a personal blog app ${port} http://localhost:3000/`);
+  console.log(`Notes - a personal blog app ${port} http://localhost:${port}/`);
 });

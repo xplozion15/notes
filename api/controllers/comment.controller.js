@@ -1,5 +1,5 @@
 const { prisma } = require("../lib/prisma");
-const { query, validationResult } = require("express-validator");
+const {  validationResult } = require("express-validator");
 
 async function addCommentToPost(req, res) {
   //validation
@@ -16,10 +16,6 @@ async function addCommentToPost(req, res) {
     const comment = req.body.comment;
     const userId = req.user.userId; // set by auth middleware
 
-    console.log(`usser id is ${req.user}`);
-    console.log(
-      `post id is ${postId}, comment is ${comment} , userid is ${userId}`,
-    );
     await prisma.comment.create({
       data: {
         commentBody: comment,
@@ -28,14 +24,14 @@ async function addCommentToPost(req, res) {
       },
     });
 
-    res.json({
+    return res.json({
       message: "Comment succesfully posted",
       comment: comment,
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      message: error,
+    console.error(error);
+    return res.status(500).json({
+      message: "Failed to post the comment",
     });
   }
 }
@@ -49,12 +45,13 @@ async function deleteComment(req, res) {
           id: commentId,
         },
       });
-      res.json({
-        message: "comment deleted successfully",
+      return res.json({
+        message: "Comment deleted successfully",
       });
     }
   } catch (error) {
-    res.status(500).json({
+    console.error(error);
+    return res.status(500).json({
       message: "Failed to delete the comment",
     });
   }
@@ -75,12 +72,13 @@ async function updateComment(req, res) {
         },
       });
     }
-    res.json({
-      message: "comment updated successfully",
+    return res.json({
+      message: "Comment updated successfully",
     });
   } catch (error) {
-    res.status(500).json({
-      message: "failed to update the comment",
+    console.error(error);
+    return res.status(500).json({
+      message: "Failed to update the comment",
     });
   }
 }

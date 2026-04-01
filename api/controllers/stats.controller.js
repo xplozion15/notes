@@ -5,12 +5,13 @@ async function fetchStats(req, res) {
     const postsCount = await prisma.post.count();
     const categoriesCount = await prisma.category.count();
 
-    res.json({
+   return res.json({
       postsCount: postsCount,
       categoriesCount: categoriesCount,
     });
   } catch (error) {
-    res.status(500).json({
+    console.error(error)
+    return res.status(500).json({
       error: error.message,
     });
   }

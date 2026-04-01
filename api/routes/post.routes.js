@@ -1,9 +1,9 @@
 const express = require("express");
 const postRouter = express.Router();
 const postController = require("../controllers/post.controller");
-const { authenticateToken } = require("../controllers/auth.controller");
 const { validateEditPost } = require("../validators/validateEditPost");
 const { validateNewPost } = require("../validators/validateNewPost");
+const {authenticateToken} = require("../middlewares/authenticateToken");
 
 postRouter.get("/", postController.fetchPosts);
 postRouter.get("/search", postController.fetchSearchedPosts);

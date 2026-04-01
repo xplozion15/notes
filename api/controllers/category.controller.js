@@ -1,5 +1,5 @@
 const { prisma } = require("../lib/prisma");
-const { query, validationResult } = require("express-validator");
+const { validationResult } = require("express-validator");
 
 async function fetchCategories(req, res) {
   try {
@@ -14,11 +14,12 @@ async function fetchCategories(req, res) {
     });
 
     return res.json({
-      message: "Categories fetched successfulyy",
+      message: "Categories fetched successfully",
       categories: categories,
     });
   } catch (error) {
-    res.status(500).json({
+    console.error(error);
+    return res.status(500).json({
       message: "failed to fetch the categories",
     });
   }
@@ -41,19 +42,18 @@ async function createNewCategory(req, res) {
         title: title.trim(),
       },
     });
-    res.json({
+    return res.json({
       message: "Category created successfully",
     });
   } catch (error) {
-    if (error.code === "P2002") {
+    if (error?.code === "P2002") {
+      console.error(error);
       return res.status(400).json({
         message: "Category already exists",
       });
     }
-
     console.error(error);
-
-    res.status(500).json({
+    return res.status(500).json({
       message: "failed to create a category",
     });
   }
@@ -71,12 +71,13 @@ async function fetchPostsByCategory(req, res) {
       },
     });
 
-    res.json({
+    return res.json({
       categoryPosts: categoryPosts,
     });
   } catch (error) {
-    res.status(500).json({
-      error: "failed to fetch posts by category",
+    console.error(error);
+    return res.status(500).json({
+      message: "failed to fetch posts by category",
     });
   }
 }
@@ -118,6 +119,7 @@ async function deleteCategory(req, res) {
       message: "Category deleted successfully",
     });
   } catch (error) {
+    console.error(error);
     return res.status(500).json({
       message: "Failed to delete category",
     });
@@ -134,7 +136,6 @@ async function updateCategory(req, res) {
   }
 
   //get category name and id
-  console.log(req.body);
   const categoryTitle = req.body.categoryTitle;
   const categoryId = Number(req.body.categoryId);
 
@@ -154,7 +155,7 @@ async function updateCategory(req, res) {
     }
 
     // update if category exists
-    const updatedCategory = await prisma.category.update({
+    await prisma.category.update({
       where: {
         id: categoryId,
       },
@@ -162,11 +163,13 @@ async function updateCategory(req, res) {
         title: categoryTitle,
       },
     });
-    res.status(200).json({
+
+    return res.status(200).json({
       message: "Category updated successfully",
     });
   } catch (error) {
-    res.status(500).json({ message: "Failed to update category" });
+    console.error(error);
+    return res.status(500).json({ message: "Failed to update category" });
   }
 }
 

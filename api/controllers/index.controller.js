@@ -5,12 +5,13 @@ async function showIndexPage(req, res) {
     const posts = await prisma.post.findMany();
     const categories = await prisma.category.findMany();
 
-    res.json({
+    return res.json({
       message: "index page of your blog app",
       categories: categories,
       posts: posts,
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({
       error: "failed to fetch the data",
     });

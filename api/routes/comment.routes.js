@@ -1,8 +1,8 @@
 const express = require("express");
 const commentRouter = express.Router();
 const commentController = require("../controllers/comment.controller");
-const { authenticateToken } = require("../controllers/auth.controller");
 const { validateSendComment } = require("../validators/validateSendComment");
+const {authenticateToken} = require("../middlewares/authenticateToken");
 
 commentRouter.post(
   "/",

@@ -1,6 +1,6 @@
 const { prisma } = require("../lib/prisma");
 const { sanitizeBlogs } = require("../utils/sanitizeBlogs");
-const { query, validationResult } = require("express-validator");
+const { validationResult } = require("express-validator");
 
 async function fetchPosts(req, res) {
   try {
@@ -15,11 +15,12 @@ async function fetchPosts(req, res) {
       },
     });
 
-    res.json({
+    return res.json({
       message: "posts fetched successfully",
       posts: posts,
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({
       message: "failed to fetch the posts",
     });
@@ -37,9 +38,7 @@ async function createPost(req, res) {
 
   //sanitize the blog using  dom purify
   const sanitizedPostBody = sanitizeBlogs(req.body.postBody);
-  console.log(
-    `this is post body after sanitizing in my controller \n${sanitizedPostBody}`,
-  );
+
   //try catch block for creating the post/handling errors
   try {
     const title = req.body.title;
@@ -56,14 +55,13 @@ async function createPost(req, res) {
       },
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       message: "Post created successfully",
       post: newPost,
     });
   } catch (error) {
-    console.log(error.message);
-
-    res.status(500).json({
+    console.error(error);
+    return res.status(500).json({
       message: "Failed to create the post",
     });
   }
@@ -93,11 +91,11 @@ async function updatePost(req, res) {
         categoryId: Number(categoryId),
       },
     });
-    res.json({
+    return res.json({
       message: "post updated successfully",
     });
   } catch (error) {
-    console.log(error.message);
+    console.error(error)
     res.status(500).json({
       message: "failed to update the post due to internal server error",
     });
@@ -142,7 +140,8 @@ async function fetchPostById(req, res) {
           post: post,
         });
   } catch (error) {
-    res.status(500).json({
+    console.error(error);
+    return res.status(500).json({
       error: "Failed to fetch this post",
     });
   }
@@ -157,10 +156,11 @@ async function deletePost(req, res) {
         id: postId,
       },
     });
-    res.json({
+    return res.json({
       message: "post deleted succesfully",
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({
       message: error.message,
     });
@@ -191,11 +191,12 @@ async function fetchCommentsByPostId(req, res) {
       ],
     });
 
-    res.json({
+    return res.json({
       message: "Comments fetched successfully",
       comments: comments,
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({
       message: "failed to fetch comments",
     });
@@ -234,10 +235,11 @@ async function fetchSearchedPosts(req, res) {
       },
     });
 
-    res.json({
+    return res.json({
       posts: result,
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({
       message: error.message,
     });

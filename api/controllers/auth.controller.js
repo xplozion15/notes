@@ -1,12 +1,16 @@
 const bcrypt = require("bcryptjs");
 const { prisma } = require("../lib/prisma");
 const jwt = require("jsonwebtoken");
-const { query, validationResult } = require("express-validator");
-require("dotenv").config();
+const { validationResult } = require("express-validator");
+
 const secret = process.env.JWT_SECRET;
+//check if jwt is missing or not 
+if (!secret) {
+  throw new Error("JWT_SECRET missing");
+}
+
 
 async function registerUser(req, res) {
-  console.log(req.body);
   //validation
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -22,7 +26,7 @@ async function registerUser(req, res) {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // always keep admin false
-    let isAdmin = false;
+    const isAdmin = false;
 
     //create the user
     await prisma.user.create({
@@ -38,7 +42,14 @@ async function registerUser(req, res) {
 
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
+    if (error?.code === "P2002") {
+      return res.status(400).json({
+        message: "Email or username already exists",
+      });
+    }
+
     res.status(500).json({ message: "Failed to register user" });
+    console.error(error);
   }
 }
 
@@ -95,25 +106,8 @@ async function login(req, res) {
     res.status(500).json({
       message: "login failed",
     });
+    console.error(error);
   }
-}
-
-function authenticateToken(req, res, next) {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
-
-  if (!token) {
-    return res.status(401).json({ message: "Token missing" });
-  }
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(403).json({ message: "Invalid or expired token" });
-    }
-    // console.log(decoded);  // req.user.userId is user id in decoded.
-    req.user = decoded;
-    next();
-  });
 }
 
 async function getMe(req, res) {
@@ -142,7 +136,8 @@ async function getMe(req, res) {
     res.status(500).json({
       message: "Failed to get the user",
     });
+    console.error(error);
   }
 }
 
-module.exports = { registerUser, login, authenticateToken, getMe };
+module.exports = { registerUser, login, getMe };
