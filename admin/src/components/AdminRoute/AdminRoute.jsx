@@ -24,7 +24,6 @@ const AdminRoute = () => {
         }
 
         const userData = await response.json();
-        console.log(userData);
 
         //set state and redirect based on if admin or not
         if (userData.isAdmin) {
@@ -37,10 +36,10 @@ const AdminRoute = () => {
           return;
         }
       } catch (error) {
+        console.error(error);
         //if unexpected errors are shown then just set state to false
         setAdminStatus(false);
         localStorage.removeItem("jwtToken");
-        console.log(error);
       } finally {
         setLoading(false);
       }

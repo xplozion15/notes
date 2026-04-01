@@ -1,5 +1,5 @@
 import styles from "./CategoryDeleteDialog.module.css";
-
+import { Toaster, toast } from "sonner";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const CategoryDeleteDialog = ({
@@ -23,15 +23,18 @@ const CategoryDeleteDialog = ({
         },
       );
 
+      const result = await response.json();
       if (!response.ok) {
-        throw new Error(`${response.message}`);
+        return toast.error(result.message);
       }
       setCategories((prevCategories) =>
         prevCategories.filter((category) => category.id !== categoryIdToDelete),
       );
       return;
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      toast.error("Failed to delete category");
+   
     }
   }
 
@@ -61,6 +64,16 @@ const CategoryDeleteDialog = ({
           </button>
         </div>
       </dialog>
+      <Toaster
+        toastOptions={{
+          style: {
+            backgroundColor: "var(--background-color-main)",
+            color: "var(--text-color-main)",
+            border: "2px solid var(--background-color-main)",
+            borderRadius: "var(--border-radius-small)",
+          },
+        }}
+      />
     </>
   );
 };

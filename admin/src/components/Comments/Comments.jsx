@@ -18,7 +18,7 @@ const Comments = ({ comments, setComments }) => {
           commentDeleteDialogRef.current?.close();
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
     openOrCloseCommentDeleteDialog();
