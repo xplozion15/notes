@@ -22,9 +22,7 @@ const CommentDeleteDialog = ({
             "Content-Type": "application/json",
             Authorization: `Bearer ${jwtToken}`,
           },
-          body: JSON.stringify({
-            commentId: commentToDelete.commentId,
-          }),
+      
         },
       );
       if (!responseOfDelete.ok) throw new Error("Failed to delete the comment");
@@ -35,12 +33,12 @@ const CommentDeleteDialog = ({
         ),
       );
     } catch (error) {
-      throw new Error(error);
+      console.error(error)
     }
   }
 
   return (
-    <>
+  
       <dialog
         id="delete-dialog"
         ref={commentDeleteDialogRef}
@@ -65,7 +63,7 @@ const CommentDeleteDialog = ({
           </button>
         </div>
       </dialog>
-    </>
+
   );
 };
 

@@ -26,12 +26,12 @@ const PostPage = () => {
         }
         const result = await response.json();
         setPost(result.post);
-        setWordCount(getReadingStats(result.post.postBody).wordCount);
-        setEstimatedReadTime(
-          getReadingStats(result.post.postBody).estimatedReadTime,
-        );
+
+        const stats = getReadingStats(result.post.postBody);
+        setWordCount(stats.wordCount);
+        setEstimatedReadTime(stats.estimatedReadTime);
+
         setComments(result.post.comments);
-        console.log(result.post);
       } catch (error) {
         console.error("Failed to fetch posts:", error);
       } finally {
@@ -54,11 +54,11 @@ const PostPage = () => {
         if (!response.ok) throw new Error(`Response status ${response.status}`);
 
         const result = await response.json();
-        console.log(result);
 
         setCurrentUserId(result.id);
       } catch (error) {
-        throw new Error(`error - ${error}`);
+        console.error("Failed to fetch current user:", error);
+        setCurrentUserId(null);
       }
     };
 

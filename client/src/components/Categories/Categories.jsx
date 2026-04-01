@@ -6,7 +6,7 @@ const Categories = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [categoriesArray, setCategoriesArray] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,6 +23,7 @@ const Categories = () => {
         setCategoriesArray(result.categories);
       } catch (error) {
         console.error("Failed to fetch categories:", error);
+        setError(error.message);
       } finally {
         setIsLoading(false);
       }
@@ -35,29 +36,30 @@ const Categories = () => {
   if (isLoading) {
     return <p className={styles.loading}>Loading categories...</p>;
   }
+  if (error) {
+    return <p>{error}...</p>;
+  }
   if (categoriesArray.length === 0) {
     return <p className={styles.empty}>No Categories found...</p>;
   }
 
   return (
-    <>
-      <div className={styles.categories}>
-        <p className={styles.categoryheading}>Categories</p>
-        {categoriesArray.map((category) => (
-          <Link
-            to={`/categories/${category.id}/posts`}
-            key={category.id}
-            className={styles.categoryLink}
-            viewTransition
-          >
-            <div key={category.id} className={styles.categorydiv}>
-              <p>{category.title}</p>
-              <p className={styles.categorycount}>{category["_count"].posts}</p>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </>
+    <div className={styles.categories}>
+      <p className={styles.categoryheading}>Categories</p>
+      {categoriesArray.map((category) => (
+        <Link
+          to={`/categories/${category.id}/posts`}
+          key={category.id}
+          className={styles.categoryLink}
+          viewTransition
+        >
+          <div className={styles.categorydiv}>
+            <p>{category.title}</p>
+            <p className={styles.categorycount}>{category["_count"].posts}</p>
+          </div>
+        </Link>
+      ))}
+    </div>
   );
 };
 

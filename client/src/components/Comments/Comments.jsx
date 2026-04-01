@@ -6,7 +6,7 @@ import { CommentDeleteDialog } from "../CommentDeleteDialog/CommentDeleteDialog"
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-const Comments = ({ comments, setComments, postId, userId }) => {
+const Comments = ({ comments, setComments, postId }) => {
   const [commentInput, setCommentInput] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUserId, setCurrentUserId] = useState(null);
@@ -26,7 +26,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
           commentDeleteDialogRef.current?.close();
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
     openOrCloseCommentDeleteDialog();
@@ -46,7 +46,6 @@ const Comments = ({ comments, setComments, postId, userId }) => {
         });
 
         const user = await response.json();
-        console.log(`hehe ${user}`);
         if (response.status === 200) {
           setCurrentUserId(user.id);
           setIsAuthenticated(true);
@@ -77,7 +76,6 @@ const Comments = ({ comments, setComments, postId, userId }) => {
     //try catch block to send the comment
     try {
       const jwtToken = localStorage.getItem("jwtToken");
-      console.log(`${commentInput},${postId},${userId}`);
 
       const response = await fetch(`${API_BASE_URL}/comments/`, {
         method: "POST",
@@ -119,7 +117,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
       setComments(updatedCommentsData.comments);
       setCommentInput("");
     } catch (error) {
-      console.log("Error posting comment", error);
+      console.error(error);
     }
   }
 
@@ -166,7 +164,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
         <div className={styles.postComments}>
           {comments.map((comment) => {
             return (
-              <>
+              
                 <div key={comment.id} className={styles.comment}>
                   <div className={styles.firstNameDateDeleteDiv}>
                     <p className={styles.firstName}>{comment.user.firstName}</p>
@@ -190,7 +188,7 @@ const Comments = ({ comments, setComments, postId, userId }) => {
                     </button>
                   )}
                 </div>
-              </>
+             
             );
           })}
         </div>

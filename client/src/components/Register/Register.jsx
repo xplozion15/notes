@@ -69,13 +69,13 @@ const Register = () => {
     } else if (!username || username.trim().length === 0) {
       setErrorMessage("Username should not be empty");
       return;
-    } else if (username.length < 3 || username.length > 15) {
+    } else if (username.trim().length < 3 || username.trim().length > 15) {
       setErrorMessage("Username must be between 3 to 15 characters");
       return;
     } else if (!password || password.trim().length === 0) {
       setErrorMessage("Password should not be empty");
       return;
-    } else if (password.length < 3 || password.length > 15) {
+    } else if (password.trim().length < 3 || password.trim().length > 15) {
       setErrorMessage("Password must be between 3 to 15 characters");
       return;
     }

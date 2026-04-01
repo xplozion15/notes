@@ -113,12 +113,7 @@ const Navbar = () => {
   }, [searchInput]);
   return (
     <nav className={styles.nav}>
-      <Link
-        to="/"
-        className={styles.logo}
-       
-        viewTransition
-      >
+      <Link to="/" className={styles.logo} viewTransition>
         <House className={styles.houseIcon} />
         <p>Notes</p>
       </Link>
@@ -150,11 +145,9 @@ const Navbar = () => {
         </Link>
         {isUserLoggedIn ? (
           <Logout
-            className={styles.navbarlinksitem}
             setIsUserLoggedIn={setIsUserLoggedIn}
-            onClick={() => {
-              setShowNavbarLinks(!showNavbarLinks);
-            }}
+            setShowNavbarLinks={setShowNavbarLinks}
+            showNavbarLinks={showNavbarLinks}
             viewTransition
           />
         ) : (
@@ -203,19 +196,17 @@ const Navbar = () => {
               {searchedPosts.length === 0 && <p>No results found...</p>}
               {searchedPosts.map((post) => {
                 return (
-                  <>
-                    <Link
-                      onClick={() => {
-                        setShowSearch(false);
-                      }}
-                      to={`/posts/${post.id}`}
-                      key={post.id}
-                      className={styles.searchInstance}
-                      viewTransition
-                    >
-                      {post.title}
-                    </Link>
-                  </>
+                  <Link
+                    onClick={() => {
+                      setShowSearch(false);
+                    }}
+                    to={`/posts/${post.id}`}
+                    key={post.id}
+                    className={styles.searchInstance}
+                    viewTransition
+                  >
+                    {post.title}
+                  </Link>
                 );
               })}
             </div>

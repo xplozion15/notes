@@ -10,6 +10,7 @@ const BlogPosts = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -22,9 +23,8 @@ const BlogPosts = () => {
 
         const result = await response.json();
         setPosts(result.posts);
-
-        console.log(result);
       } catch (error) {
+        setError("Failed to fetch posts");
         console.error("Failed to fetch posts:", error);
       } finally {
         setIsLoading(false);
@@ -38,6 +38,7 @@ const BlogPosts = () => {
   if (isLoading) {
     return <p className={styles.loading}>Loading posts...</p>;
   }
+  if (error) return <p className={styles.error}>{error}...</p>;
   if (posts.length === 0) {
     return <p className={styles.empty}>No posts found...</p>;
   }
@@ -73,7 +74,7 @@ const BlogPosts = () => {
               <p
                 className={styles.postBody}
                 dangerouslySetInnerHTML={{
-                  __html: getPostPreview(postPreviewText),
+                  __html: postPreviewText,
                 }}
               ></p>
               <p className={styles.wordsAndMinutesDiv}>

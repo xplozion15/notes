@@ -4,15 +4,13 @@ import { getPostPreview } from "../../utils/postPreview";
 import { getReadingStats } from "../../utils/readingStats";
 import styles from "./Category.module.css";
 import { Book } from "lucide-react";
-import { Calendars } from "lucide-react";
+import { Calendar } from "lucide-react";
 
 const Category = () => {
   const { categoryId } = useParams();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  
-
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPostsById = async () => {
@@ -28,25 +26,21 @@ const Category = () => {
         }
         const result = await response.json();
         setPosts(result.categoryPosts);
-        console.log(result.categoryPosts);
       } catch (error) {
         console.error("Failed to fetch posts:", error);
+        setError("Failed to fetch posts");
       } finally {
         setLoading(false);
       }
     };
     fetchPostsById();
   }, [categoryId]);
-  console.log(posts);
+
+  if (loading) return <p>Posts are loading...</p>;
+  if (error) return <p>{error}</p>;
+  if (posts.length === 0) return <p>No posts in this category.</p>;
   return (
     <>
-      {loading && <p className={styles.blogpost}>Posts are loading...</p>}
-      {posts.length === 0 && (
-        <p className={styles.blogpost}>
-          There are no posts in this category yet.
-        </p>
-      )}
-
       {posts.map((post) => {
         const postPreviewText = getPostPreview(post.postBody);
         const { wordCount, estimatedReadTime } = getReadingStats(post.postBody);
@@ -64,7 +58,7 @@ const Category = () => {
 
               <div className={styles.dateAndCategoryDiv}>
                 <div className={styles.dateDiv}>
-                  <Calendars className={styles.dateIcon} />
+                  <Calendar className={styles.dateIcon} />
                   <p>{new Date(post.createdAt).toDateString()}</p>
                 </div>
                 <div className={styles.categoryDiv}>
@@ -76,7 +70,7 @@ const Category = () => {
               <p
                 className={styles.postBody}
                 dangerouslySetInnerHTML={{
-                  __html: getPostPreview(postPreviewText),
+                  __html: postPreviewText,
                 }}
               ></p>
               <p className={styles.wordsAndMinutesDiv}>
