@@ -13,7 +13,7 @@ const Logout = ({ setIsUserLoggedIn }) => {
   return (
     <>
       <button className={styles.button} onClick={logoutHandler}>
-        Log Out
+        Logout
       </button>
     </>
   );

@@ -19,8 +19,11 @@
 }
 
 .shortDescription {
+  text-align: center;
   font-weight: 200;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 0.9rem;
+text-wrap: pretty;
 }
 
 .name {

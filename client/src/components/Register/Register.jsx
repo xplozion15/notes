@@ -103,15 +103,11 @@ const Register = () => {
       }
 
       //navigate to home page & show user registered succesfully toast
-      navigate(
-        "/",
-        {
-          state: {
-            message: "User has been registered successfully!",
-          },
-        },
-        { viewTransition: true },
-      );
+
+      navigate("/", {
+        state: { message: "User has been registered successfully!" },
+        viewTransition: true,
+      });
     } catch (error) {
       setErrorMessage("Please check your network or try again later");
       console.log(error.message);

@@ -36,7 +36,7 @@ const Categories = () => {
     return <p className={styles.loading}>Loading categories...</p>;
   }
   if (categoriesArray.length === 0) {
-    return <p className={styles.empty}>No posts found...</p>;
+    return <p className={styles.empty}>No Categories found...</p>;
   }
 
   return (

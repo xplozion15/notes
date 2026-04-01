@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import { Sun } from "lucide-react";
 import { useEffect } from "react";
 import { Logout } from "../Logout/Logout";
-
+import { Menu } from "lucide-react";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Navbar = () => {
@@ -16,6 +16,7 @@ const Navbar = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchedPosts, setSearchedPosts] = useState([]);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [showNavbarLinks, setShowNavbarLinks] = useState(false);
 
   const handleOutsideClick = (e) => {
     if (searchRef.current && !searchRef.current.contains(e.target)) {
@@ -112,27 +113,71 @@ const Navbar = () => {
   }, [searchInput]);
   return (
     <nav className={styles.nav}>
-      <Link to="/" className={styles.logo} viewTransition>
-        <House />
+      <Link
+        to="/"
+        className={styles.logo}
+       
+        viewTransition
+      >
+        <House className={styles.houseIcon} />
         <p>Notes</p>
       </Link>
 
-      <div className={styles.navbarlinks}>
-        <Link to="/" viewTransition>
+      <div
+        className={`${styles.navbarlinks} ${
+          showNavbarLinks ? styles.active : ""
+        }`}
+      >
+        <Link
+          to="/"
+          className={styles.navbarlinksitem}
+          onClick={() => {
+            setShowNavbarLinks(!showNavbarLinks);
+          }}
+          viewTransition
+        >
           Home
         </Link>
-        <Link to="/about" viewTransition>
+        <Link
+          to="/about"
+          className={styles.navbarlinksitem}
+          onClick={() => {
+            setShowNavbarLinks(!showNavbarLinks);
+          }}
+          viewTransition
+        >
           About
         </Link>
         {isUserLoggedIn ? (
-          <Logout setIsUserLoggedIn={setIsUserLoggedIn} />
+          <Logout
+            className={styles.navbarlinksitem}
+            setIsUserLoggedIn={setIsUserLoggedIn}
+            onClick={() => {
+              setShowNavbarLinks(!showNavbarLinks);
+            }}
+            viewTransition
+          />
         ) : (
-          <Link to="/login" viewTransition>
-            Log in
+          <Link
+            to="/login"
+            className={styles.navbarlinksitem}
+            onClick={() => {
+              setShowNavbarLinks(!showNavbarLinks);
+            }}
+            viewTransition
+          >
+            Login
           </Link>
         )}
         {!isUserLoggedIn && (
-          <Link to="/register" viewTransition>
+          <Link
+            to="/register"
+            className={styles.navbarlinksitem}
+            onClick={() => {
+              setShowNavbarLinks(!showNavbarLinks);
+            }}
+            viewTransition
+          >
             Register
           </Link>
         )}
@@ -179,6 +224,7 @@ const Navbar = () => {
 
         {theme === "light" ? (
           <Moon
+            className={styles.moonIcon}
             onClick={() => {
               setTheme("dark");
             }}
@@ -191,6 +237,13 @@ const Navbar = () => {
             }}
           />
         )}
+        <Menu
+          className={styles.menuIcon}
+          onClick={() => {
+            // toggle showNavbarLinks state
+            setShowNavbarLinks(!showNavbarLinks);
+          }}
+        />
       </div>
     </nav>
   );

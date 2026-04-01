@@ -71,3 +71,11 @@
 .logo:hover {
   background-color: var(--hover-color-main);
 }
+
+
+
+@media (max-width:768px) {
+  .registerForm {
+    min-width: 80%;
+  }
+}

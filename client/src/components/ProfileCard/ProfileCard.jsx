@@ -10,7 +10,7 @@ const ProfileCard = () => {
           className={styles.profilepic}
         />
         <h2 className={styles.name}>Xplozion</h2>
-        <p className={styles.shortDescription}>I build web applications </p>
+        <p className={styles.shortDescription}>I love building web apps!</p>
       </div>
     </>
   );

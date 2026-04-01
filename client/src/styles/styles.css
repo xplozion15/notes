@@ -124,7 +124,7 @@ body {
   display: grid;
   margin: 1rem;
   border-radius: 1rem;
-  width: 80vw;
+  width: 70vw;
   margin: auto;
   min-height: 85vh;
   grid-template-columns: 0.2fr 0.8fr;
@@ -154,11 +154,18 @@ input {
   width: 4rem;
   height: 4rem;
   position: fixed;
-  right: 3%;
+  right: 1%;
   bottom: 10%;
   cursor: pointer;
 }
 
+
+
+@media (max-width: 1200px) {
+    .main-content {
+      width: 90vw;
+    }
+}
 @media (max-width: 768px) {
   .main-content {
     width: 95vw;
