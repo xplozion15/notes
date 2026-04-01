@@ -105,8 +105,7 @@ async function deleteCategory(req, res) {
     // dont delete category if posts are there
     if (postsCount > 0) {
       return res.status(400).json({
-        message:
-          "Cannot delete category because this category has posts",
+        message: "Cannot delete category because this category has posts",
       });
     }
 

@@ -34,7 +34,6 @@ const CategoryDeleteDialog = ({
     } catch (error) {
       console.error(error);
       toast.error("Failed to delete category");
-   
     }
   }
 

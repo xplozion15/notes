@@ -36,9 +36,13 @@ const Category = () => {
     fetchPostsById();
   }, [categoryId]);
 
-  if (loading) return <p className={styles.loadingErrorText}>Posts are loading...</p>;
+  if (loading)
+    return <p className={styles.loadingErrorText}>Posts are loading...</p>;
   if (error) return <p className={styles.loadingErrorText}>{error}</p>;
-  if (posts.length === 0) return <p className={styles.loadingErrorText}>No posts in this category.</p>;
+  if (posts.length === 0)
+    return (
+      <p className={styles.loadingErrorText}>No posts in this category.</p>
+    );
   return (
     <>
       {posts.map((post) => {
