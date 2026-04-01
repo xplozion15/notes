@@ -29,15 +29,16 @@
   border-radius: var(--border-radius-small);
   cursor: pointer;
   border: 2px solid var(--background-color-main);
+  background-color: var(--main-color);
+  color: var(--text-color-main);
 }
 
 .errorMessage {
   color: var(--error-color);
 }
 
-
-@media (max-width: 480px){
-      .newCategoryContainer {
-         width: 90vw;
-      }
+@media (max-width: 480px) {
+  .newCategoryContainer {
+    width: 90vw;
+  }
 }

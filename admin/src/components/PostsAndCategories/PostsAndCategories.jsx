@@ -206,7 +206,7 @@ const PostsAndCategories = () => {
                     className={styles.buttons}
                     viewTransition
                   >
-                    Read more
+                    Read
                   </Link>
                   <Link
                     to={`posts/${post.id}/edit`}
