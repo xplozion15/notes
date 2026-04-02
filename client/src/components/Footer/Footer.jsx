@@ -12,7 +12,7 @@ const Footer = () => {
         >
           Blog icons created by Freepik - Flaticon
         </a>
-        <p>© 2026 Xplozion. </p>
+        <p>© 2026 Notes. </p>
       </div>
     </>
   );
