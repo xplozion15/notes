@@ -13,8 +13,8 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@prisma/adapter-pg": "^7.2.0",
-    "@prisma/client": "^7.2.0",
+    "@prisma/adapter-pg": "^7.6.0",
+    "@prisma/client": "^7.6.0",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
     "dompurify": "^3.3.2",
@@ -31,6 +31,6 @@
     "@types/pg": "^8.16.0",
     "dotenv": "^17.2.3",
     "prettier": "3.7.4",
-    "prisma": "^7.2.0"
+    "prisma": "^7.6.0"
   }
 }

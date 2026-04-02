@@ -2,7 +2,8 @@
 A personal blog web application where users can read posts and leave comments. Built with a modern tech stack, it combines a smooth, responsive design with an enhanced writing experience using TinyMCE, and supports Dark and Light mode for a comfortable reading experience.
 
 ## Live Demo
-[Live link](#)
+[Notes](https://notes-mpon.onrender.com/)
+[Admin dashboard](https://notes-admin.onrender.com/login)
 
 ## Tech Stack
 - **Backend:** Node.js, Express, express-validator
