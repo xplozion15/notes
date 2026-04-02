@@ -77,7 +77,7 @@
 
 .postTitle {
   font-weight: 600;
-  font-size: calc(0.7rem + var(--font-medium));
+   font-size: calc(var(--font-medium) + 1rem);
 }
 
 .buttons {

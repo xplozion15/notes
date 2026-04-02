@@ -13,7 +13,7 @@
 }
 
 .postTitle {
-  font-size: var(--font-large);
+   font-size: calc(var(--font-medium) + 1rem);
 }
 
 .postBody {

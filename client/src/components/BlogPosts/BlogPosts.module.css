@@ -9,7 +9,7 @@
 .blogtitle {
   display: inline;
   text-decoration: none;
-  font-size: var(--font-large);
+  font-size: calc(var(--font-medium) + 1rem);
   color: var(--text-color-main);
   font-family: "Syne", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: color 300ms;

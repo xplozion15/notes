@@ -110,7 +110,7 @@
   position: absolute;
   border-radius: 1rem;
   top: 11%;
-  right: 11%;
+  right: 15%;
   z-index: 999;
   min-height: 10rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
@@ -207,5 +207,9 @@
     display: flex;
     justify-content: center;
     width: 100%;
+  }
+
+  .searchContainer {
+    right:5%;
   }
 }
