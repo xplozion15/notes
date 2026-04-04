@@ -214,19 +214,22 @@ const Navbar = () => {
         </div>
 
         {theme === "light" ? (
-          <Moon
-            className={styles.moonIcon}
+          <button
+          className={styles.iconButtons}
             onClick={() => {
               setTheme("dark");
             }}
-          />
+          >
+            <Moon className={styles.moonIcon} />
+          </button>
         ) : (
-          <Sun
-            className={styles.sunicon}
+          <button className={styles.iconButtons}
             onClick={() => {
               setTheme("light");
             }}
-          />
+          >
+            <Sun className={styles.sunicon} />
+          </button>
         )}
         <Menu
           className={styles.menuIcon}

@@ -133,6 +133,12 @@
   color: var(--main-color);
 }
 
+
+.iconButtons {
+  background-color: inherit;
+  border: none;
+}
+
 @media (max-width: 1200px) {
   .nav {
     min-width: 90vw;
@@ -213,3 +219,5 @@
     right:5%;
   }
 }
+
+
