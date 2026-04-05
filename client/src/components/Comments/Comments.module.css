@@ -64,13 +64,13 @@
 }
 
 .commentBody {
-  font-weight: 200;
+  font-weight: 400;
   opacity: 0.8;
   font-size: var(--font-small);
 }
 
 .datePosted {
-  font-weight: 100;
+  font-weight: 200;
   opacity: 0.5;
   font-size: var(--font-small);
 }
