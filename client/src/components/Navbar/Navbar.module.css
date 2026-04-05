@@ -133,11 +133,10 @@
   color: var(--main-color);
 }
 
+
 .iconButtons {
   background-color: inherit;
   border: none;
-  padding: 0.4rem;
-  border-radius: 0.5rem;
 }
 
 @media (max-width: 1200px) {
@@ -182,21 +181,8 @@
     height: 4rem;
   }
 
-  .sunicon,
-  .moonIcon {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-
   .menuIcon {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-
-  .iconButtons {
-    width: auto;
-    height: auto;
-    padding: 0.4rem;
+    display: block;
   }
 
   .search {
@@ -230,6 +216,7 @@
   }
 
   .searchContainer {
-    right: 5%;
+    right:5%;
   }
 }
+
