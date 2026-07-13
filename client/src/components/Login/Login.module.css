@@ -34,7 +34,6 @@
   color: var(--text-color-main);
   display: flex;
   flex-direction: column;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 .formDiv > input {
